@@ -39,13 +39,34 @@ function hideAndResetSkills(containerId) {
     fillBar.style.width = '0';
 }
 
-// Agregar eventos 'mouseenter' y 'mouseleave' a cada elemento de habilidades técnica
+// Función para manejar eventos táctiles en dispositivos móviles
+function handleTouchEvents(containerId, fillCount) {
+    const container = document.getElementById(containerId);
+
+    if (!container) {
+        return;
+    }
+
+    container.addEventListener('touchstart', function () {
+        showAndFillSkills(containerId, fillCount);
+    });
+
+    container.addEventListener('touchend', function () {
+        hideAndResetSkills(containerId);
+    });
+}
+
+// Agregar eventos táctiles a cada elemento de habilidades técnica
 const skillContainers = document.querySelectorAll('.skills-container');
 
 skillContainers.forEach((container) => {
     const bubbleId = container.querySelector('.bubble').id;
     const fillCount = parseFloat(container.dataset.fillCount);
 
+    // Agregar eventos táctiles
+    handleTouchEvents(bubbleId, fillCount);
+
+    // Agregar eventos de mouse para escritorio (mantén los eventos de mouse)
     container.addEventListener('mouseenter', function () {
         showAndFillSkills(bubbleId, fillCount);
     });
@@ -54,7 +75,6 @@ skillContainers.forEach((container) => {
         hideAndResetSkills(bubbleId);
     });
 });
-
 
 // Función para mostrar y ocultar detalles de experiencia
 function toggleExperience(targetId) {
