@@ -347,11 +347,11 @@ header h1 {
       top: 0;
       left: 0;
       right: 0;
-      background-color: #2c3e50; /* Cambia el color de fondo */
+      background-color: #2c3e50;
       box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
       z-index: 1000;
-      padding: 10px 20px; /* Aumenta el espacio interno */
-      color: #ecf0f1; /* Cambia el color del texto */
+      padding: 10px 20px;
+      color: #fbfbfb;
     }
   
     header h1 {
@@ -365,7 +365,7 @@ header h1 {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background-color: #3498db; /* Cambia el color de fondo */
+      background-color: #3498db;
       color: #ffffff;
       border: none;
       border-radius: 50%;
@@ -386,30 +386,38 @@ header h1 {
       top: 0;
       left: 0;
       height: 4px;
-      background-color: #3498db; /* Cambia el color de la barra de progreso */
+      background-color: #3498db;
       width: 0;
       z-index: 999;
     }
   
     /* Nuevas funcionalidades para dispositivos móviles */
     body {
-      font-size: 16px; /* Aumenta el tamaño de fuente */
+      font-size: 16px;
     }
   
     .container {
-      padding: 10px; /* Reduce el espacio interno */
+      padding: 10px;
     }
   
     .section h2 {
-      font-size: 20px; /* Aumenta el tamaño de los títulos de sección */
-      margin-bottom: 10px; /* Reduce el espacio inferior */
+      font-size: 20px;
+      margin-bottom: 10px;
     }
   
     .link:hover {
-      background-color: transparent; /* Elimina el fondo al pasar el mouse */
+      background-color: transparent;
     }
   
-    /* Nueva funcionalidad: Menú de navegación desplegable */
+    /* Funcionalidad 1: Mostrar el menú de navegación al hacer clic en el icono */
+    .menu-icon {
+      display: inline-block;
+      cursor: pointer;
+      color: #ecf0f1;
+      font-size: 24px;
+      margin-right: 10px;
+    }
+  
     .mobile-menu {
       display: none;
       background-color: #2c3e50;
@@ -427,47 +435,54 @@ header h1 {
       margin-bottom: 10px;
     }
   
-    .menu-icon {
-      display: inline-block;
-      cursor: pointer;
-      color: #ecf0f1;
-      font-size: 24px;
-      margin-right: 10px;
-    }
-  
-    /* Nueva funcionalidad: Mostrar el menú al hacer clic en el icono */
     .menu-icon.active + .mobile-menu {
       display: block;
     }
   
-    /* Nueva funcionalidad: Estilo de fondo al pasar el mouse sobre las secciones */
-    .section:hover {
-      background-color: #f2f2f2;
+    /* Funcionalidad 2: Cambiar el color de fondo al hacer scroll hacia abajo */
+    .scroll-down-bg {
+      background-color: rgba(44, 62, 80, 0.9);
+      transition: background-color 0.5s;
     }
   
-    /* Nueva funcionalidad: Cambio de color de fondo en el encabezado al hacer clic */
-    header:active {
+    /* Funcionalidad 3: Mostrar el botón de regreso al principio al hacer scroll */
+    #back-to-top.active {
+      display: block;
+    }
+  
+    /* Funcionalidad 4: Cambiar el color del botón de regreso al principio al hacer scroll */
+    #back-to-top.active {
       background-color: #e74c3c;
     }
   
-    /* Nueva funcionalidad: Estilo de borde en relieve en las secciones al hacer clic */
-    .section:active {
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3) inset;
+    /* Funcionalidad 5: Mostrar el progreso de scroll */
+    #scroll-progress.active {
+      width: 100%;
     }
   
-    /* Nueva funcionalidad: Cambio de color en los enlaces al hacer clic */
-    .link:active {
+    /* Funcionalidad 6: Cambiar el color de la barra de progreso al hacer scroll */
+    #scroll-progress.active {
+      background-color: #e74c3c;
+    }
+  
+    /* Funcionalidad 7: Cambiar el color de fondo en el encabezado al hacer scroll */
+    header.active {
+      background-color: #e74c3c;
+    }
+  
+    /* Funcionalidad 8: Cambiar el color de fondo de las secciones al hacer scroll */
+    .section.active {
+      background-color: #f2f2f2;
+    }
+  
+    /* Funcionalidad 9: Mostrar la barra de progreso al hacer scroll */
+    .section.active #scroll-progress {
+      display: block;
+    }
+  
+    /* Funcionalidad 10: Cambiar el color de los enlaces al hacer scroll */
+    .section.active .link {
       color: #e74c3c;
-    }
-  
-    /* Nueva funcionalidad: Efecto de escala en los enlaces de contacto al hacer clic */
-    .link:active {
-      transform: scale(0.95);
-    }
-  
-    /* Nueva funcionalidad: Efecto de sombra en relieve en las secciones al hacer clic */
-    .section:active {
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3) inset;
     }
   }
   
