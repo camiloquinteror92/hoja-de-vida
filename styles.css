@@ -879,3 +879,53 @@ header h1 {
     top: 0;  /* Reset top position */
     left: 0;  /* Reset left position */
 }
+
+/* Existing styles.css content (shortened for clarity) */
+/* ... */
+
+/* Media Queries for Responsiveness */
+@media only screen and (max-width: 768px) {
+    /* Adjust font sizes for mobile */
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .section p, .section ul {
+        font-size: 0.9rem;
+    }
+
+    /* Adjust container and sections for better mobile view */
+    .container {
+        padding: 10px;
+    }
+
+    .section {
+        padding: 10px;
+    }
+
+    /* Adjust skill bars for mobile */
+    .skills-container {
+        flex-direction: column;
+    }
+
+    /* Adjust experience buttons for better view on mobile */
+    .experience-button {
+        display: block;
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+
+/* Fix for transitions and effects on iOS */
+/* This ensures smooth transitions and avoids flickering on iOS devices */
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
