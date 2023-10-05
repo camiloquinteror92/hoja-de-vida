@@ -347,10 +347,11 @@ header h1 {
       top: 0;
       left: 0;
       right: 0;
-      background-color: #ffffff;
+      background-color: #2c3e50; /* Cambia el color de fondo */
       box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
       z-index: 1000;
-      padding: 10px 0;
+      padding: 10px 20px; /* Aumenta el espacio interno */
+      color: #ecf0f1; /* Cambia el color del texto */
     }
   
     header h1 {
@@ -364,7 +365,7 @@ header h1 {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background-color: #007BFF;
+      background-color: #3498db; /* Cambia el color de fondo */
       color: #ffffff;
       border: none;
       border-radius: 50%;
@@ -385,9 +386,88 @@ header h1 {
       top: 0;
       left: 0;
       height: 4px;
-      background-color: #007BFF;
+      background-color: #3498db; /* Cambia el color de la barra de progreso */
       width: 0;
       z-index: 999;
+    }
+  
+    /* Nuevas funcionalidades para dispositivos móviles */
+    body {
+      font-size: 16px; /* Aumenta el tamaño de fuente */
+    }
+  
+    .container {
+      padding: 10px; /* Reduce el espacio interno */
+    }
+  
+    .section h2 {
+      font-size: 20px; /* Aumenta el tamaño de los títulos de sección */
+      margin-bottom: 10px; /* Reduce el espacio inferior */
+    }
+  
+    .link:hover {
+      background-color: transparent; /* Elimina el fondo al pasar el mouse */
+    }
+  
+    /* Nueva funcionalidad: Menú de navegación desplegable */
+    .mobile-menu {
+      display: none;
+      background-color: #2c3e50;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  
+    .mobile-menu a {
+      display: block;
+      color: #ecf0f1;
+      text-decoration: none;
+      margin-bottom: 10px;
+    }
+  
+    .menu-icon {
+      display: inline-block;
+      cursor: pointer;
+      color: #ecf0f1;
+      font-size: 24px;
+      margin-right: 10px;
+    }
+  
+    /* Nueva funcionalidad: Mostrar el menú al hacer clic en el icono */
+    .menu-icon.active + .mobile-menu {
+      display: block;
+    }
+  
+    /* Nueva funcionalidad: Estilo de fondo al pasar el mouse sobre las secciones */
+    .section:hover {
+      background-color: #f2f2f2;
+    }
+  
+    /* Nueva funcionalidad: Cambio de color de fondo en el encabezado al hacer clic */
+    header:active {
+      background-color: #e74c3c;
+    }
+  
+    /* Nueva funcionalidad: Estilo de borde en relieve en las secciones al hacer clic */
+    .section:active {
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3) inset;
+    }
+  
+    /* Nueva funcionalidad: Cambio de color en los enlaces al hacer clic */
+    .link:active {
+      color: #e74c3c;
+    }
+  
+    /* Nueva funcionalidad: Efecto de escala en los enlaces de contacto al hacer clic */
+    .link:active {
+      transform: scale(0.95);
+    }
+  
+    /* Nueva funcionalidad: Efecto de sombra en relieve en las secciones al hacer clic */
+    .section:active {
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3) inset;
     }
   }
   
