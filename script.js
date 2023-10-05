@@ -8,17 +8,22 @@ function showAndFillSkills(containerId, fillCount) {
 
     const bubble = container.querySelector('.bubble');
     const fillBar = container.querySelector('.skills-fill');
-    const tick = container.querySelector('.tick'); // Nuevo elemento para el símbolo de verificación
+    const tick = container.querySelector('.tick');
+    const resetButton = container.querySelector('.reset-button');
 
-    // Llenar gradualmente la barra de habilidades
-    fillBar.style.transition = 'width 3s ease';
+    // Animación suave para llenar la barra de habilidades
+    fillBar.style.width = '0'; // Restablecer la barra a cero
+    fillBar.style.transition = 'width 2s ease';
     fillBar.style.width = fillCount + '%';
 
     // Mostrar puntaje y símbolo de verificación al final del llenado
-    fillBar.addEventListener('transitionend', function () {
+    setTimeout(function () {
         bubble.textContent = `Puntaje: ${fillCount}%`;
-        tick.style.display = 'block'; // Mostrar el símbolo de verificación
-    });
+        tick.style.display = 'block';
+        if (resetButton) {
+            resetButton.style.display = 'block';
+        }
+    }, 2000); // Retraso para coincidir con la duración de la transición
 }
 
 // Función para ocultar la burbuja de habilidades y restablecer la barra de habilidades
@@ -28,11 +33,15 @@ function hideAndResetSkills(containerId) {
 
     const bubble = container.querySelector('.bubble');
     const tick = container.querySelector('.tick');
+    const resetButton = container.querySelector('.reset-button');
 
-    // Ocultar la burbuja de habilidades y el símbolo de verificación
+    // Ocultar la burbuja de habilidades, el símbolo de verificación y el botón de restablecer
     bubble.style.opacity = '0';
     bubble.style.transform = 'translateY(0)';
     tick.style.display = 'none';
+    if (resetButton) {
+        resetButton.style.display = 'none';
+    }
 
     // Restablecer la barra de habilidades a cero
     const fillBar = container.querySelector('.skills-fill');
@@ -66,7 +75,7 @@ skillContainers.forEach((container) => {
     // Agregar eventos táctiles
     handleTouchEvents(bubbleId, fillCount);
 
-    // Agregar eventos de mouse para escritorio (mantén los eventos de mouse)
+    // Mantener los eventos de mouse para escritorio
     container.addEventListener('mouseenter', function () {
         showAndFillSkills(bubbleId, fillCount);
     });
@@ -76,41 +85,61 @@ skillContainers.forEach((container) => {
     });
 });
 
-// Función para mostrar y ocultar detalles de experiencia
-function toggleExperience(targetId) {
-    const details = document.getElementById(targetId);
-    if (!details) return;
-
-    const isVisible = details.style.display === 'block';
-    const buttons = document.querySelectorAll('.experience-button');
-
-    // Oculta todos los detalles de experiencia
-    document.querySelectorAll('.experience-details').forEach((el) => {
-        el.style.display = 'none';
-    });
-
-    // Actualiza el estado de visibilidad de los botones
-    buttons.forEach((button) => {
-        const buttonTarget = button.getAttribute('data-target');
-        if (buttonTarget === targetId) {
-            button.textContent = isVisible ? button.getAttribute('data-tooltip') : buttonTarget;
-            button.classList.toggle('active', !isVisible);
-        } else {
-            button.classList.remove('active');
-        }
-    });
-
-    // Muestra u oculta el detalle seleccionado
-    details.style.display = isVisible ? 'none' : 'block';
+// Función para cambiar el tema entre claro y oscuro
+function toggleTheme() {
+    const body = document.body;
+    body.classList.toggle('dark-theme');
 }
 
-// Agregar eventos 'click' a cada botón de experiencia
-const experienceButtons = document.querySelectorAll('.experience-button');
+// Agregar evento al botón de cambio de tema
+const themeToggleButton = document.getElementById('theme-toggle-button');
 
-experienceButtons.forEach((button) => {
-    const targetId = button.getAttribute('data-target');
+if (themeToggleButton) {
+    themeToggleButton.addEventListener('click', toggleTheme);
+}
 
-    button.addEventListener('click', function () {
-        toggleExperience(targetId);
+// Función para cambiar el tema a claro
+function setLightTheme() {
+    document.body.classList.remove('dark-theme');
+}
+
+// Función para cambiar el tema a oscuro
+function setDarkTheme() {
+    document.body.classList.add('dark-theme');
+}
+
+// Agregar evento al botón de tema claro
+const lightThemeButton = document.getElementById('light-theme-button');
+if (lightThemeButton) {
+    lightThemeButton.addEventListener('click', setLightTheme);
+}
+
+// Agregar evento al botón de tema oscuro
+const darkThemeButton = document.getElementById('dark-theme-button');
+if (darkThemeButton) {
+    darkThemeButton.addEventListener('click', setDarkTheme);
+}
+
+
+
+// Function to handle experience button clicks
+function handleExperienceButtonClick(event) {
+    // Hide all experience details
+    const allExperienceDetails = document.querySelectorAll('.experience-details');
+    allExperienceDetails.forEach(detail => {
+        detail.style.display = 'none';
     });
+
+    // Show the related experience details based on the button's data-target attribute
+    const targetId = event.currentTarget.getAttribute('data-target');
+    const targetExperience = document.getElementById(targetId);
+    if (targetExperience) {
+        targetExperience.style.display = 'block';
+    }
+}
+
+// Add click event listeners to all experience buttons
+const experienceButtons = document.querySelectorAll('.experience-button');
+experienceButtons.forEach(button => {
+    button.addEventListener('click', handleExperienceButtonClick);
 });
