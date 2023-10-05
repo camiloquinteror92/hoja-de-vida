@@ -10,6 +10,8 @@ body {
     font-family: 'Poppins', sans-serif;
     background-color: #f9f9f9;
     color: #333;
+    line-height: 1.6;
+    transition: background-color 0.3s ease;
 }
 
 /* Contenedor principal */
@@ -17,6 +19,11 @@ body {
     max-width: 960px;
     margin: 0 auto;
     padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    transform-origin: center top;
 }
 
 /* Cabecera */
@@ -26,17 +33,24 @@ header {
     text-align: center;
     padding: 30px 0;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 header h1 {
     font-size: 2.5rem;
     font-weight: 700;
+    transition: color 0.3s ease;
 }
 
 /* Sección */
 .section {
     margin-bottom: 40px;
-    position: relative;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .section h2 {
@@ -44,23 +58,40 @@ header h1 {
     margin-bottom: 20px;
     padding-left: 20px;
     position: relative;
+    color: #333;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.section h2:before {
+/* Efecto de transición para títulos de sección al pasar el mouse */
+.section h2:hover {
+    color: #3498db;
+    transform: scale(1.05);
+}
+
+/* Barra verde en los títulos de sección */
+.section h2::before {
     content: '';
     position: absolute;
-    width: 10px;
+    width: 4px;
     height: 100%;
-    background-color: #3498db;
+    background-color: #4caf50;
     left: 0;
     top: 0;
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+}
+
+/* Efecto de barra verde al pasar el mouse sobre títulos de sección */
+.section h2:hover::before {
+    transform: scaleY(1);
 }
 
 .section p,
 .section ul {
     font-size: 1rem;
     margin-bottom: 20px;
-    line-height: 1.5;
+    line-height: 1.6;
+    transition: color 0.3s ease;
 }
 
 /* Enlaces */
@@ -68,10 +99,12 @@ header h1 {
     color: #3498db;
     text-decoration: none;
     border-bottom: 2px solid #3498db;
+    transition: color 0.3s ease, border-color 0.3s ease;
 }
 
 .link:hover {
     color: #07f87f;
+    border-color: #07f87f;
 }
 
 /* Botones de experiencia */
@@ -86,29 +119,38 @@ header h1 {
     cursor: pointer;
     border-radius: 5px;
     color: #3498db;
-    position: relative; /* Añadir posición relativa para el tooltip */
+    position: relative;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
+/* Efecto de transición y hover para botones de experiencia */
 .experience-button:hover {
     background-color: #3498db;
     color: #ecf0f1;
+    transform: scale(1.05);
 }
 
 /* Contenido de experiencia oculto */
 .experience-details {
     display: none;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .experience-details p {
     font-size: 1rem;
     margin-bottom: 20px;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 /* Barras de habilidades */
 .skills-container {
     position: relative;
     cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
 /* Estilo para el llenado de habilidad técnica */
@@ -127,7 +169,7 @@ header h1 {
     background-color: #4caf50;
     position: absolute;
     border-radius: 10px;
-    transition: width 3s ease;
+    transition: width 1s ease;
 }
 
 /* Burbuja de habilidades */
@@ -143,6 +185,10 @@ header h1 {
     opacity: 0;
     transform: translateY(10px);
     transition: all 0.3s ease;
+}
+
+.skills-container:hover {
+    transform: scale(1.05);
 }
 
 .skills-container:hover .skills-fill {
@@ -204,11 +250,144 @@ header h1 {
     }
 }
 
-/* ... (código CSS existente) */
+/* Efecto de hover para botones y enlaces */
+.button-hover:hover,
+.link:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
 
 /* Estilo para el símbolo de verificación */
 .tick {
     font-size: 1.5rem;
     color: green;
-    display: none; /* Inicialmente oculto */
+    display: none;
 }
+
+/* Tres nuevas características de diseño */
+
+/* 1. Efecto de sombra al pasar el mouse sobre el contenedor principal */
+.container:hover {
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    transform: scale(1.01);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* 2. Estilo de fondo de enlaces al pasar el mouse */
+.link:hover {
+    background-color: #f2f2f2;
+    transition: background-color 0.3s ease;
+}
+
+/* 3. Efecto de zoom al pasar el mouse sobre la imagen de perfil */
+.profile-image:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+/* Efecto de resaltado de borde en los títulos de sección al hacer clic */
+.section h2:active::before {
+    border-color: #e74c3c;
+    transition: border-color 0.3s ease;
+}
+
+/* Cambio de color de fondo en los botones de experiencia al hacer clic */
+.experience-button:active {
+    background-color: #e74c3c;
+    transition: background-color 0.3s ease;
+}
+
+/* Animación de balanceo en las barras de habilidades al hacer clic */
+.skills-container:active {
+    transform: rotate(2deg);
+    transition: transform 0.3s ease;
+}
+
+/* Efecto de cambio de color en los enlaces de contacto al pasar el mouse */
+.link:hover {
+    color: #e74c3c;
+    transition: color 0.3s ease;
+}
+
+/* Efecto de escala en los enlaces de contacto al hacer clic */
+.link:active {
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+/* Efecto de resaltado de borde en los botones de experiencia al pasar el mouse */
+.experience-button:hover::before {
+    border-color: #e74c3c;
+    transition: border-color 0.3s ease;
+}
+
+/* Efecto de sombra en relieve en las secciones al hacer clic */
+.section:active {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3) inset;
+    transition: box-shadow 0.3s ease;
+}
+
+/* Cambio de opacidad en las burbujas de habilidades al pasar el mouse */
+.skills-container:hover .bubble {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+/* Efecto de cambio de color en los enlaces de redes sociales al pasar el mouse */
+.linkedin-link:hover,
+.github-link:hover {
+    color: #e74c3c;
+    transition: color 0.3s ease;
+}
+/* Estilos para dispositivos móviles */
+@media screen and (max-width: 768px) {
+    /* Encabezado fijo */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: #ffffff;
+      box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      padding: 10px 0;
+    }
+  
+    header h1 {
+      font-size: 24px;
+      margin: 0;
+      padding: 0;
+    }
+  
+    /* Botón de regreso al principio */
+    #back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #007BFF;
+      color: #ffffff;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      display: none;
+    }
+  
+    #back-to-top i {
+      font-size: 20px;
+      line-height: 40px;
+    }
+  
+    /* Barra de progreso de scroll */
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background-color: #007BFF;
+      width: 0;
+      z-index: 999;
+    }
+  }
+  
