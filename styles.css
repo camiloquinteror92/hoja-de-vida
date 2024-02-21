@@ -26,16 +26,19 @@ body {
     transform-origin: center top;
 }
 
-/* Cabecera */
 header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     background-color: #2c3e50;
     color: #ecf0f1;
     text-align: center;
-    padding: 30px 0;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
+    padding: 10px 0;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
 
 header h1 {
     font-size: 2.5rem;
@@ -928,4 +931,22 @@ header h1 {
     -moz-osx-font-smoothing: grayscale;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
+}
+
+/* Estilos para dispositivos móviles */
+@media (max-width: 768px) {
+    /* Ajustar el margen superior del contenido principal */
+    .main-content {
+        padding-top: 100px; /* O ajusta este valor según sea necesario */
+    }
+
+    /* Cambiar la posición del encabezado */
+    header {
+        position: static; /* O relative según sea necesario */
+    }
+
+    /* Ajustar el z-index del encabezado */
+    header {
+        z-index: 1; /* Asegúrate de que sea menor que el z-index del contenido */
+    }
 }
