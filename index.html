@@ -111,15 +111,14 @@
         }
     
         .controls {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            z-index: 1001;
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
         }
     
         .btn {
             padding: 8px 15px;
-            margin-left: 10px;
+            margin: 0 5px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -218,43 +217,37 @@
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
-                margin-top: 160px; /* Increased to accommodate header, job title, and controls */
+                margin-top: 140px;
             }
             header {
-                padding-bottom: 70px; /* Increased to make room for job title and controls */
+                padding-bottom: 60px;
             }
             .controls {
                 position: absolute;
-                bottom: 10px; /* Positioned at the bottom of the header */
+                bottom: 10px;
                 left: 0;
                 right: 0;
-                text-align: center;
-                padding: 10px 0;
-                display: flex;
-                justify-content: center;
-                z-index: 1000;
             }
             .btn {
-                margin: 0 5px;
-                font-size: 0.7em;
-                padding: 6px 12px;
+                font-size: 0.65em;
+                padding: 5px 10px;
             }
             h1 {
-                font-size: 1.8em;
+                font-size: 1.6em;
                 margin-bottom: 5px;
             }
             #job-title {
-                font-size: 0.9em;
-                margin-bottom: 35px; /* Added space between job title and controls */
+                font-size: 0.85em;
+                margin-bottom: 25px;
+            }
+            .contact-icons {
+                flex-wrap: wrap;
+            }
+            .contact-icons a {
+                margin: 10px;
             }
         }
     
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    
-        /* Scroll to top button styles */
         #scroll-to-top {
             position: fixed;
             bottom: 20px;
@@ -277,7 +270,6 @@
             transform: scale(1.1);
         }
     
-        /* Loading overlay styles */
         #loading-overlay {
             position: fixed;
             top: 0;
@@ -299,6 +291,11 @@
             width: 50px;
             height: 50px;
             animation: spin 1s linear infinite;
+        }
+    
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -386,6 +383,12 @@
         </section>
     </div>
 
+    <button id="scroll-to-top" aria-label="Scroll to top">&uarr;</button>
+
+    <div id="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+
     <script>
         // Language toggle
         const langToggle = document.getElementById('lang-toggle');
@@ -401,220 +404,178 @@
                 viewDetails: "Click to view details",
                 hideDetails: "Click to hide details"
             },
-            es: {
-                jobTitle: "Desarrollador Backend en MO Technologies",
-                profileContent: "Soy un apasionado de la tecnología con experiencia en desarrollo backend, especialmente en Python y Django. En MO Technologies, contribuyo al desarrollo de soluciones robustas, escalables y seguras, utilizando tecnologías modernas como AWS, Docker y PostgreSQL. Mi enfoque en la calidad del código, la automatización y la integración continua, a través de herramientas como GitLab y Jira, me permite liderar y colaborar eficazmente en proyectos complejos.",
-                langBtn: "English",
-                themeBtn: "Tema Oscuro",
-                viewDetails: "Clic para ver detalles",
-                hideDetails: "Clic para ocultar detalles"
+        
+                es: {
+                    jobTitle: "Desarrollador Backend en MO Technologies",
+                    profileContent: "Soy un apasionado de la tecnología con experiencia en desarrollo backend, especialmente en Python y Django. En MO Technologies, contribuyo al desarrollo de soluciones robustas, escalables y seguras, utilizando tecnologías modernas como AWS, Docker y PostgreSQL. Mi enfoque en la calidad del código, la automatización y la integración continua, a través de herramientas como GitLab y Jira, me permite liderar y colaborar eficazmente en proyectos complejos.",
+                    langBtn: "English",
+                    themeBtn: "Tema Oscuro",
+                    viewDetails: "Clic para ver detalles",
+                    hideDetails: "Clic para ocultar detalles"
+                }
+            };
+        
+            let currentLang = 'en';
+        
+            langToggle.addEventListener('click', () => {
+                currentLang = currentLang === 'en' ? 'es' : 'en';
+                updateLanguage();
+            });
+        
+            function updateLanguage() {
+                jobTitle.textContent = translations[currentLang].jobTitle;
+                profileContent.textContent = translations[currentLang].profileContent;
+                langToggle.textContent = translations[currentLang].langBtn;
+                document.getElementById('theme-toggle').textContent = translations[currentLang].themeBtn;
+                
+                document.querySelectorAll('.experience-toggle').forEach(toggle => {
+                    toggle.textContent = translations[currentLang].viewDetails;
+                });
             }
-        };
-    
-        let currentLang = 'en';
-    
-        langToggle.addEventListener('click', () => {
-            currentLang = currentLang === 'en' ? 'es' : 'en';
-            updateLanguage();
-        });
-    
-        function updateLanguage() {
-            jobTitle.textContent = translations[currentLang].jobTitle;
-            profileContent.textContent = translations[currentLang].profileContent;
-            langToggle.textContent = translations[currentLang].langBtn;
-            document.getElementById('theme-toggle').textContent = translations[currentLang].themeBtn;
-            
+        
+            // Theme toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            themeToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-theme');
+                themeToggle.textContent = document.body.classList.contains('dark-theme') 
+                    ? (currentLang === 'en' ? 'Light Theme' : 'Tema Claro')
+                    : (currentLang === 'en' ? 'Dark Theme' : 'Tema Oscuro');
+            });
+        
+            // Experience details toggle
             document.querySelectorAll('.experience-toggle').forEach(toggle => {
-                toggle.textContent = translations[currentLang].viewDetails;
+                toggle.addEventListener('click', (e) => {
+                    const details = e.target.nextElementSibling;
+                    if (details.style.display === 'none' || details.style.display === '') {
+                        details.style.display = 'block';
+                        e.target.textContent = translations[currentLang].hideDetails;
+                    } else {
+                        details.style.display = 'none';
+                        e.target.textContent = translations[currentLang].viewDetails;
+                    }
+                });
             });
-        }
-    
-        // Theme toggle
-        const themeToggle = document.getElementById('theme-toggle');
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-theme');
-            themeToggle.textContent = document.body.classList.contains('dark-theme') 
-                ? (currentLang === 'en' ? 'Light Theme' : 'Tema Claro')
-                : (currentLang === 'en' ? 'Dark Theme' : 'Tema Oscuro');
-        });
-    
-        // Experience details toggle
-        document.querySelectorAll('.experience-toggle').forEach(toggle => {
-            toggle.addEventListener('click', (e) => {
-                const details = e.target.nextElementSibling;
-                if (details.style.display === 'none' || details.style.display === '') {
-                    details.style.display = 'block';
-                    e.target.textContent = translations[currentLang].hideDetails;
+        
+            // Animate skill bars on scroll
+            function animateSkillBars() {
+                const skillLevels = document.querySelectorAll('.skill-level');
+                skillLevels.forEach(level => {
+                    const rect = level.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom >= 0) {
+                        level.style.width = level.getAttribute('data-level');
+                    }
+                });
+            }
+        
+            window.addEventListener('scroll', animateSkillBars);
+            animateSkillBars(); // Initial call
+        
+            // Smooth scrolling for navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        
+            // Add animation to sections on scroll
+            const sections = document.querySelectorAll('.section');
+            const animateSections = () => {
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    if (sectionTop < windowHeight * 0.75) {
+                        section.style.opacity = '1';
+                        section.style.transform = 'translateY(0)';
+                    }
+                });
+            };
+        
+            window.addEventListener('scroll', animateSections);
+            animateSections(); // Initial call
+        
+            // Add hover effect to skill bars
+            const skillBars = document.querySelectorAll('.skill-bar');
+            skillBars.forEach(bar => {
+                bar.addEventListener('mouseover', () => {
+                    const skillLevel = bar.querySelector('.skill-level');
+                    skillLevel.style.width = skillLevel.getAttribute('data-level');
+                    skillLevel.style.transition = 'width 0.5s ease-in-out';
+                });
+                bar.addEventListener('mouseout', () => {
+                    const skillLevel = bar.querySelector('.skill-level');
+                    skillLevel.style.width = skillLevel.getAttribute('data-level');
+                    skillLevel.style.transition = 'none';
+                });
+            });
+        
+            // Add typing effect to the job title
+            function typeEffect(element, text, speed) {
+                let i = 0;
+                element.innerHTML = '';
+                const typing = setInterval(() => {
+                    if (i < text.length) {
+                        element.innerHTML += text.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(typing);
+                    }
+                }, speed);
+            }
+        
+            typeEffect(jobTitle, translations[currentLang].jobTitle, 100);
+        
+            // Update typing effect when language changes
+            langToggle.addEventListener('click', () => {
+                typeEffect(jobTitle, translations[currentLang].jobTitle, 100);
+            });
+        
+            // Scroll-to-top functionality
+            const scrollTopBtn = document.getElementById('scroll-to-top');
+        
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    scrollTopBtn.style.display = 'block';
+                    scrollTopBtn.style.opacity = '1';
+                    scrollTopBtn.style.transform = 'scale(1)';
                 } else {
-                    details.style.display = 'none';
-                    e.target.textContent = translations[currentLang].viewDetails;
+                    scrollTopBtn.style.opacity = '0';
+                    scrollTopBtn.style.transform = 'scale(0.8)';
+                    setTimeout(() => {
+                        if (window.pageYOffset <= 300) {
+                            scrollTopBtn.style.display = 'none';
+                        }
+                    }, 300);
                 }
             });
-        });
-    
-        // Animate skill bars on scroll
-        function animateSkillBars() {
-            const skillLevels = document.querySelectorAll('.skill-level');
-            skillLevels.forEach(level => {
-                const rect = level.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom >= 0) {
-                    level.style.width = level.getAttribute('data-level');
-                }
-            });
-        }
-    
-        window.addEventListener('scroll', animateSkillBars);
-        animateSkillBars(); // Initial call
-    
-        // Smooth scrolling for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
+        
+            scrollTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
                     behavior: 'smooth'
                 });
             });
-        });
-    
-        // Add animation to sections on scroll
-        const sections = document.querySelectorAll('.section');
-        const animateSections = () => {
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                if (sectionTop < windowHeight * 0.75) {
-                    section.style.opacity = '1';
-                    section.style.transform = 'translateY(0)';
-                }
-            });
-        };
-    
-        window.addEventListener('scroll', animateSections);
-        animateSections(); // Initial call
-    
-        // Add hover effect to skill bars
-        const skillBars = document.querySelectorAll('.skill-bar');
-        skillBars.forEach(bar => {
-            bar.addEventListener('mouseover', () => {
-                const skillLevel = bar.querySelector('.skill-level');
-                skillLevel.style.width = skillLevel.getAttribute('data-level');
-                skillLevel.style.transition = 'width 0.5s ease-in-out';
-            });
-            bar.addEventListener('mouseout', () => {
-                const skillLevel = bar.querySelector('.skill-level');
-                skillLevel.style.width = skillLevel.getAttribute('data-level');
-                skillLevel.style.transition = 'none';
-            });
-        });
-    
-        // Add typing effect to the job title
-        function typeEffect(element, text, speed) {
-            let i = 0;
-            element.innerHTML = '';
-            const typing = setInterval(() => {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                } else {
-                    clearInterval(typing);
-                }
-            }, speed);
-        }
-    
-        typeEffect(jobTitle, translations[currentLang].jobTitle, 100);
-    
-        // Update typing effect when language changes
-        langToggle.addEventListener('click', () => {
-            typeEffect(jobTitle, translations[currentLang].jobTitle, 100);
-        });
-    
-        // Add a scroll-to-top button
-        const scrollTopBtn = document.createElement('button');
-        scrollTopBtn.innerHTML = '&uarr;';
-        scrollTopBtn.setAttribute('aria-label', 'Scroll to top');
-        scrollTopBtn.style.cssText = `
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 24px;
-            cursor: pointer;
-            display: none;
-            transition: opacity 0.3s, transform 0.3s;
-            z-index: 1000;
-        `;
-        document.body.appendChild(scrollTopBtn);
-    
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                scrollTopBtn.style.display = 'block';
-                scrollTopBtn.style.opacity = '1';
-                scrollTopBtn.style.transform = 'scale(1)';
-            } else {
-                scrollTopBtn.style.opacity = '0';
-                scrollTopBtn.style.transform = 'scale(0.8)';
-                setTimeout(() => {
-                    if (window.pageYOffset <= 300) {
-                        scrollTopBtn.style.display = 'none';
-                    }
-                }, 300);
-            }
-        });
-    
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    
-        // Add a simple loading animation
-        const loadingOverlay = document.createElement('div');
-        loadingOverlay.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s;
-        `;
-        const loadingSpinner = document.createElement('div');
-        loadingSpinner.style.cssText = `
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #3498db;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-        `;
-        loadingOverlay.appendChild(loadingSpinner);
-        document.body.appendChild(loadingOverlay);
-    
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                loadingOverlay.style.opacity = '0';
-                setTimeout(() => {
-                    loadingOverlay.remove();
-                }, 500);
-            }, 500);
-        });
-
-        window.addEventListener('orientationchange', () => {
-            if (window.innerWidth <= 768) {
-                document.querySelector('.container').style.marginTop = '160px';
-            }
-        });
         
-    </script>
-    </body>
-    </html>
+            // Loading animation
+            const loadingOverlay = document.getElementById('loading-overlay');
+        
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    loadingOverlay.style.opacity = '0';
+                    setTimeout(() => {
+                        loadingOverlay.style.display = 'none';
+                    }, 500);
+                }, 500);
+            });
+        
+            // Adjust container margin on mobile when orientation changes
+            window.addEventListener('orientationchange', () => {
+                if (window.innerWidth <= 768) {
+                    document.querySelector('.container').style.marginTop = '140px';
+                }
+            });
+        </script>
+        </body>
+        </html>
