@@ -218,18 +218,17 @@
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
-                margin-top: 140px; /* Increased to accommodate header and controls */
+                margin-top: 160px; /* Increased to accommodate header, job title, and controls */
             }
             header {
-                padding-bottom: 60px; /* Increased to make room for controls */
+                padding-bottom: 70px; /* Increased to make room for job title and controls */
             }
             .controls {
                 position: absolute;
-                top: 60px; /* Positioned below the header text */
+                bottom: 10px; /* Positioned at the bottom of the header */
                 left: 0;
                 right: 0;
                 text-align: center;
-                background-color: var(--secondary-color);
                 padding: 10px 0;
                 display: flex;
                 justify-content: center;
@@ -242,9 +241,11 @@
             }
             h1 {
                 font-size: 1.8em;
+                margin-bottom: 5px;
             }
             #job-title {
                 font-size: 0.9em;
+                margin-bottom: 35px; /* Added space between job title and controls */
             }
         }
     
@@ -607,6 +608,13 @@
                 }, 500);
             }, 500);
         });
+
+        window.addEventListener('orientationchange', () => {
+            if (window.innerWidth <= 768) {
+                document.querySelector('.container').style.marginTop = '160px';
+            }
+        });
+        
     </script>
     </body>
     </html>
