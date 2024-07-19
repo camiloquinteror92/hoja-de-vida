@@ -218,37 +218,33 @@
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
-                margin-top: 80px;
+                margin-top: 140px; /* Increased to accommodate header and controls */
+            }
+            header {
+                padding-bottom: 60px; /* Increased to make room for controls */
             }
             .controls {
-                position: static;
+                position: absolute;
+                top: 60px; /* Positioned below the header text */
+                left: 0;
+                right: 0;
                 text-align: center;
-                margin-bottom: 20px;
+                background-color: var(--secondary-color);
+                padding: 10px 0;
                 display: flex;
                 justify-content: center;
+                z-index: 1000;
             }
             .btn {
-                margin-bottom: 10px;
+                margin: 0 5px;
                 font-size: 0.7em;
                 padding: 6px 12px;
             }
-            .contact-icons {
-                flex-wrap: wrap;
-            }
-            .contact-icons a {
-                margin: 10px;
-            }
             h1 {
-                font-size: 2em;
-            }
-            h2 {
-                font-size: 1.5em;
-            }
-            h3 {
-                font-size: 1.2em;
+                font-size: 1.8em;
             }
             #job-title {
-                font-size: 1em;
+                font-size: 0.9em;
             }
         }
     
@@ -309,12 +305,11 @@
     <header>
         <h1>Camilo Quintero</h1>
         <p id="job-title">Backend Developer II at MO Technologies</p>
+        <div class="controls">
+            <button id="lang-toggle" class="btn lang-btn">Español</button>
+            <button id="theme-toggle" class="btn theme-btn">Dark Theme</button>
+        </div>
     </header>
-
-    <div class="controls">
-        <button id="lang-toggle" class="btn lang-btn">Español</button>
-        <button id="theme-toggle" class="btn theme-btn">Dark Theme</button>
-    </div>
 
     <div class="container">
         <section id="profile" class="section">
