@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camilo Quintero Rodríguez- Interactive CV</title>
+    <title>Camilo Quintero Rodríguez - Interactive CV</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
@@ -15,13 +15,13 @@
             --card-bg: #fff;
             --transition: all 0.3s ease;
         }
-    
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-    
+
         body {
             font-family: 'Poppins', sans-serif;
             background-color: var(--bg-color);
@@ -29,13 +29,13 @@
             line-height: 1.6;
             transition: var(--transition);
         }
-    
+
         .container {
             max-width: 1000px;
             margin: 100px auto 20px;
             padding: 20px;
         }
-    
+
         header {
             position: fixed;
             top: 0;
@@ -48,23 +48,23 @@
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-    
+
         h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
         }
-    
+
         h2 {
             font-size: 1.8em;
             margin-bottom: 15px;
             color: var(--primary-color);
         }
-    
+
         h3 {
             font-size: 1.3em;
             margin-bottom: 10px;
         }
-    
+
         .section {
             margin-bottom: 30px;
             padding: 30px;
@@ -75,12 +75,12 @@
             opacity: 0;
             transform: translateY(20px);
         }
-    
+
         .section:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
-    
+
         .skill-bar {
             background-color: #e0e0e0;
             height: 20px;
@@ -89,7 +89,7 @@
             overflow: hidden;
             position: relative;
         }
-    
+
         .skill-level {
             height: 100%;
             background-color: var(--primary-color);
@@ -98,7 +98,7 @@
             position: relative;
             width: 0;
         }
-    
+
         .skill-level::after {
             content: attr(data-level);
             position: absolute;
@@ -109,13 +109,13 @@
             font-weight: bold;
             font-size: 0.8em;
         }
-    
+
         .controls {
             display: flex;
             justify-content: center;
             margin-top: 10px;
         }
-    
+
         .btn {
             padding: 8px 15px;
             margin: 0 5px;
@@ -127,36 +127,36 @@
             text-transform: uppercase;
             font-size: 0.8em;
         }
-    
+
         .lang-btn {
             background-color: var(--primary-color);
             color: white;
         }
-    
+
         .lang-btn:hover {
             background-color: #2980b9;
         }
-    
+
         .theme-btn {
             background-color: var(--secondary-color);
             color: white;
         }
-    
+
         .theme-btn:hover {
             background-color: #34495e;
         }
-    
+
         .experience-toggle {
             cursor: pointer;
             color: var(--primary-color);
             transition: var(--transition);
             font-weight: bold;
         }
-    
+
         .experience-toggle:hover {
             color: #2980b9;
         }
-    
+
         .experience-details {
             display: none;
             margin-top: 15px;
@@ -166,54 +166,54 @@
             border-left: 4px solid var(--primary-color);
             animation: fadeIn 0.5s ease-out;
         }
-    
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-    
+
         .dark-theme {
             --bg-color: #1a1a1a;
             --card-bg: #2c2c2c;
             --text-color: #f4f4f4;
         }
-    
+
         .dark-theme .experience-details {
             background-color: #3a3a3a;
             border-left-color: var(--primary-color);
         }
-    
+
         .contact-icons {
             display: flex;
             justify-content: space-around;
             margin-top: 20px;
         }
-    
+
         .contact-icons a {
             color: var(--primary-color);
             font-size: 24px;
             transition: var(--transition);
         }
-    
+
         .contact-icons a:hover {
             color: #2980b9;
             transform: scale(1.2);
         }
-    
+
         .dark-theme .contact-icons a {
             color: #ecf0f1;
         }
-    
+
         .dark-theme .contact-icons a:hover {
             color: var(--primary-color);
         }
-    
+
         #job-title {
             font-size: 1.2em;
             font-weight: 300;
             margin-top: 5px;
         }
-    
+
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
@@ -247,7 +247,7 @@
                 margin: 10px;
             }
         }
-    
+
         #scroll-to-top {
             position: fixed;
             bottom: 20px;
@@ -264,12 +264,12 @@
             transition: var(--transition);
             z-index: 1000;
         }
-    
+
         #scroll-to-top:hover {
             background-color: #2980b9;
             transform: scale(1.1);
         }
-    
+
         #loading-overlay {
             position: fixed;
             top: 0;
@@ -283,7 +283,7 @@
             z-index: 9999;
             transition: opacity 0.5s;
         }
-    
+
         .loading-spinner {
             border: 5px solid #f3f3f3;
             border-top: 5px solid var(--primary-color);
@@ -292,7 +292,7 @@
             height: 50px;
             animation: spin 1s linear infinite;
         }
-    
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -323,19 +323,19 @@
             </div>
             <div class="skill">
                 <p>PostgreSQL</p>
-                <div class="skill-bar"><div class="skill-level" data-level="85%" style="width: 0%;"></div></div>
-            </div>
-            <div class="skill">
-                <p>AWS</p>
                 <div class="skill-bar"><div class="skill-level" data-level="80%" style="width: 0%;"></div></div>
             </div>
             <div class="skill">
-                <p>Docker</p>
+                <p>AWS</p>
                 <div class="skill-bar"><div class="skill-level" data-level="75%" style="width: 0%;"></div></div>
             </div>
             <div class="skill">
+                <p>Docker</p>
+                <div class="skill-bar"><div class="skill-level" data-level="70%" style="width: 0%;"></div></div>
+            </div>
+            <div class="skill">
                 <p>Git & GitLab</p>
-                <div class="skill-bar"><div class="skill-level" data-level="85%" style="width: 0%;"></div></div>
+                <div class="skill-bar"><div class="skill-level" data-level="90%" style="width: 0%;"></div></div>
             </div>
         </section>
 
@@ -390,7 +390,6 @@
     </div>
 
     <script>
-        // Language toggle
         const langToggle = document.getElementById('lang-toggle');
         const jobTitle = document.getElementById('job-title');
         const profileContent = document.getElementById('profile-content');
@@ -488,7 +487,7 @@
                     const windowHeight = window.innerHeight;
                     if (sectionTop < windowHeight * 0.75) {
                         section.style.opacity = '1';
-                        section.style.transform = 'translateY(0)';
+                        section.style.transform = 'translateY(70px)';
                     }
                 });
             };
@@ -577,5 +576,5 @@
                 }
             });
         </script>
-        </body>
-        </html>
+</body>
+</html>
