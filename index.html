@@ -1,96 +1,617 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hoja de Vida - Camilo Quintero</title>
+    <title>Camilo Quintero - Interactive CV</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --text-color: #333;
+            --bg-color: #f4f4f4;
+            --card-bg: #fff;
+            --transition: all 0.3s ease;
+        }
+    
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+    
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: var(--transition);
+        }
+    
+        .container {
+            max-width: 1000px;
+            margin: 100px auto 20px;
+            padding: 20px;
+        }
+    
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--secondary-color);
+            color: #ecf0f1;
+            text-align: center;
+            padding: 15px 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+    
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+    
+        h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+    
+        h3 {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+    
+        .section {
+            margin-bottom: 30px;
+            padding: 30px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+    
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+    
+        .skill-bar {
+            background-color: #e0e0e0;
+            height: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+    
+        .skill-level {
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 10px;
+            transition: width 1s ease-in-out;
+            position: relative;
+            width: 0;
+        }
+    
+        .skill-level::after {
+            content: attr(data-level);
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #fff;
+            font-weight: bold;
+            font-size: 0.8em;
+        }
+    
+        .controls {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1001;
+        }
+    
+        .btn {
+            padding: 8px 15px;
+            margin-left: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.8em;
+        }
+    
+        .lang-btn {
+            background-color: var(--primary-color);
+            color: white;
+        }
+    
+        .lang-btn:hover {
+            background-color: #2980b9;
+        }
+    
+        .theme-btn {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+    
+        .theme-btn:hover {
+            background-color: #34495e;
+        }
+    
+        .experience-toggle {
+            cursor: pointer;
+            color: var(--primary-color);
+            transition: var(--transition);
+            font-weight: bold;
+        }
+    
+        .experience-toggle:hover {
+            color: #2980b9;
+        }
+    
+        .experience-details {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            border-left: 4px solid var(--primary-color);
+            animation: fadeIn 0.5s ease-out;
+        }
+    
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    
+        .dark-theme {
+            --bg-color: #1a1a1a;
+            --card-bg: #2c2c2c;
+            --text-color: #f4f4f4;
+        }
+    
+        .dark-theme .experience-details {
+            background-color: #3a3a3a;
+            border-left-color: var(--primary-color);
+        }
+    
+        .contact-icons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+    
+        .contact-icons a {
+            color: var(--primary-color);
+            font-size: 24px;
+            transition: var(--transition);
+        }
+    
+        .contact-icons a:hover {
+            color: #2980b9;
+            transform: scale(1.2);
+        }
+    
+        .dark-theme .contact-icons a {
+            color: #ecf0f1;
+        }
+    
+        .dark-theme .contact-icons a:hover {
+            color: var(--primary-color);
+        }
+    
+        #job-title {
+            font-size: 1.2em;
+            font-weight: 300;
+            margin-top: 5px;
+        }
+    
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                margin-top: 80px;
+            }
+            .controls {
+                position: static;
+                text-align: center;
+                margin-bottom: 20px;
+                display: flex;
+                justify-content: center;
+            }
+            .btn {
+                margin-bottom: 10px;
+                font-size: 0.7em;
+                padding: 6px 12px;
+            }
+            .contact-icons {
+                flex-wrap: wrap;
+            }
+            .contact-icons a {
+                margin: 10px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
+            h3 {
+                font-size: 1.2em;
+            }
+            #job-title {
+                font-size: 1em;
+            }
+        }
+    
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    
+        /* Scroll to top button styles */
+        #scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+            transition: var(--transition);
+            z-index: 1000;
+        }
+    
+        #scroll-to-top:hover {
+            background-color: #2980b9;
+            transform: scale(1.1);
+        }
+    
+        /* Loading overlay styles */
+        #loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s;
+        }
+    
+        .loading-spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+    </style>
 </head>
 <body>
     <header>
         <h1>Camilo Quintero</h1>
-        <p>Desarrollador Backend en MO Technologies</p>
-        <p>Ingles B2</p>
+        <p id="job-title">Backend Developer II at MO Technologies</p>
     </header>
+
+    <div class="controls">
+        <button id="lang-toggle" class="btn lang-btn">Español</button>
+        <button id="theme-toggle" class="btn theme-btn">Dark Theme</button>
+    </div>
+
     <div class="container">
-        <section class="section">
-            <h2>Perfil Profesional</h2>
-            <p>Soy un apasionado de la tecnología con experiencia en desarrollo backend, especialmente en Python y Django. En MO Technologies, contribuyo al desarrollo de soluciones robustas, escalables y seguras, utilizando tecnologías modernas como AWS, Docker y PostgreSQL. Mi enfoque en la calidad del código, la automatización y la integración continua, a través de herramientas como GitLab y Jira, me permite liderar y colaborar eficazmente en proyectos complejos.</p>
+        <section id="profile" class="section">
+            <h2>Professional Profile</h2>
+            <p id="profile-content">I am a technology enthusiast with experience in backend development, especially in Python and Django. At MO Technologies, I contribute to the development of robust, scalable, and secure solutions, using modern technologies such as AWS, Docker, and PostgreSQL. My focus on code quality, automation, and continuous integration, through tools like GitLab and Jira, allows me to effectively lead and collaborate on complex projects.</p>
         </section>
-        <section class="section">
-            <h2>Habilidades Técnicas</h2>
-            <ul>
-                <li><strong>Python & Django:</strong> Desarrollo backend, APIs RESTful, microservicios.</li>
-                <li><strong>PostgreSQL:</strong> Diseño y optimización de bases de datos, SQL avanzado.</li>
-                <li><strong>AWS:</strong> EC2, RDS, S3, Lambda, servicios de infraestructura y escalabilidad.</li>
-                <li><strong>Contenedores & Orquestación:</strong> Docker, gestión de contenedores, principios de CI/CD con GitLab CI.</li>
-                <li><strong>Control de Versiones & Colaboración:</strong> Git, GitLab, manejo de ramas, merge requests, code reviews.</li>
-                <li><strong>Gestión de Proyectos & Herramientas:</strong> Jira para la organización de tareas, DBeaver para la gestión de bases de datos.</li>
-            </ul>
-        </section>
-        <section class="section">
-            <h2>Experiencia Profesional</h2>
-            <div class="experience-item">
-                <h3>Desarrollador Backend - MO Technologies</h3>
-                <p>Desarrollo y mantenimiento de soluciones backend utilizando Python y Django. Trabajo en la integración de servicios AWS, manejo de bases de datos PostgreSQL y automatización de procesos con Docker y GitLab CI. Participación activa en la planificación y ejecución de proyectos, utilizando metodologías ágiles y herramientas como Jira para la gestión de tareas.</p>
+
+        <section id="skills" class="section">
+            <h2>Technical Skills</h2>
+            <div class="skill">
+                <p>Python & Django</p>
+                <div class="skill-bar"><div class="skill-level" data-level="90%" style="width: 0%;"></div></div>
             </div>
-            <div class="experience-item">
-                <h3>Desarrollador de Aplicaciones Web - CERAC</h3>
-                <p>Desarrollé una aplicación web para CERAC utilizando Flask, integrando autenticación de usuario, operaciones de base de datos y gestión de formularios. La aplicación permite la gestión de usuarios, encuestas y preguntas.</p>
+            <div class="skill">
+                <p>PostgreSQL</p>
+                <div class="skill-bar"><div class="skill-level" data-level="85%" style="width: 0%;"></div></div>
             </div>
-            <div class="experience-item">
-                <h3>Líder de TICs - INVIAS</h3>
-                <p>Lideré la gestión de TICs y sistemas de información geográfica en INVIAS, aplicando técnicas avanzadas de análisis y visualización de datos. Desarrollé un generador de informes utilizando Flask, HTML, CSS y JavaScript, que permite a los usuarios personalizar informes y exportarlos en varios formatos.</p>
+            <div class="skill">
+                <p>AWS</p>
+                <div class="skill-bar"><div class="skill-level" data-level="80%" style="width: 0%;"></div></div>
             </div>
-            <div class="experience-item">
-                <h3>CEO & Co-fundador - Veci</h3>
-                <p>Fundé y dirigí con éxito un modelo de negocio de tienda de conveniencia en el hogar, utilizando una aplicación de vanguardia para facilitar las ventas y la interacción con los clientes. Generé ventas por $100,000,000 COP en los primeros 8 meses, con un CLTV actual de $500,000 COP.</p>
+            <div class="skill">
+                <p>Docker</p>
+                <div class="skill-bar"><div class="skill-level" data-level="75%" style="width: 0%;"></div></div>
             </div>
-            <div class="experience-item">
-                <h3>CEO & Co-fundador - Fit your Food</h3>
-                <p>Establecí alianzas B2B y adquirí más de 150 clientes en el segundo mes de operación.</p>
-            </div>
-            <div class="experience-item">
-                <h3>A la Casa</h3>
-                <p>Lancé un piloto de Veci, sirviendo almuerzos preparados por cocineros caseros en áreas empresariales. Logré más de 1,500 entregas en el primer año, con ventas totales de $45,000,000 COP.</p>
-            </div>
-            <div class="experience-item">
-                <h3>CEO & Co-fundador - Authentic Trust SAS</h3>
-                <p>Fundé y desarrollé una empresa de estructuración de proyectos inmobiliarios. Realicé valoración y ejecución de proyectos inmobiliarios, y estructuré deudas.</p>
-            </div>
-            <div class="experience-item">
-                <h3>Analista de Inversiones - Corpbanca Investment Banking</h3>
-                <p>Realicé análisis financieros y modelado para proyectos de inversión. Participé en procesos de diligencia debida y negociación, y presenté propuestas a comités de inversión.</p>
+            <div class="skill">
+                <p>Git & GitLab</p>
+                <div class="skill-bar"><div class="skill-level" data-level="85%" style="width: 0%;"></div></div>
             </div>
         </section>
-        
-        <section class="section">
-            <h2>Educación</h2>
-            <p>
-                - <strong>Platzi</strong> (2022 - Presente)<br>
-                Curso de Desarrollo Frontend con enfoque en HTML, CSS y JS.
-            </p>
-            <p>
-                - <strong>Pontificia Universidad Javeriana</strong> (2010-2015)<br>
-                Licenciatura en Ciencias Económicas y Administrativas, Economista.
-            </p>
+
+        <section id="experience" class="section">
+            <h2>Professional Experience</h2>
+            <div class="experience-item">
+                <h3>Backend Developer - MO Technologies</h3>
+                <p class="experience-toggle">Click to view details</p>
+                <div class="experience-details">
+                    <p>Development and maintenance of backend solutions using Python and Django. Work on AWS services integration, PostgreSQL database management, and process automation with Docker and GitLab CI. Active participation in project planning and execution, using agile methodologies and tools like Jira for task management.</p>
+                </div>
+            </div>
+            <div class="experience-item">
+                <h3>Web Application Developer - CERAC</h3>
+                <p class="experience-toggle">Click to view details</p>
+                <div class="experience-details">
+                    <p>Developed a web application for CERAC using Flask, integrating user authentication, database operations, and form management. The application allows for user, survey, and question management.</p>
+                </div>
+            </div>
+            <div class="experience-item">
+                <h3>ICT Leader - INVIAS</h3>
+                <p class="experience-toggle">Click to view details</p>
+                <div class="experience-details">
+                    <p>Led the management of ICTs and geographic information systems at INVIAS, applying advanced data analysis and visualization techniques. Developed a report generator using Flask, HTML, CSS, and JavaScript, allowing users to customize reports and export them in various formats.</p>
+                </div>
+            </div>
         </section>
-        
-        <section class="section">
-            <h2>Contacto</h2>
-            <p>
-                - Correo Electrónico: camiloquinteror@outlook.com<br>
-                - Teléfono de Contacto: +57 3116471257<br>
-                <a class="link" id="linkedin-link" href="https://www.linkedin.com/in/camilo-quinteror/">LinkedIn</a><br>
-                <a class="link" id="github-link" href="https://github.com/camiloquinteror92">GitHub</a>
-            </p>
-            <div class="theme-switcher">
-                <button id="light-theme-button" class="theme-button light-theme-button active">Tema Claro</button>
-                <button id="dark-theme-button" class="theme-button dark-theme-button">Tema Oscuro</button>
-            </div>            
+
+        <section id="education" class="section">
+            <h2>Education</h2>
+            <p><strong>Platzi</strong> (2022 - Present)<br>Python, Django, AWS, Frontend Development Course focusing on HTML, CSS, and JS.</p>
+            <p><strong>Pontificia Universidad Javeriana</strong> (2010-2015)<br>Bachelor's Degree in Economic and Administrative Sciences, Economist.</p>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>Contact</h2>
+            <p>Email: camiloquinteror@outlook.com</p>
+            <p>Phone: +57 3116471257</p>
+            <div class="contact-icons">
+                <a href="https://www.linkedin.com/in/camilo-quinteror/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/camiloquinteror92" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="mailto:camiloquinteror@outlook.com"><i class="fas fa-envelope"></i></a>
+                <a href="tel:+573116471257"><i class="fas fa-phone"></i></a>
+            </div>
         </section>
     </div>
-    <script src="script.js"></script>
-</body>
-</html>
+
+    <script>
+        // Language toggle
+        const langToggle = document.getElementById('lang-toggle');
+        const jobTitle = document.getElementById('job-title');
+        const profileContent = document.getElementById('profile-content');
+        
+        const translations = {
+            en: {
+                jobTitle: "Backend Developer at MO Technologies",
+                profileContent: "I am a technology enthusiast with experience in backend development, especially in Python and Django. At MO Technologies, I contribute to the development of robust, scalable, and secure solutions, using modern technologies such as AWS, Docker, and PostgreSQL. My focus on code quality, automation, and continuous integration, through tools like GitLab and Jira, allows me to effectively lead and collaborate on complex projects.",
+                langBtn: "Español",
+                themeBtn: "Dark Theme",
+                viewDetails: "Click to view details",
+                hideDetails: "Click to hide details"
+            },
+            es: {
+                jobTitle: "Desarrollador Backend en MO Technologies",
+                profileContent: "Soy un apasionado de la tecnología con experiencia en desarrollo backend, especialmente en Python y Django. En MO Technologies, contribuyo al desarrollo de soluciones robustas, escalables y seguras, utilizando tecnologías modernas como AWS, Docker y PostgreSQL. Mi enfoque en la calidad del código, la automatización y la integración continua, a través de herramientas como GitLab y Jira, me permite liderar y colaborar eficazmente en proyectos complejos.",
+                langBtn: "English",
+                themeBtn: "Tema Oscuro",
+                viewDetails: "Clic para ver detalles",
+                hideDetails: "Clic para ocultar detalles"
+            }
+        };
+    
+        let currentLang = 'en';
+    
+        langToggle.addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'es' : 'en';
+            updateLanguage();
+        });
+    
+        function updateLanguage() {
+            jobTitle.textContent = translations[currentLang].jobTitle;
+            profileContent.textContent = translations[currentLang].profileContent;
+            langToggle.textContent = translations[currentLang].langBtn;
+            document.getElementById('theme-toggle').textContent = translations[currentLang].themeBtn;
+            
+            document.querySelectorAll('.experience-toggle').forEach(toggle => {
+                toggle.textContent = translations[currentLang].viewDetails;
+            });
+        }
+    
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            themeToggle.textContent = document.body.classList.contains('dark-theme') 
+                ? (currentLang === 'en' ? 'Light Theme' : 'Tema Claro')
+                : (currentLang === 'en' ? 'Dark Theme' : 'Tema Oscuro');
+        });
+    
+        // Experience details toggle
+        document.querySelectorAll('.experience-toggle').forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                const details = e.target.nextElementSibling;
+                if (details.style.display === 'none' || details.style.display === '') {
+                    details.style.display = 'block';
+                    e.target.textContent = translations[currentLang].hideDetails;
+                } else {
+                    details.style.display = 'none';
+                    e.target.textContent = translations[currentLang].viewDetails;
+                }
+            });
+        });
+    
+        // Animate skill bars on scroll
+        function animateSkillBars() {
+            const skillLevels = document.querySelectorAll('.skill-level');
+            skillLevels.forEach(level => {
+                const rect = level.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom >= 0) {
+                    level.style.width = level.getAttribute('data-level');
+                }
+            });
+        }
+    
+        window.addEventListener('scroll', animateSkillBars);
+        animateSkillBars(); // Initial call
+    
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    
+        // Add animation to sections on scroll
+        const sections = document.querySelectorAll('.section');
+        const animateSections = () => {
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (sectionTop < windowHeight * 0.75) {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+        };
+    
+        window.addEventListener('scroll', animateSections);
+        animateSections(); // Initial call
+    
+        // Add hover effect to skill bars
+        const skillBars = document.querySelectorAll('.skill-bar');
+        skillBars.forEach(bar => {
+            bar.addEventListener('mouseover', () => {
+                const skillLevel = bar.querySelector('.skill-level');
+                skillLevel.style.width = skillLevel.getAttribute('data-level');
+                skillLevel.style.transition = 'width 0.5s ease-in-out';
+            });
+            bar.addEventListener('mouseout', () => {
+                const skillLevel = bar.querySelector('.skill-level');
+                skillLevel.style.width = skillLevel.getAttribute('data-level');
+                skillLevel.style.transition = 'none';
+            });
+        });
+    
+        // Add typing effect to the job title
+        function typeEffect(element, text, speed) {
+            let i = 0;
+            element.innerHTML = '';
+            const typing = setInterval(() => {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typing);
+                }
+            }, speed);
+        }
+    
+        typeEffect(jobTitle, translations[currentLang].jobTitle, 100);
+    
+        // Update typing effect when language changes
+        langToggle.addEventListener('click', () => {
+            typeEffect(jobTitle, translations[currentLang].jobTitle, 100);
+        });
+    
+        // Add a scroll-to-top button
+        const scrollTopBtn = document.createElement('button');
+        scrollTopBtn.innerHTML = '&uarr;';
+        scrollTopBtn.setAttribute('aria-label', 'Scroll to top');
+        scrollTopBtn.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+            transition: opacity 0.3s, transform 0.3s;
+            z-index: 1000;
+        `;
+        document.body.appendChild(scrollTopBtn);
+    
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.style.display = 'block';
+                scrollTopBtn.style.opacity = '1';
+                scrollTopBtn.style.transform = 'scale(1)';
+            } else {
+                scrollTopBtn.style.opacity = '0';
+                scrollTopBtn.style.transform = 'scale(0.8)';
+                setTimeout(() => {
+                    if (window.pageYOffset <= 300) {
+                        scrollTopBtn.style.display = 'none';
+                    }
+                }, 300);
+            }
+        });
+    
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    
+        // Add a simple loading animation
+        const loadingOverlay = document.createElement('div');
+        loadingOverlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s;
+        `;
+        const loadingSpinner = document.createElement('div');
+        loadingSpinner.style.cssText = `
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        `;
+        loadingOverlay.appendChild(loadingSpinner);
+        document.body.appendChild(loadingOverlay);
+    
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                loadingOverlay.style.opacity = '0';
+                setTimeout(() => {
+                    loadingOverlay.remove();
+                }, 500);
+            }, 500);
+        });
+    </script>
+    </body>
+    </html>

@@ -93,6 +93,7 @@ header h1 {
 .section ul {
     font-size: 1rem;
     margin-bottom: 20px;
+    margin-top: 50px;
     line-height: 1.6;
     transition: color 0.3s ease;
 }
