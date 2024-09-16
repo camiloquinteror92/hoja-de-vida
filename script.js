@@ -143,3 +143,30 @@ const experienceButtons = document.querySelectorAll('.experience-button');
 experienceButtons.forEach(button => {
     button.addEventListener('click', handleExperienceButtonClick);
 });
+
+// Añade esto al principio de tu archivo script.js
+
+document.addEventListener('DOMContentLoaded', function() {
+    const loader = document.getElementById('loading-overlay');
+    const content = document.querySelector('.container');
+
+    // Ocultar el loader y mostrar el contenido después de un breve retraso
+    setTimeout(function() {
+        if (loader) {
+            loader.style.display = 'none';
+        }
+        if (content) {
+            content.style.opacity = '1';
+        }
+    }, 500);  // Ajusta este valor según sea necesario
+
+    // Mecanismo de respaldo: ocultar el loader después de 5 segundos en cualquier caso
+    setTimeout(function() {
+        if (loader) {
+            loader.style.display = 'none';
+        }
+        if (content) {
+            content.style.opacity = '1';
+        }
+    }, 5000);
+});
