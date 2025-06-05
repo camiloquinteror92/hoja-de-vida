@@ -27,12 +27,12 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.6;
-            transition: var(--transition);
+            transition: background-color 0.3s ease, color 0.3s ease; /* Shortened body transition */
         }
 
         .container {
             max-width: 1000px;
-            margin: 100px auto 20px;
+            margin: 120px auto 20px; /* Increased top margin for taller header */
             padding: 20px;
         }
 
@@ -47,6 +47,23 @@
             padding: 15px 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Header elements animation */
+        header h1, header #job-title, header .controls {
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInDown 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+        header h1 { animation-delay: 0.2s; }
+        header #job-title { animation-delay: 0.4s; }
+        header .controls { animation-delay: 0.6s; }
+
+        @keyframes fadeInDown {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         h1 {
@@ -70,21 +87,41 @@
             padding: 30px;
             background-color: var(--card-bg);
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
             opacity: 0;
-            transform: translateY(20px);
+            transform: translateY(40px) scale(0.97);
+            transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
         }
 
-        .section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .section.visible:hover {
+            transform: translateY(-7px) scale(1.01);
+            box-shadow: 0 14px 32px rgba(0,0,0,0.15), 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .skill {
+            margin-bottom: 15px; /* Space between skill items */
+        }
+
+        .skill > p { /* Skill name paragraph */
+            margin-bottom: 5px;
+            font-weight: 500;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+        
+        .skill:hover > p {
+            color: var(--primary-color);
+            transform: translateX(4px);
         }
 
         .skill-bar {
             background-color: #e0e0e0;
-            height: 20px;
-            border-radius: 10px;
+            height: 22px; /* Slightly thicker */
+            border-radius: 11px;
             margin-bottom: 20px;
             overflow: hidden;
             position: relative;
@@ -92,23 +129,43 @@
 
         .skill-level {
             height: 100%;
-            background-color: var(--primary-color);
-            border-radius: 10px;
-            transition: width 1s ease-in-out;
+            border-radius: 11px;
             position: relative;
-            width: 0;
+            width: 0; /* Initial width for animation */
+            background: linear-gradient(90deg, var(--primary-color) 0%, #5dade2 50%, var(--primary-color) 100%);
+            background-size: 250% 100%;
+            animation: animatedSkillFill 3.5s linear infinite;
+            transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother easing */
+        }
+        
+        .dark-theme .skill-level { /* Ensure gradient adapts if primary color changes significantly in dark theme, though not in this setup */
+             background: linear-gradient(90deg, var(--primary-color) 0%, #6cb2e2 50%, var(--primary-color) 100%);
+             background-size: 250% 100%;
+             animation: animatedSkillFill 3.5s linear infinite;
+        }
+
+
+        @keyframes animatedSkillFill {
+            0% { background-position: 250% 0; }
+            100% { background-position: 0 0; }
         }
 
         .skill-level::after {
             content: attr(data-level);
             position: absolute;
-            right: 10px;
+            right: 12px;
             top: 50%;
             transform: translateY(-50%);
             color: #fff;
             font-weight: bold;
             font-size: 0.8em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
+
+        .skill:hover .skill-level {
+            filter: brightness(1.15);
+        }
+
 
         .controls {
             display: flex;
@@ -117,16 +174,27 @@
         }
 
         .btn {
-            padding: 8px 15px;
-            margin: 0 5px;
+            padding: 9px 18px; /* Slightly larger padding */
+            margin: 0 7px;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
-            transition: var(--transition);
             font-weight: bold;
             text-transform: uppercase;
             font-size: 0.8em;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+        }
+        .btn:active {
+            transform: translateY(-1px) scale(1.02);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.12);
+        }
+
 
         .lang-btn {
             background-color: var(--primary-color);
@@ -138,13 +206,21 @@
         }
 
         .theme-btn {
-            background-color: var(--secondary-color);
+            background-color: var(--secondary-color); 
             color: white;
         }
+        .dark-theme .theme-btn {
+             background-color: var(--primary-color); 
+        }
+
 
         .theme-btn:hover {
-            background-color: #34495e;
+            background-color: #1f2d3d;
         }
+        .dark-theme .theme-btn:hover {
+            background-color: #2980b9;
+        }
+
 
         .experience-toggle {
             cursor: pointer;
@@ -155,6 +231,7 @@
 
         .experience-toggle:hover {
             color: #2980b9;
+            letter-spacing: 0.5px;
         }
 
         .experience-details {
@@ -164,10 +241,10 @@
             background-color: #f9f9f9;
             border-radius: 5px;
             border-left: 4px solid var(--primary-color);
-            animation: fadeIn 0.5s ease-out;
+            animation: fadeInDetail 0.5s ease-out forwards; /* Use a distinct animation */
         }
 
-        @keyframes fadeIn {
+        @keyframes fadeInDetail { /* Renamed for clarity */
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
@@ -185,68 +262,85 @@
 
         .contact-icons {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-around; 
+            align-items: center;
             margin-top: 20px;
+            flex-wrap: wrap; 
         }
 
         .contact-icons a {
             color: var(--primary-color);
-            font-size: 24px;
-            transition: var(--transition);
+            font-size: 26px; /* Slightly larger icons */
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s ease; /* Elastic transform */
+            margin: 5px 12px; 
         }
 
         .contact-icons a:hover {
-            color: #2980b9;
-            transform: scale(1.2);
+            color: #2773a0; /* Darker shade of primary */
+            transform: scale(1.3) rotate(8deg);
         }
 
         .dark-theme .contact-icons a {
-            color: #ecf0f1;
+            color: #ecf0f1; 
         }
 
         .dark-theme .contact-icons a:hover {
-            color: var(--primary-color);
+            color: var(--primary-color); 
+            transform: scale(1.3) rotate(-8deg); /* Rotate other way for fun */
         }
 
         #job-title {
             font-size: 1.2em;
             font-weight: 300;
             margin-top: 5px;
+            min-height: 1.5em; /* Prevents layout shift during typing */
         }
 
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
-                margin-top: 140px;
+                margin-top: 170px; /* Adjusted for potentially taller header content due to animations */
             }
             header {
-                padding-bottom: 60px;
+                padding-bottom: 10px; 
             }
             .controls {
-                position: absolute;
-                bottom: 10px;
-                left: 0;
-                right: 0;
+                margin-top: 10px;
+                padding-bottom:10px;
             }
             .btn {
-                font-size: 0.65em;
-                padding: 5px 10px;
+                font-size: 0.7em; 
+                padding: 7px 14px;
             }
             h1 {
-                font-size: 1.6em;
+                font-size: 1.8em; 
                 margin-bottom: 5px;
             }
             #job-title {
-                font-size: 0.85em;
-                margin-bottom: 25px;
-            }
-            .contact-icons {
-                flex-wrap: wrap;
+                font-size: 1em; 
+                margin-bottom: 10px; 
             }
             .contact-icons a {
-                margin: 10px;
+                font-size: 24px; 
+                margin: 8px; 
             }
         }
+         @media (max-width: 480px) {
+            h1 {
+                font-size: 1.6em;
+            }
+            #job-title {
+                font-size: 0.9em;
+            }
+            .btn {
+                font-size: 0.65em;
+                padding: 6px 12px;
+            }
+             .container {
+                margin-top: 160px; 
+            }
+        }
+
 
         #scroll-to-top {
             position: fixed;
@@ -260,14 +354,23 @@
             height: 50px;
             font-size: 24px;
             cursor: pointer;
-            display: none;
-            transition: var(--transition);
+            display: none; 
+            align-items: center; 
+            justify-content: center; 
+            transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
             z-index: 1000;
+            opacity: 0; 
+            transform: scale(0.8) rotate(45deg); /* Initial rotation */
+        }
+         #scroll-to-top.visible { /* Class to control visibility and animation */
+            display: flex;
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
         }
 
         #scroll-to-top:hover {
             background-color: #2980b9;
-            transform: scale(1.1);
+            transform: scale(1.15) rotate(5deg); /* More playful hover */
         }
 
         #loading-overlay {
@@ -276,13 +379,17 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: var(--bg-color); 
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            transition: opacity 0.5s;
+            transition: opacity 0.5s ease;
         }
+        .dark-theme #loading-overlay {
+            background-color: var(--bg-color); 
+        }
+
 
         .loading-spinner {
             border: 5px solid #f3f3f3;
@@ -292,6 +399,11 @@
             height: 50px;
             animation: spin 1s linear infinite;
         }
+        .dark-theme .loading-spinner {
+            border: 5px solid #555; 
+            border-top: 5px solid var(--primary-color);
+        }
+
 
         @keyframes spin {
             0% { transform: rotate(0deg); }
@@ -301,8 +413,8 @@
 </head>
 <body>
     <header>
-        <h1>Camilo Quintero</h1>
-        <p id="job-title">Backend Developer II at MO Credit Management Platform</p>
+        <h1>Camilo Quintero Rodríguez</h1>
+        <p id="job-title">Backend Developer II | Python, Django, AWS, Docker</p>
         <div class="controls">
             <button id="lang-toggle" class="btn lang-btn">Español</button>
             <button id="theme-toggle" class="btn theme-btn">Dark Theme</button>
@@ -311,74 +423,93 @@
 
     <div class="container">
         <section id="profile" class="section">
-            <h2>Professional Profile</h2>
-            <p id="profile-content">I am a technology enthusiast with experience in backend development, especially in Python and Django. At MO Credit Management Platform, I contribute to the development of robust, scalable, and secure solutions, using modern technologies such as AWS, Docker, and PostgreSQL. My focus on code quality, automation, and continuous integration, through tools like GitLab and Jira, allows me to effectively lead and collaborate on complex projects.</p>
+            <h2 data-translate="profileTitle">Professional Profile</h2>
+            <p id="profile-content">As a Backend Developer II at MO Credit Management Platform, I specialize in building and enhancing robust, scalable, and secure server-side applications. Leveraging my expertise in Python, Django, AWS, and Docker, I design and implement efficient microservices and APIs. My role involves extensive work with PostgreSQL for database management, utilizing GitLab for CI/CD pipelines, and collaborating within an Agile framework using Jira to deliver high-quality software solutions.</p>
         </section>
 
         <section id="skills" class="section">
-            <h2>Technical Skills</h2>
+            <h2 data-translate="skillsTitle">Technical Skills</h2>
             <div class="skill">
                 <p>Python & Django</p>
-                <div class="skill-bar"><div class="skill-level" data-level="90%" style="width: 0%;"></div></div>
+                <div class="skill-bar"><div class="skill-level" data-level="90%"></div></div>
             </div>
             <div class="skill">
                 <p>PostgreSQL</p>
-                <div class="skill-bar"><div class="skill-level" data-level="80%" style="width: 0%;"></div></div>
+                <div class="skill-bar"><div class="skill-level" data-level="80%"></div></div>
             </div>
             <div class="skill">
-                <p>AWS</p>
-                <div class="skill-bar"><div class="skill-level" data-level="75%" style="width: 0%;"></div></div>
+                <p>AWS (Amazon Web Services)</p>
+                <div class="skill-bar"><div class="skill-level" data-level="80%"></div></div>
             </div>
             <div class="skill">
                 <p>Docker</p>
-                <div class="skill-bar"><div class="skill-level" data-level="70%" style="width: 0%;"></div></div>
+                <div class="skill-bar"><div class="skill-level" data-level="75%"></div></div>
             </div>
             <div class="skill">
-                <p>Git & GitLab</p>
-                <div class="skill-bar"><div class="skill-level" data-level="90%" style="width: 0%;"></div></div>
+                <p>Git & GitLab (CI/CD)</p>
+                <div class="skill-bar"><div class="skill-level" data-level="90%"></div></div>
+            </div>
+             <div class="skill">
+                <p>RESTful APIs & Microservices</p>
+                <div class="skill-bar"><div class="skill-level" data-level="85%"></div></div>
+            </div>
+            <div class="skill">
+                <p>Agile & Jira</p>
+                <div class="skill-bar"><div class="skill-level" data-level="85%"></div></div>
             </div>
         </section>
 
         <section id="experience" class="section">
-            <h2>Professional Experience</h2>
+            <h2 data-translate="experienceTitle">Professional Experience</h2>
             <div class="experience-item">
                 <h3>Backend Developer II - MO Credit Management Platform</h3>
-                <p class="experience-toggle">Click to view details</p>
+                <p class="experience-date" data-translate="moDate">Present</p>
+                <p class="experience-toggle" data-translate="viewDetails">Click to view details</p>
                 <div class="experience-details">
-                    <p>Development and maintenance of backend solutions using Python and Django. Work on AWS services integration, PostgreSQL database management, and process automation with Docker and GitLab CI. Active participation in project planning and execution, using agile methodologies and tools like Jira for task management.</p>
+                    <p data-translate="moExperienceDetails">Specialized in the development and maintenance of backend systems using Python and Django, focusing on microservices architecture. Responsible for integrating AWS services (e.g., S3, EC2, Lambda) for scalable solutions. Managed PostgreSQL databases, ensuring data integrity and performance. Implemented and maintained CI/CD pipelines with GitLab for automated testing and deployment. Utilized Docker for containerization, streamlining development and deployment processes. Actively participated in Agile sprints, project planning, and task management using Jira.</p>
                 </div>
             </div>
             <div class="experience-item">
                 <h3>Web Application Developer - CERAC</h3>
-                <p class="experience-toggle">Click to view details</p>
+                 <p class="experience-date" data-translate="ceracDate">Previous Role</p>
+                <p class="experience-toggle" data-translate="viewDetails">Click to view details</p>
                 <div class="experience-details">
-                    <p>Developed a web application for CERAC using Flask, integrating user authentication, database operations, and form management. The application allows for user, survey, and question management.</p>
+                    <p data-translate="ceracExperienceDetails">Developed a web application for CERAC using Flask, integrating user authentication, database operations, and form management. The application allows for user, survey, and question management.</p>
                 </div>
             </div>
             <div class="experience-item">
                 <h3>ICT Developer - INVIAS</h3>
-                <p class="experience-toggle">Click to view details</p>
+                <p class="experience-date" data-translate="inviasDate">Previous Role</p>
+                <p class="experience-toggle" data-translate="viewDetails">Click to view details</p>
                 <div class="experience-details">
-                    <p>Led the management of ICTs and geographic information systems at INVIAS, applying advanced data analysis and visualization techniques. Developed a report generator using Flask, HTML, CSS, and JavaScript, allowing users to customize reports and export them in various formats.</p>
+                    <p data-translate="inviasExperienceDetails">Led the management of ICTs and geographic information systems at INVIAS, applying advanced data analysis and visualization techniques. Developed a report generator using Flask, HTML, CSS, and JavaScript, allowing users to customize reports and export them in various formats.</p>
                 </div>
             </div>
         </section>
 
         <section id="education" class="section">
-            <h2>Education</h2>
-            <p><strong>Platzi</strong> (2022 - Present)<br>Python, Django, AWS, Frontend Development Course focusing on HTML, CSS, and JS.</p>
-            <p><strong>Pontificia Universidad Javeriana</strong> (2010-2015)<br>Bachelor's Degree in Economic and Administrative Sciences, Economist.</p>
+            <h2 data-translate="educationTitle">Education</h2>
+            <div class="education-item">
+                <h3 data-translate="platziTitle">Online Tech Education - Platzi</h3>
+                <p data-translate="platziPeriodo">2022 - Present</p> <!-- Corrected attribute -->
+                <p data-translate="platziCourses">Courses in Python, Django, AWS, Frontend Development (HTML, CSS, JS), and other backend technologies.</p>
+            </div>
+            <div class="education-item">
+                 <h3 data-translate="javerianaTitle">Economist - Pontificia Universidad Javeriana</h3>
+                 <p data-translate="javerianaPeriodo">2010 - 2015</p>
+                 <p data-translate="javerianaDegree">Bachelor's Degree in Economic and Administrative Sciences.</p>
+            </div>
         </section>
 
         <section id="contact" class="section">
-            <h2>Contact</h2>
-            <p>Email: camiloquinteror@outlook.com</p>
-            <p>Phone: +57 3116471257</p>
+            <h2 data-translate="contactTitle">Contact</h2>
+            <p>Email: <a href="mailto:camiloquinteror@outlook.com">camiloquinteror@outlook.com</a></p>
+            <p data-translate="phoneLabel">Phone: <a href="tel:+573116471257">+57 3116471257</a></p>
             <div class="contact-icons">
-                <a href="https://www.linkedin.com/in/camilo-quinteror/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/camiloquinteror92" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="mailto:camiloquinteror@outlook.com"><i class="fas fa-envelope"></i></a>
-                <a href="tel:+573116471257"><i class="fas fa-phone"></i></a>
+                <a href="https://www.linkedin.com/in/camilo-quinteror/" target="_blank" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/camiloquinteror92" target="_blank" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
+                <a href="mailto:camiloquinteror@outlook.com" aria-label="Send Email"><i class="fas fa-envelope"></i></a>
+                <a href="tel:+573116471257" aria-label="Call Phone"><i class="fas fa-phone"></i></a>
             </div>
         </section>
     </div>
@@ -390,191 +521,227 @@
     </div>
 
     <script>
-        const langToggle = document.getElementById('lang-toggle');
-        const jobTitle = document.getElementById('job-title');
-        const profileContent = document.getElementById('profile-content');
-        
-        const translations = {
-            en: {
-                jobTitle: "Backend Developer II at MO Credit Management Platform",
-                profileContent: "I am a technology enthusiast with experience in backend development, especially in Python and Django. At MO Technologies, I contribute to the development of robust, scalable, and secure solutions, using modern technologies such as AWS, Docker, and PostgreSQL. My focus on code quality, automation, and continuous integration, through tools like GitLab and Jira, allows me to effectively lead and collaborate on complex projects.",
-                langBtn: "Español",
-                themeBtn: "Dark Theme",
-                viewDetails: "Click to view details",
-                hideDetails: "Click to hide details"
-            },
-        
+        document.addEventListener('DOMContentLoaded', () => {
+            const langToggle = document.getElementById('lang-toggle');
+            const themeToggle = document.getElementById('theme-toggle');
+            const jobTitleEl = document.getElementById('job-title');
+            const profileContentEl = document.getElementById('profile-content');
+            const scrollTopBtn = document.getElementById('scroll-to-top');
+            const loadingOverlay = document.getElementById('loading-overlay');
+            const sections = document.querySelectorAll('.section');
+
+            const translations = {
+                en: {
+                    jobTitle: "Backend Developer II | Python, Django, AWS, Docker",
+                    profileContent: "As a Backend Developer II at MO Credit Management Platform, I specialize in building and enhancing robust, scalable, and secure server-side applications. Leveraging my expertise in Python, Django, AWS, and Docker, I design and implement efficient microservices and APIs. My role involves extensive work with PostgreSQL for database management, utilizing GitLab for CI/CD pipelines, and collaborating within an Agile framework using Jira to deliver high-quality software solutions.",
+                    langBtn: "Español",
+                    themeBtnLight: "Dark Theme",
+                    themeBtnDark: "Light Theme",
+                    viewDetails: "Click to view details",
+                    hideDetails: "Click to hide details",
+                    profileTitle: "Professional Profile",
+                    skillsTitle: "Technical Skills",
+                    experienceTitle: "Professional Experience",
+                    educationTitle: "Education",
+                    contactTitle: "Contact",
+                    phoneLabel: "Phone:",
+                    moExperienceDetails: "Specialized in the development and maintenance of backend systems using Python and Django, focusing on microservices architecture. Responsible for integrating AWS services (e.g., S3, EC2, Lambda) for scalable solutions. Managed PostgreSQL databases, ensuring data integrity and performance. Implemented and maintained CI/CD pipelines with GitLab for automated testing and deployment. Utilized Docker for containerization, streamlining development and deployment processes. Actively participated in Agile sprints, project planning, and task management using Jira.",
+                    ceracExperienceDetails: "Developed a web application for CERAC using Flask, integrating user authentication, database operations, and form management. The application allows for user, survey, and question management.",
+                    inviasExperienceDetails: "Led the management of ICTs and geographic information systems at INVIAS, applying advanced data analysis and visualization techniques. Developed a report generator using Flask, HTML, CSS, and JavaScript, allowing users to customize reports and export them in various formats.",
+                    platziTitle: "Online Tech Education - Platzi",
+                    platziPeriodo: "2022 - Present",
+                    platziCourses: "Courses in Python, Django, AWS, Frontend Development (HTML, CSS, JS), and other backend technologies.",
+                    javerianaTitle: "Economist - Pontificia Universidad Javeriana",
+                    javerianaPeriodo: "2010 - 2015",
+                    javerianaDegree: "Bachelor's Degree in Economic and Administrative Sciences.",
+                    moDate: "Present",
+                    ceracDate: "Previous Role",
+                    inviasDate: "Previous Role",
+                },
                 es: {
-                    jobTitle: "Desarrollador Backend en MO Credit Management Platform",
-                    profileContent: "Soy un apasionado de la tecnología con experiencia en desarrollo backend, especialmente en Python y Django. En MO Credit Management Platform, contribuyo al desarrollo de soluciones robustas, escalables y seguras, utilizando tecnologías modernas como AWS, Docker y PostgreSQL. Mi enfoque en la calidad del código, la automatización y la integración continua, a través de herramientas como GitLab y Jira, me permite liderar y colaborar eficazmente en proyectos complejos.",
+                    jobTitle: "Desarrollador Backend II | Python, Django, AWS, Docker",
+                    profileContent: "Como Desarrollador Backend II en MO Credit Management Platform, me especializo en construir y mejorar aplicaciones robustas, escalables y seguras del lado del servidor. Aprovechando mi experiencia en Python, Django, AWS y Docker, diseño e implemento microservicios y APIs eficientes. Mi rol implica un extenso trabajo con PostgreSQL para la gestión de bases de datos, la utilización de GitLab para pipelines de CI/CD y la colaboración dentro de un marco Ágil utilizando Jira para entregar soluciones de software de alta calidad.",
                     langBtn: "English",
-                    themeBtn: "Tema Oscuro",
+                    themeBtnLight: "Tema Oscuro",
+                    themeBtnDark: "Tema Claro",
                     viewDetails: "Clic para ver detalles",
-                    hideDetails: "Clic para ocultar detalles"
+                    hideDetails: "Clic para ocultar detalles",
+                    profileTitle: "Perfil Profesional",
+                    skillsTitle: "Habilidades Técnicas",
+                    experienceTitle: "Experiencia Profesional",
+                    educationTitle: "Educación",
+                    contactTitle: "Contacto",
+                    phoneLabel: "Teléfono:",
+                    moExperienceDetails: "Especializado en el desarrollo y mantenimiento de sistemas backend usando Python y Django, con foco en arquitectura de microservicios. Responsable de integrar servicios de AWS (ej. S3, EC2, Lambda) para soluciones escalables. Gestión de bases de datos PostgreSQL, asegurando integridad y rendimiento. Implementación y mantenimiento de pipelines CI/CD con GitLab para pruebas y despliegues automatizados. Uso de Docker para containerización, optimizando procesos de desarrollo y despliegue. Participación activa en sprints Ágiles, planificación de proyectos y gestión de tareas con Jira.",
+                    ceracExperienceDetails: "Desarrollé una aplicación web para CERAC usando Flask, integrando autenticación de usuarios, operaciones de base de datos y gestión de formularios. La aplicación permite la administración de usuarios, encuestas y preguntas.",
+                    inviasExperienceDetails: "Lideré la gestión de TICs y sistemas de información geográfica en INVIAS, aplicando análisis avanzado de datos y técnicas de visualización. Desarrollé un generador de reportes usando Flask, HTML, CSS y JavaScript, permitiendo a los usuarios personalizar reportes y exportarlos en varios formatos.",
+                    platziTitle: "Educación Tecnológica Online - Platzi",
+                    platziPeriodo: "2022 - Actualidad", // Corrected from 'perioada' to 'Periodo' for ES consistency
+                    platziCourses: "Cursos en Python, Django, AWS, Desarrollo Frontend (HTML, CSS, JS), y otras tecnologías backend.",
+                    javerianaTitle: "Economista - Pontificia Universidad Javeriana",
+                    javerianaPeriodo: "2010 - 2015",
+                    javerianaDegree: "Título de Pregrado en Ciencias Económicas y Administrativas.",
+                    moDate: "Actual",
+                    ceracDate: "Rol Anterior",
+                    inviasDate: "Rol Anterior",
                 }
             };
-        
-            let currentLang = 'en';
-        
+
+            let currentLang = 'en'; // Default language
+            let isDarkTheme = false;
+
+            function updateLanguage() {
+                const langData = translations[currentLang];
+                // jobTitleEl.textContent = langData.jobTitle; // Typing effect will handle this
+                profileContentEl.textContent = langData.profileContent;
+                langToggle.textContent = langData.langBtn;
+                themeToggle.textContent = isDarkTheme ? langData.themeBtnDark : langData.themeBtnLight;
+
+                document.querySelectorAll('[data-translate]').forEach(el => {
+                    const key = el.getAttribute('data-translate');
+                    if (langData[key]) {
+                        el.textContent = langData[key];
+                    }
+                });
+                 document.querySelectorAll('.experience-toggle').forEach(toggle => {
+                    const details = toggle.nextElementSibling;
+                    if (details.style.display === 'block') {
+                        toggle.textContent = langData.hideDetails;
+                    } else {
+                        toggle.textContent = langData.viewDetails;
+                    }
+                });
+                typeEffect(jobTitleEl, langData.jobTitle, 80); // Re-trigger typing effect on language change
+            }
+
+
             langToggle.addEventListener('click', () => {
                 currentLang = currentLang === 'en' ? 'es' : 'en';
                 updateLanguage();
             });
-        
-            function updateLanguage() {
-                jobTitle.textContent = translations[currentLang].jobTitle;
-                profileContent.textContent = translations[currentLang].profileContent;
-                langToggle.textContent = translations[currentLang].langBtn;
-                document.getElementById('theme-toggle').textContent = translations[currentLang].themeBtn;
-                
-                document.querySelectorAll('.experience-toggle').forEach(toggle => {
-                    toggle.textContent = translations[currentLang].viewDetails;
-                });
-            }
-        
-            // Theme toggle
-            const themeToggle = document.getElementById('theme-toggle');
+
             themeToggle.addEventListener('click', () => {
                 document.body.classList.toggle('dark-theme');
-                themeToggle.textContent = document.body.classList.contains('dark-theme') 
-                    ? (currentLang === 'en' ? 'Light Theme' : 'Tema Claro')
-                    : (currentLang === 'en' ? 'Dark Theme' : 'Tema Oscuro');
+                isDarkTheme = document.body.classList.contains('dark-theme');
+                localStorage.setItem('theme', isDarkTheme ? 'dark' : 'light');
+                updateLanguage(); 
             });
-        
-            // Experience details toggle
+            
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+                isDarkTheme = true;
+            }
+            // updateLanguage(); // Called at the end after typeEffect is defined
+
             document.querySelectorAll('.experience-toggle').forEach(toggle => {
                 toggle.addEventListener('click', (e) => {
                     const details = e.target.nextElementSibling;
+                    const langData = translations[currentLang];
                     if (details.style.display === 'none' || details.style.display === '') {
                         details.style.display = 'block';
-                        e.target.textContent = translations[currentLang].hideDetails;
+                        e.target.textContent = langData.hideDetails;
                     } else {
                         details.style.display = 'none';
-                        e.target.textContent = translations[currentLang].viewDetails;
+                        e.target.textContent = langData.viewDetails;
                     }
                 });
             });
-        
-            // Animate skill bars on scroll
+
+            // This function remains to fill bars when #skills section is visible
             function animateSkillBars() {
                 const skillLevels = document.querySelectorAll('.skill-level');
                 skillLevels.forEach(level => {
+                    // Check if the bar is visible and hasn't been animated yet
                     const rect = level.getBoundingClientRect();
-                    if (rect.top < window.innerHeight && rect.bottom >= 0) {
+                    const isVisible = rect.top < window.innerHeight && rect.bottom >= 0;
+                    const notAnimated = level.style.width === '0px' || level.style.width === '' || level.style.width === '0%';
+                    
+                    if (isVisible && notAnimated) {
                         level.style.width = level.getAttribute('data-level');
                     }
                 });
             }
-        
-            window.addEventListener('scroll', animateSkillBars);
-            animateSkillBars(); // Initial call
-        
-            // Smooth scrolling for navigation
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
-            });
-        
-            // Add animation to sections on scroll
-            const sections = document.querySelectorAll('.section');
-            const animateSections = () => {
-                sections.forEach(section => {
-                    const sectionTop = section.getBoundingClientRect().top;
-                    const windowHeight = window.innerHeight;
-                    if (sectionTop < windowHeight * 0.75) {
-                        section.style.opacity = '1';
-                        section.style.transform = 'translateY(70px)';
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 
+            };
+
+            const sectionObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        if (entry.target.id === 'skills') {
+                            animateSkillBars(); // Animate skill bars when skills section is visible
+                        }
+                        // observer.unobserve(entry.target); // Keep observing for re-animation if needed, or unobserve
                     }
                 });
-            };
-        
-            window.addEventListener('scroll', animateSections);
-            animateSections(); // Initial call
-        
-            // Add hover effect to skill bars
-            const skillBars = document.querySelectorAll('.skill-bar');
-            skillBars.forEach(bar => {
-                bar.addEventListener('mouseover', () => {
-                    const skillLevel = bar.querySelector('.skill-level');
-                    skillLevel.style.width = skillLevel.getAttribute('data-level');
-                    skillLevel.style.transition = 'width 0.5s ease-in-out';
-                });
-                bar.addEventListener('mouseout', () => {
-                    const skillLevel = bar.querySelector('.skill-level');
-                    skillLevel.style.width = skillLevel.getAttribute('data-level');
-                    skillLevel.style.transition = 'none';
-                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                sectionObserver.observe(section);
             });
-        
-            // Add typing effect to the job title
+
+            let typingInterval;
             function typeEffect(element, text, speed) {
+                clearInterval(typingInterval); 
                 let i = 0;
-                element.innerHTML = '';
-                const typing = setInterval(() => {
+                element.innerHTML = ''; 
+                typingInterval = setInterval(() => {
                     if (i < text.length) {
                         element.innerHTML += text.charAt(i);
                         i++;
                     } else {
-                        clearInterval(typing);
+                        clearInterval(typingInterval);
                     }
                 }, speed);
             }
-        
-            typeEffect(jobTitle, translations[currentLang].jobTitle, 100);
-        
-            // Update typing effect when language changes
-            langToggle.addEventListener('click', () => {
-                typeEffect(jobTitle, translations[currentLang].jobTitle, 100);
-            });
-        
-            // Scroll-to-top functionality
-            const scrollTopBtn = document.getElementById('scroll-to-top');
-        
+            
+            // Initial call for typing effect done after updateLanguage
+            // typeEffect(jobTitleEl, translations[currentLang].jobTitle, 80);
+
+
             window.addEventListener('scroll', () => {
                 if (window.pageYOffset > 300) {
-                    scrollTopBtn.style.display = 'block';
-                    scrollTopBtn.style.opacity = '1';
-                    scrollTopBtn.style.transform = 'scale(1)';
+                    if (!scrollTopBtn.classList.contains('visible')) {
+                        scrollTopBtn.classList.add('visible');
+                    }
                 } else {
-                    scrollTopBtn.style.opacity = '0';
-                    scrollTopBtn.style.transform = 'scale(0.8)';
-                    setTimeout(() => {
-                        if (window.pageYOffset <= 300) {
-                            scrollTopBtn.style.display = 'none';
-                        }
-                    }, 300);
+                    if (scrollTopBtn.classList.contains('visible')) {
+                        scrollTopBtn.classList.remove('visible');
+                         // Optional: hide it completely after transition if CSS doesn't handle display:none
+                        setTimeout(() => {
+                           if (!scrollTopBtn.classList.contains('visible')) scrollTopBtn.style.display = 'none';
+                        }, 300); // Match transition duration
+                    }
+                }
+                 // Ensure it's 'flex' when starting to become visible
+                if (scrollTopBtn.classList.contains('visible') && scrollTopBtn.style.display === 'none') {
+                    scrollTopBtn.style.display = 'flex';
                 }
             });
-        
+
+
             scrollTopBtn.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
-        
-            // Loading animation
-            const loadingOverlay = document.getElementById('loading-overlay');
-        
+
             window.addEventListener('load', () => {
                 setTimeout(() => {
                     loadingOverlay.style.opacity = '0';
                     setTimeout(() => {
                         loadingOverlay.style.display = 'none';
-                    }, 500);
-                }, 500);
+                    }, 500); 
+                }, 200); 
             });
-        
-            // Adjust container margin on mobile when orientation changes
-            window.addEventListener('orientationchange', () => {
-                if (window.innerWidth <= 768) {
-                    document.querySelector('.container').style.marginTop = '140px';
-                }
-            });
-        </script>
+            
+            // Initial setup
+            updateLanguage(); // Set initial text based on default language and theme, also calls typeEffect
+            // animateSkillBars(); // This will be called by IntersectionObserver when skills section is visible
+        });
+    </script>
 </body>
 </html>
