@@ -414,7 +414,7 @@
 <body>
     <header>
         <h1>Camilo Quintero Rodríguez</h1>
-        <p id="job-title">Backend Developer II | Python, Django, AWS, Docker</p>
+        <p id="job-title">Chief Technology Officer (CTO) | Python · Django · AWS · System Architecture</p>
         <div class="controls">
             <button id="lang-toggle" class="btn lang-btn">Español</button>
             <button id="theme-toggle" class="btn theme-btn">Dark Theme</button>
@@ -424,37 +424,49 @@
     <div class="container">
         <section id="profile" class="section">
             <h2 data-translate="profileTitle">Professional Profile</h2>
-            <p id="profile-content">As a Backend Developer II at MO Credit Management Platform, I specialize in building and enhancing robust, scalable, and secure server-side applications. Leveraging my expertise in Python, Django, AWS, and Docker, I design and implement efficient microservices and APIs. My role involves extensive work with PostgreSQL for database management, utilizing GitLab for CI/CD pipelines, and collaborating within an Agile framework using Jira to deliver high-quality software solutions.</p>
+            <p id="profile-content">As Chief Technology Officer at OWLY SAS, I lead the architecture and backend engineering of Owly CRM, a multi-tenant real-estate intelligence SaaS. I design scalable, secure server-side systems with Python, Django REST Framework, PostgreSQL, Redis and Celery, paired with a React and TypeScript frontend. My work spans multi-tenant architecture, real-time systems (WebSockets), ERP and banking integrations (SINCO, Davivienda), ML-based lead scoring, and cloud infrastructure on AWS (ECS Fargate, Terraform, CI/CD). With a foundation as a Backend Developer II and a background in Economics, I bridge deep technical execution with business strategy.</p>
         </section>
 
         <section id="skills" class="section">
             <h2 data-translate="skillsTitle">Technical Skills</h2>
             <div class="skill">
-                <p>Python & Django</p>
+                <p>Python & Django / DRF</p>
+                <div class="skill-bar"><div class="skill-level" data-level="95%"></div></div>
+            </div>
+            <div class="skill">
+                <p>Software Architecture & Multi-Tenancy</p>
                 <div class="skill-bar"><div class="skill-level" data-level="90%"></div></div>
             </div>
             <div class="skill">
-                <p>PostgreSQL</p>
-                <div class="skill-bar"><div class="skill-level" data-level="80%"></div></div>
-            </div>
-            <div class="skill">
-                <p>AWS (Amazon Web Services)</p>
-                <div class="skill-bar"><div class="skill-level" data-level="80%"></div></div>
-            </div>
-            <div class="skill">
-                <p>Docker</p>
-                <div class="skill-bar"><div class="skill-level" data-level="75%"></div></div>
-            </div>
-            <div class="skill">
-                <p>Git & GitLab (CI/CD)</p>
-                <div class="skill-bar"><div class="skill-level" data-level="90%"></div></div>
-            </div>
-             <div class="skill">
                 <p>RESTful APIs & Microservices</p>
+                <div class="skill-bar"><div class="skill-level" data-level="90%"></div></div>
+            </div>
+            <div class="skill">
+                <p>PostgreSQL & Redis</p>
                 <div class="skill-bar"><div class="skill-level" data-level="85%"></div></div>
             </div>
             <div class="skill">
-                <p>Agile & Jira</p>
+                <p>AWS (ECS, S3, SES) & Terraform</p>
+                <div class="skill-bar"><div class="skill-level" data-level="85%"></div></div>
+            </div>
+            <div class="skill">
+                <p>Docker & CI/CD (GitHub Actions, GitLab)</p>
+                <div class="skill-bar"><div class="skill-level" data-level="85%"></div></div>
+            </div>
+            <div class="skill">
+                <p>Celery & WebSockets (Django Channels)</p>
+                <div class="skill-bar"><div class="skill-level" data-level="80%"></div></div>
+            </div>
+            <div class="skill">
+                <p>React & TypeScript</p>
+                <div class="skill-bar"><div class="skill-level" data-level="80%"></div></div>
+            </div>
+            <div class="skill">
+                <p>AI/ML Integration (scikit-learn, LLMs)</p>
+                <div class="skill-bar"><div class="skill-level" data-level="75%"></div></div>
+            </div>
+            <div class="skill">
+                <p>Tech Leadership & Agile</p>
                 <div class="skill-bar"><div class="skill-level" data-level="85%"></div></div>
             </div>
         </section>
@@ -462,8 +474,16 @@
         <section id="experience" class="section">
             <h2 data-translate="experienceTitle">Professional Experience</h2>
             <div class="experience-item">
+                <h3>Chief Technology Officer (CTO) - OWLY SAS (Owly CRM)</h3>
+                <p class="experience-date" data-translate="owlyDate">2024 - Present</p>
+                <p class="experience-toggle" data-translate="viewDetails">Click to view details</p>
+                <div class="experience-details">
+                    <p data-translate="owlyExperienceDetails">Lead the technical strategy and architecture of Owly CRM, a multi-tenant real-estate intelligence SaaS. Designed the backend from the ground up with Django 4.2, Django REST Framework, PostgreSQL 16, Redis and Celery across 30+ modular apps. Architected the multi-tenant core (ORM-level tenant isolation) and a real-time layer with Django Channels and Daphne (WebSockets) for live quote collaboration, omnichannel messaging (WhatsApp/Email/SMS) and notifications. Built major integrations: a SINCO ERP connector (150+ endpoints) and a Davivienda mortgage-bank integration. Implemented ML-based adaptive lead scoring (scikit-learn) and an AI agents platform (Anthropic Claude, OpenAI) with ElevenLabs voice agents. Owned the AWS infrastructure (ECS Fargate, S3, SES, CloudFront) provisioned with Terraform and shipped through CI/CD (GitHub Actions / AWS CodePipeline). Designed financial engines: a commission tier system and an opportunity-cost quote-discount engine.</p>
+                </div>
+            </div>
+            <div class="experience-item">
                 <h3>Backend Developer II - MO Credit Management Platform</h3>
-                <p class="experience-date" data-translate="moDate">Present</p>
+                <p class="experience-date" data-translate="moDate">Previous Role</p>
                 <p class="experience-toggle" data-translate="viewDetails">Click to view details</p>
                 <div class="experience-details">
                     <p data-translate="moExperienceDetails">Specialized in the development and maintenance of backend systems using Python and Django, focusing on microservices architecture. Responsible for integrating AWS services (e.g., S3, EC2, Lambda) for scalable solutions. Managed PostgreSQL databases, ensuring data integrity and performance. Implemented and maintained CI/CD pipelines with GitLab for automated testing and deployment. Utilized Docker for containerization, streamlining development and deployment processes. Actively participated in Agile sprints, project planning, and task management using Jira.</p>
@@ -532,8 +552,8 @@
 
             const translations = {
                 en: {
-                    jobTitle: "Backend Developer II | Python, Django, AWS, Docker",
-                    profileContent: "As a Backend Developer II at MO Credit Management Platform, I specialize in building and enhancing robust, scalable, and secure server-side applications. Leveraging my expertise in Python, Django, AWS, and Docker, I design and implement efficient microservices and APIs. My role involves extensive work with PostgreSQL for database management, utilizing GitLab for CI/CD pipelines, and collaborating within an Agile framework using Jira to deliver high-quality software solutions.",
+                    jobTitle: "Chief Technology Officer (CTO) | Python · Django · AWS · System Architecture",
+                    profileContent: "As Chief Technology Officer at OWLY SAS, I lead the architecture and backend engineering of Owly CRM, a multi-tenant real-estate intelligence SaaS. I design scalable, secure server-side systems with Python, Django REST Framework, PostgreSQL, Redis and Celery, paired with a React and TypeScript frontend. My work spans multi-tenant architecture, real-time systems (WebSockets), ERP and banking integrations (SINCO, Davivienda), ML-based lead scoring, and cloud infrastructure on AWS (ECS Fargate, Terraform, CI/CD). With a foundation as a Backend Developer II and a background in Economics, I bridge deep technical execution with business strategy.",
                     langBtn: "Español",
                     themeBtnLight: "Dark Theme",
                     themeBtnDark: "Light Theme",
@@ -545,6 +565,7 @@
                     educationTitle: "Education",
                     contactTitle: "Contact",
                     phoneLabel: "Phone:",
+                    owlyExperienceDetails: "Lead the technical strategy and architecture of Owly CRM, a multi-tenant real-estate intelligence SaaS. Designed the backend from the ground up with Django 4.2, Django REST Framework, PostgreSQL 16, Redis and Celery across 30+ modular apps. Architected the multi-tenant core (ORM-level tenant isolation) and a real-time layer with Django Channels and Daphne (WebSockets) for live quote collaboration, omnichannel messaging (WhatsApp/Email/SMS) and notifications. Built major integrations: a SINCO ERP connector (150+ endpoints) and a Davivienda mortgage-bank integration. Implemented ML-based adaptive lead scoring (scikit-learn) and an AI agents platform (Anthropic Claude, OpenAI) with ElevenLabs voice agents. Owned the AWS infrastructure (ECS Fargate, S3, SES, CloudFront) provisioned with Terraform and shipped through CI/CD (GitHub Actions / AWS CodePipeline). Designed financial engines: a commission tier system and an opportunity-cost quote-discount engine.",
                     moExperienceDetails: "Specialized in the development and maintenance of backend systems using Python and Django, focusing on microservices architecture. Responsible for integrating AWS services (e.g., S3, EC2, Lambda) for scalable solutions. Managed PostgreSQL databases, ensuring data integrity and performance. Implemented and maintained CI/CD pipelines with GitLab for automated testing and deployment. Utilized Docker for containerization, streamlining development and deployment processes. Actively participated in Agile sprints, project planning, and task management using Jira.",
                     ceracExperienceDetails: "Developed a web application for CERAC using Flask, integrating user authentication, database operations, and form management. The application allows for user, survey, and question management.",
                     inviasExperienceDetails: "Led the management of ICTs and geographic information systems at INVIAS, applying advanced data analysis and visualization techniques. Developed a report generator using Flask, HTML, CSS, and JavaScript, allowing users to customize reports and export them in various formats.",
@@ -554,13 +575,14 @@
                     javerianaTitle: "Economist - Pontificia Universidad Javeriana",
                     javerianaPeriodo: "2010 - 2015",
                     javerianaDegree: "Bachelor's Degree in Economic and Administrative Sciences.",
-                    moDate: "Present",
+                    owlyDate: "2024 - Present",
+                    moDate: "Previous Role",
                     ceracDate: "Previous Role",
                     inviasDate: "Previous Role",
                 },
                 es: {
-                    jobTitle: "Desarrollador Backend II | Python, Django, AWS, Docker",
-                    profileContent: "Como Desarrollador Backend II en MO Credit Management Platform, me especializo en construir y mejorar aplicaciones robustas, escalables y seguras del lado del servidor. Aprovechando mi experiencia en Python, Django, AWS y Docker, diseño e implemento microservicios y APIs eficientes. Mi rol implica un extenso trabajo con PostgreSQL para la gestión de bases de datos, la utilización de GitLab para pipelines de CI/CD y la colaboración dentro de un marco Ágil utilizando Jira para entregar soluciones de software de alta calidad.",
+                    jobTitle: "Gerente de Tecnología (CTO) | Python · Django · AWS · Arquitectura de Software",
+                    profileContent: "Como Gerente de Tecnología (CTO) en OWLY SAS, lidero la arquitectura y la ingeniería backend de Owly CRM, un SaaS multi-tenant de inteligencia para real estate. Diseño sistemas del lado del servidor escalables y seguros con Python, Django REST Framework, PostgreSQL, Redis y Celery, junto a un frontend en React y TypeScript. Mi trabajo abarca arquitectura multi-tenant, sistemas en tiempo real (WebSockets), integraciones con ERP y banca (SINCO, Davivienda), scoring de leads con ML e infraestructura cloud en AWS (ECS Fargate, Terraform, CI/CD). Con una base como Backend Developer II y formación en Economía, conecto la ejecución técnica profunda con la estrategia de negocio.",
                     langBtn: "English",
                     themeBtnLight: "Tema Oscuro",
                     themeBtnDark: "Tema Claro",
@@ -572,6 +594,7 @@
                     educationTitle: "Educación",
                     contactTitle: "Contacto",
                     phoneLabel: "Teléfono:",
+                    owlyExperienceDetails: "Lidero la estrategia técnica y la arquitectura de Owly CRM, un SaaS multi-tenant de inteligencia para real estate. Diseñé el backend desde cero con Django 4.2, Django REST Framework, PostgreSQL 16, Redis y Celery en más de 30 apps modulares. Diseñé el núcleo multi-tenant (aislamiento por tenant a nivel de ORM) y una capa en tiempo real con Django Channels y Daphne (WebSockets) para colaboración en vivo sobre cotizaciones, mensajería omnicanal (WhatsApp/Email/SMS) y notificaciones. Construí integraciones mayores: un conector con el ERP SINCO (150+ endpoints) y una integración con el banco Davivienda (crédito hipotecario). Implementé scoring adaptativo de leads con ML (scikit-learn) y una plataforma de agentes de IA (Anthropic Claude, OpenAI) con agentes de voz ElevenLabs. Lideré la infraestructura en AWS (ECS Fargate, S3, SES, CloudFront) aprovisionada con Terraform y desplegada con CI/CD (GitHub Actions / AWS CodePipeline). Diseñé motores financieros: un sistema de comisiones por tiers y un motor de descuento por costo de oportunidad en cotizaciones.",
                     moExperienceDetails: "Especializado en el desarrollo y mantenimiento de sistemas backend usando Python y Django, con foco en arquitectura de microservicios. Responsable de integrar servicios de AWS (ej. S3, EC2, Lambda) para soluciones escalables. Gestión de bases de datos PostgreSQL, asegurando integridad y rendimiento. Implementación y mantenimiento de pipelines CI/CD con GitLab para pruebas y despliegues automatizados. Uso de Docker para containerización, optimizando procesos de desarrollo y despliegue. Participación activa en sprints Ágiles, planificación de proyectos y gestión de tareas con Jira.",
                     ceracExperienceDetails: "Desarrollé una aplicación web para CERAC usando Flask, integrando autenticación de usuarios, operaciones de base de datos y gestión de formularios. La aplicación permite la administración de usuarios, encuestas y preguntas.",
                     inviasExperienceDetails: "Lideré la gestión de TICs y sistemas de información geográfica en INVIAS, aplicando análisis avanzado de datos y técnicas de visualización. Desarrollé un generador de reportes usando Flask, HTML, CSS y JavaScript, permitiendo a los usuarios personalizar reportes y exportarlos en varios formatos.",
@@ -581,7 +604,8 @@
                     javerianaTitle: "Economista - Pontificia Universidad Javeriana",
                     javerianaPeriodo: "2010 - 2015",
                     javerianaDegree: "Título de Pregrado en Ciencias Económicas y Administrativas.",
-                    moDate: "Actual",
+                    owlyDate: "2024 - Actualidad",
+                    moDate: "Rol Anterior",
                     ceracDate: "Rol Anterior",
                     inviasDate: "Rol Anterior",
                 }
@@ -648,18 +672,10 @@
                 });
             });
 
-            // This function remains to fill bars when #skills section is visible
+            // Fill ALL skill bars (and reveal their % labels) when #skills enters the viewport
             function animateSkillBars() {
-                const skillLevels = document.querySelectorAll('.skill-level');
-                skillLevels.forEach(level => {
-                    // Check if the bar is visible and hasn't been animated yet
-                    const rect = level.getBoundingClientRect();
-                    const isVisible = rect.top < window.innerHeight && rect.bottom >= 0;
-                    const notAnimated = level.style.width === '0px' || level.style.width === '' || level.style.width === '0%';
-                    
-                    if (isVisible && notAnimated) {
-                        level.style.width = level.getAttribute('data-level');
-                    }
+                document.querySelectorAll('.skill-level').forEach(level => {
+                    level.style.width = level.getAttribute('data-level');
                 });
             }
             
