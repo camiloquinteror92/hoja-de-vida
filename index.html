@@ -409,10 +409,239 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        /* ===================== MODERN REFRESH / REDISEÑO ===================== */
+        :root {
+            --primary-color: #6366f1;
+            --primary-dark: #4f46e5;
+            --accent-color: #06b6d4;
+            --secondary-color: #1e293b;
+            --text-color: #1f2937;
+            --bg-grad: linear-gradient(125deg, #eef2ff 0%, #faf5ff 35%, #ecfeff 70%, #eff6ff 100%);
+            --card-bg: rgba(255, 255, 255, 0.82);
+            --card-border: rgba(255, 255, 255, 0.7);
+            --hero-grad: linear-gradient(130deg, #4f46e5 0%, #7c3aed 45%, #0ea5e9 100%);
+            --accent-grad: linear-gradient(90deg, #6366f1, #8b5cf6, #06b6d4);
+        }
+        .dark-theme {
+            --text-color: #e2e8f0;
+            --secondary-color: #e2e8f0;
+            --bg-grad: linear-gradient(125deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+            --card-bg: rgba(30, 41, 59, 0.8);
+            --card-border: rgba(148, 163, 184, 0.16);
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes floatY {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        body {
+            background: var(--bg-grad);
+            background-size: 250% 250%;
+            background-attachment: fixed;
+            animation: gradientShift 22s ease infinite;
+            color: var(--text-color);
+        }
+
+        /* ---- Hero header ---- */
+        header {
+            position: relative;
+            background: var(--hero-grad);
+            background-size: 220% 220%;
+            animation: gradientShift 18s ease infinite;
+            color: #f8fafc;
+            padding: 50px 20px 42px;
+            box-shadow: 0 14px 44px rgba(79, 70, 229, 0.34);
+            overflow: hidden;
+        }
+        header::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 18% 22%, rgba(255,255,255,0.20), transparent 42%),
+                        radial-gradient(circle at 82% 8%, rgba(6,182,212,0.28), transparent 46%);
+            pointer-events: none;
+        }
+        header > * { position: relative; z-index: 1; }
+
+        .avatar {
+            width: 96px; height: 96px;
+            margin: 0 auto 18px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.1em; font-weight: 700; letter-spacing: 1px;
+            color: #4f46e5; background: #fff;
+            border: 4px solid rgba(255,255,255,0.65);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.28);
+            animation: floatY 5s ease-in-out infinite;
+        }
+
+        h1 { font-size: 2.7em; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 6px; text-shadow: 0 3px 16px rgba(0,0,0,0.18); }
+        #job-title { color: rgba(248,250,252,0.94); font-size: 1.15em; letter-spacing: 0.3px; }
+        .controls { margin-top: 24px; }
+
+        /* ---- Buttons ---- */
+        .btn {
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.45);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            -webkit-backdrop-filter: blur(6px);
+            backdrop-filter: blur(6px);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.16);
+        }
+        .lang-btn { background-color: #ffffff; color: #4f46e5; }
+        .lang-btn:hover { background-color: #f1f5f9; }
+        .theme-btn { background-color: rgba(255,255,255,0.16); color: #fff; }
+        .theme-btn:hover { background-color: rgba(255,255,255,0.30); }
+        .dark-theme .theme-btn { background-color: rgba(255,255,255,0.16); }
+        .dark-theme .theme-btn:hover { background-color: rgba(255,255,255,0.30); }
+
+        /* ---- Glass cards ---- */
+        .section {
+            background: var(--card-bg);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            box-shadow: 0 12px 32px rgba(31, 41, 55, 0.09);
+            overflow: hidden;
+            position: relative;
+        }
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: var(--accent-grad);
+        }
+        .section.visible:hover {
+            transform: translateY(-6px) scale(1.008);
+            box-shadow: 0 24px 48px rgba(79, 70, 229, 0.20);
+        }
+
+        /* ---- Section titles + icons ---- */
+        h2 {
+            display: flex; align-items: center; gap: 12px;
+            font-weight: 700;
+            background: var(--accent-grad);
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        h2::before {
+            font-family: "Font Awesome 6 Free"; font-weight: 900;
+            -webkit-text-fill-color: var(--primary-color); color: var(--primary-color);
+            font-size: 0.82em;
+        }
+        h2::after {
+            content: ''; flex: 1; height: 3px; border-radius: 3px;
+            background: var(--accent-grad); opacity: 0.22;
+            -webkit-text-fill-color: initial;
+        }
+        #profile h2::before { content: "\f007"; }
+        #skills h2::before { content: "\f121"; }
+        #experience h2::before { content: "\f0b1"; }
+        #education h2::before { content: "\f19d"; }
+        #contact h2::before { content: "\f0e0"; }
+
+        h3 { font-weight: 600; color: var(--secondary-color); }
+
+        /* ---- Skills ---- */
+        .skill-bar { background-color: rgba(99,102,241,0.13); }
+        .skill-level {
+            background: linear-gradient(90deg, #6366f1, #8b5cf6, #06b6d4, #6366f1);
+            background-size: 250% 100%;
+            box-shadow: 0 0 12px rgba(99,102,241,0.45);
+        }
+        .dark-theme .skill-level {
+            background: linear-gradient(90deg, #818cf8, #a78bfa, #22d3ee, #818cf8);
+            background-size: 250% 100%;
+        }
+
+        /* ---- Experience timeline ---- */
+        #experience .experience-item {
+            position: relative;
+            padding-left: 30px;
+            padding-bottom: 24px;
+        }
+        #experience .experience-item::before {
+            content: '';
+            position: absolute; left: 6px; top: 8px; bottom: -8px;
+            width: 2px;
+            background: linear-gradient(var(--primary-color), rgba(99,102,241,0.12));
+        }
+        #experience .experience-item:last-child::before { display: none; }
+        #experience .experience-item::after {
+            content: '';
+            position: absolute; left: 0; top: 7px;
+            width: 14px; height: 14px; border-radius: 50%;
+            background: var(--accent-grad);
+            box-shadow: 0 0 0 4px rgba(99,102,241,0.18);
+        }
+        .experience-date {
+            display: inline-block;
+            font-size: 0.78em; font-weight: 600;
+            color: var(--primary-dark);
+            background: rgba(99,102,241,0.12);
+            padding: 2px 12px; border-radius: 20px;
+            margin: 2px 0 6px;
+        }
+        .dark-theme .experience-date { color: #c7d2fe; background: rgba(129,140,248,0.16); }
+        .experience-details {
+            background: rgba(99,102,241,0.06);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+        }
+        .dark-theme .experience-details { background: rgba(129,140,248,0.10); border-left-color: #818cf8; }
+
+        /* ---- Contact ---- */
+        #contact p { margin-bottom: 4px; }
+        #contact p a {
+            color: var(--primary-dark); text-decoration: none; font-weight: 500;
+            border-bottom: 1px solid transparent; transition: border-color 0.2s ease;
+        }
+        #contact p a:hover { border-bottom-color: var(--primary-dark); }
+        .dark-theme #contact p a { color: #a5b4fc; }
+        .contact-icons { gap: 6px; margin-top: 24px; }
+        .contact-icons a {
+            color: #fff;
+            width: 46px; height: 46px;
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 19px; border-radius: 50%;
+            background: var(--hero-grad);
+            box-shadow: 0 6px 16px rgba(79,70,229,0.32);
+        }
+        .contact-icons a:hover { color: #fff; transform: translateY(-4px) scale(1.12); box-shadow: 0 12px 26px rgba(79,70,229,0.42); }
+        .dark-theme .contact-icons a { color: #fff; }
+        .dark-theme .contact-icons a:hover { color: #fff; transform: translateY(-4px) scale(1.12); }
+
+        /* ---- Scroll-to-top ---- */
+        #scroll-to-top { background: var(--hero-grad); box-shadow: 0 8px 22px rgba(79,70,229,0.4); }
+        #scroll-to-top:hover { background: var(--hero-grad); filter: brightness(1.08); }
+
+        /* ---- Spacing + responsive ---- */
+        .container { margin: 44px auto 48px; }
+        @media (max-width: 768px) {
+            .container { margin-top: 30px; }
+            h1 { font-size: 2em; }
+            .avatar { width: 82px; height: 82px; font-size: 1.8em; }
+            header { padding: 40px 16px 34px; }
+        }
+        @media (max-width: 480px) {
+            .container { margin-top: 24px; }
+            h1 { font-size: 1.65em; }
+            .avatar { width: 74px; height: 74px; font-size: 1.6em; }
+        }
     </style>
 </head>
 <body>
     <header>
+        <div class="avatar" aria-hidden="true">CQ</div>
         <h1>Camilo Quintero Rodríguez</h1>
         <p id="job-title">Chief Technology Officer (CTO) | Python · Django · AWS · System Architecture</p>
         <div class="controls">
@@ -524,7 +753,7 @@
         <section id="contact" class="section">
             <h2 data-translate="contactTitle">Contact</h2>
             <p>Email: <a href="mailto:camiloquinteror@outlook.com">camiloquinteror@outlook.com</a></p>
-            <p data-translate="phoneLabel">Phone: <a href="tel:+573116471257">+57 3116471257</a></p>
+            <p><span data-translate="phoneLabel">Phone:</span> <a href="tel:+573116471257">+57 311 647 1257</a></p>
             <div class="contact-icons">
                 <a href="https://www.linkedin.com/in/camilo-quinteror/" target="_blank" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
                 <a href="https://github.com/camiloquinteror92" target="_blank" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
