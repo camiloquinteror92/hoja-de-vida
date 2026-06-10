@@ -4,639 +4,846 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Camilo Quintero Rodríguez - Interactive CV</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: #3498db;
-            --secondary-color: #2c3e50;
-            --text-color: #333;
-            --bg-color: #f4f4f4;
-            --card-bg: #fff;
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            transition: background-color 0.3s ease, color 0.3s ease; /* Shortened body transition */
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 120px auto 20px; /* Increased top margin for taller header */
-            padding: 20px;
-        }
-
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background-color: var(--secondary-color);
-            color: #ecf0f1;
-            text-align: center;
-            padding: 15px 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        /* Header elements animation */
-        header h1, header #job-title, header .controls {
-            opacity: 0;
-            transform: translateY(-20px);
-            animation: fadeInDown 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-        }
-        header h1 { animation-delay: 0.2s; }
-        header #job-title { animation-delay: 0.4s; }
-        header .controls { animation-delay: 0.6s; }
-
-        @keyframes fadeInDown {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-
-        h2 {
-            font-size: 1.8em;
-            margin-bottom: 15px;
-            color: var(--primary-color);
-        }
-
-        h3 {
-            font-size: 1.3em;
-            margin-bottom: 10px;
-        }
-
-        .section {
-            margin-bottom: 30px;
-            padding: 30px;
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            opacity: 0;
-            transform: translateY(40px) scale(0.97);
-            transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease;
-        }
-
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-
-        .section.visible:hover {
-            transform: translateY(-7px) scale(1.01);
-            box-shadow: 0 14px 32px rgba(0,0,0,0.15), 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        .skill {
-            margin-bottom: 15px; /* Space between skill items */
-        }
-
-        .skill > p { /* Skill name paragraph */
-            margin-bottom: 5px;
-            font-weight: 500;
-            transition: color 0.2s ease, transform 0.2s ease;
-        }
-        
-        .skill:hover > p {
-            color: var(--primary-color);
-            transform: translateX(4px);
-        }
-
-        .skill-bar {
-            background-color: #e0e0e0;
-            height: 22px; /* Slightly thicker */
-            border-radius: 11px;
-            margin-bottom: 20px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .skill-level {
-            height: 100%;
-            border-radius: 11px;
-            position: relative;
-            width: 0; /* Initial width for animation */
-            background: linear-gradient(90deg, var(--primary-color) 0%, #5dade2 50%, var(--primary-color) 100%);
-            background-size: 250% 100%;
-            animation: animatedSkillFill 3.5s linear infinite;
-            transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother easing */
-        }
-        
-        .dark-theme .skill-level { /* Ensure gradient adapts if primary color changes significantly in dark theme, though not in this setup */
-             background: linear-gradient(90deg, var(--primary-color) 0%, #6cb2e2 50%, var(--primary-color) 100%);
-             background-size: 250% 100%;
-             animation: animatedSkillFill 3.5s linear infinite;
-        }
-
-
-        @keyframes animatedSkillFill {
-            0% { background-position: 250% 0; }
-            100% { background-position: 0 0; }
-        }
-
-        .skill-level::after {
-            content: attr(data-level);
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #fff;
-            font-weight: bold;
-            font-size: 0.8em;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-        }
-
-        .skill:hover .skill-level {
-            filter: brightness(1.15);
-        }
-
-
-        .controls {
-            display: flex;
-            justify-content: center;
-            margin-top: 10px;
-        }
-
-        .btn {
-            padding: 9px 18px; /* Slightly larger padding */
-            margin: 0 7px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 0.8em;
-            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 5px 10px rgba(0,0,0,0.15);
-        }
-        .btn:active {
-            transform: translateY(-1px) scale(1.02);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.12);
-        }
-
-
-        .lang-btn {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .lang-btn:hover {
-            background-color: #2980b9;
-        }
-
-        .theme-btn {
-            background-color: var(--secondary-color); 
-            color: white;
-        }
-        .dark-theme .theme-btn {
-             background-color: var(--primary-color); 
-        }
-
-
-        .theme-btn:hover {
-            background-color: #1f2d3d;
-        }
-        .dark-theme .theme-btn:hover {
-            background-color: #2980b9;
-        }
-
-
-        .experience-toggle {
-            cursor: pointer;
-            color: var(--primary-color);
-            transition: var(--transition);
-            font-weight: bold;
-        }
-
-        .experience-toggle:hover {
-            color: #2980b9;
-            letter-spacing: 0.5px;
-        }
-
-        .experience-details {
-            display: none;
-            margin-top: 15px;
-            padding: 15px;
-            background-color: #f9f9f9;
-            border-radius: 5px;
-            border-left: 4px solid var(--primary-color);
-            animation: fadeInDetail 0.5s ease-out forwards; /* Use a distinct animation */
-        }
-
-        @keyframes fadeInDetail { /* Renamed for clarity */
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .dark-theme {
-            --bg-color: #1a1a1a;
-            --card-bg: #2c2c2c;
-            --text-color: #f4f4f4;
-        }
-
-        .dark-theme .experience-details {
-            background-color: #3a3a3a;
-            border-left-color: var(--primary-color);
-        }
-
-        .contact-icons {
-            display: flex;
-            justify-content: space-around; 
-            align-items: center;
-            margin-top: 20px;
-            flex-wrap: wrap; 
-        }
-
-        .contact-icons a {
-            color: var(--primary-color);
-            font-size: 26px; /* Slightly larger icons */
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s ease; /* Elastic transform */
-            margin: 5px 12px; 
-        }
-
-        .contact-icons a:hover {
-            color: #2773a0; /* Darker shade of primary */
-            transform: scale(1.3) rotate(8deg);
-        }
-
-        .dark-theme .contact-icons a {
-            color: #ecf0f1; 
-        }
-
-        .dark-theme .contact-icons a:hover {
-            color: var(--primary-color); 
-            transform: scale(1.3) rotate(-8deg); /* Rotate other way for fun */
-        }
-
-        #job-title {
-            font-size: 1.2em;
-            font-weight: 300;
-            margin-top: 5px;
-            min-height: 1.5em; /* Prevents layout shift during typing */
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-                margin-top: 170px; /* Adjusted for potentially taller header content due to animations */
-            }
-            header {
-                padding-bottom: 10px; 
-            }
-            .controls {
-                margin-top: 10px;
-                padding-bottom:10px;
-            }
-            .btn {
-                font-size: 0.7em; 
-                padding: 7px 14px;
-            }
-            h1 {
-                font-size: 1.8em; 
-                margin-bottom: 5px;
-            }
-            #job-title {
-                font-size: 1em; 
-                margin-bottom: 10px; 
-            }
-            .contact-icons a {
-                font-size: 24px; 
-                margin: 8px; 
-            }
-        }
-         @media (max-width: 480px) {
-            h1 {
-                font-size: 1.6em;
-            }
-            #job-title {
-                font-size: 0.9em;
-            }
-            .btn {
-                font-size: 0.65em;
-                padding: 6px 12px;
-            }
-             .container {
-                margin-top: 160px; 
-            }
-        }
-
-
-        #scroll-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 24px;
-            cursor: pointer;
-            display: none; 
-            align-items: center; 
-            justify-content: center; 
-            transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
-            z-index: 1000;
-            opacity: 0; 
-            transform: scale(0.8) rotate(45deg); /* Initial rotation */
-        }
-         #scroll-to-top.visible { /* Class to control visibility and animation */
-            display: flex;
-            opacity: 1;
-            transform: scale(1) rotate(0deg);
-        }
-
-        #scroll-to-top:hover {
-            background-color: #2980b9;
-            transform: scale(1.15) rotate(5deg); /* More playful hover */
-        }
-
-        #loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--bg-color); 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
-        }
-        .dark-theme #loading-overlay {
-            background-color: var(--bg-color); 
-        }
-
-
-        .loading-spinner {
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid var(--primary-color);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-        }
-        .dark-theme .loading-spinner {
-            border: 5px solid #555; 
-            border-top: 5px solid var(--primary-color);
-        }
-
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        /* ===================== MODERN REFRESH / REDISEÑO ===================== */
-        :root {
-            --primary-color: #6366f1;
-            --primary-dark: #4f46e5;
-            --accent-color: #06b6d4;
-            --secondary-color: #1e293b;
-            --text-color: #1f2937;
-            --bg-grad: linear-gradient(125deg, #eef2ff 0%, #faf5ff 35%, #ecfeff 70%, #eff6ff 100%);
-            --card-bg: rgba(255, 255, 255, 0.82);
-            --card-border: rgba(255, 255, 255, 0.7);
-            --hero-grad: linear-gradient(130deg, #4f46e5 0%, #7c3aed 45%, #0ea5e9 100%);
-            --accent-grad: linear-gradient(90deg, #6366f1, #8b5cf6, #06b6d4);
-        }
-        .dark-theme {
-            --text-color: #e2e8f0;
-            --secondary-color: #e2e8f0;
-            --bg-grad: linear-gradient(125deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
-            --card-bg: rgba(30, 41, 59, 0.8);
-            --card-border: rgba(148, 163, 184, 0.16);
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        @keyframes floatY {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        body {
-            background: var(--bg-grad);
-            background-size: 250% 250%;
-            background-attachment: fixed;
-            animation: gradientShift 22s ease infinite;
-            color: var(--text-color);
-        }
-
-        /* ---- Hero header ---- */
-        header {
-            position: relative;
-            background: var(--hero-grad);
-            background-size: 220% 220%;
-            animation: gradientShift 18s ease infinite;
-            color: #f8fafc;
-            padding: 50px 20px 42px;
-            box-shadow: 0 14px 44px rgba(79, 70, 229, 0.34);
-            overflow: hidden;
-        }
-        header::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 18% 22%, rgba(255,255,255,0.20), transparent 42%),
-                        radial-gradient(circle at 82% 8%, rgba(6,182,212,0.28), transparent 46%);
-            pointer-events: none;
-        }
-        header > * { position: relative; z-index: 1; }
-
-        .avatar {
-            width: 96px; height: 96px;
-            margin: 0 auto 18px;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 2.1em; font-weight: 700; letter-spacing: 1px;
-            color: #4f46e5; background: #fff;
-            border: 4px solid rgba(255,255,255,0.65);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.28);
-            animation: floatY 5s ease-in-out infinite;
-        }
-
-        h1 { font-size: 2.7em; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 6px; text-shadow: 0 3px 16px rgba(0,0,0,0.18); }
-        #job-title { color: rgba(248,250,252,0.94); font-size: 1.15em; letter-spacing: 0.3px; }
-        .controls { margin-top: 24px; }
-
-        /* ---- Buttons ---- */
-        .btn {
-            border-radius: 30px;
-            border: 1px solid rgba(255,255,255,0.45);
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            -webkit-backdrop-filter: blur(6px);
-            backdrop-filter: blur(6px);
-            box-shadow: 0 4px 14px rgba(0,0,0,0.16);
-        }
-        .lang-btn { background-color: #ffffff; color: #4f46e5; }
-        .lang-btn:hover { background-color: #f1f5f9; }
-        .theme-btn { background-color: rgba(255,255,255,0.16); color: #fff; }
-        .theme-btn:hover { background-color: rgba(255,255,255,0.30); }
-        .dark-theme .theme-btn { background-color: rgba(255,255,255,0.16); }
-        .dark-theme .theme-btn:hover { background-color: rgba(255,255,255,0.30); }
-
-        /* ---- Glass cards ---- */
-        .section {
-            background: var(--card-bg);
-            -webkit-backdrop-filter: blur(12px);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--card-border);
-            border-radius: 18px;
-            box-shadow: 0 12px 32px rgba(31, 41, 55, 0.09);
-            overflow: hidden;
-            position: relative;
-        }
-        .section::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 4px;
-            background: var(--accent-grad);
-        }
-        .section.visible:hover {
-            transform: translateY(-6px) scale(1.008);
-            box-shadow: 0 24px 48px rgba(79, 70, 229, 0.20);
-        }
-
-        /* ---- Section titles + icons ---- */
-        h2 {
-            display: flex; align-items: center; gap: 12px;
-            font-weight: 700;
-            background: var(--accent-grad);
-            -webkit-background-clip: text; background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        h2::before {
-            font-family: "Font Awesome 6 Free"; font-weight: 900;
-            -webkit-text-fill-color: var(--primary-color); color: var(--primary-color);
-            font-size: 0.82em;
-        }
-        h2::after {
-            content: ''; flex: 1; height: 3px; border-radius: 3px;
-            background: var(--accent-grad); opacity: 0.22;
-            -webkit-text-fill-color: initial;
-        }
-        #profile h2::before { content: "\f007"; }
-        #skills h2::before { content: "\f121"; }
-        #experience h2::before { content: "\f0b1"; }
-        #education h2::before { content: "\f19d"; }
-        #contact h2::before { content: "\f0e0"; }
-
-        h3 { font-weight: 600; color: var(--secondary-color); }
-
-        /* ---- Skills ---- */
-        .skill-bar { background-color: rgba(99,102,241,0.13); }
-        .skill-level {
-            background: linear-gradient(90deg, #6366f1, #8b5cf6, #06b6d4, #6366f1);
-            background-size: 250% 100%;
-            box-shadow: 0 0 12px rgba(99,102,241,0.45);
-        }
-        .dark-theme .skill-level {
-            background: linear-gradient(90deg, #818cf8, #a78bfa, #22d3ee, #818cf8);
-            background-size: 250% 100%;
-        }
-
-        /* ---- Experience timeline ---- */
-        #experience .experience-item {
-            position: relative;
-            padding-left: 30px;
-            padding-bottom: 24px;
-        }
-        #experience .experience-item::before {
-            content: '';
-            position: absolute; left: 6px; top: 8px; bottom: -8px;
-            width: 2px;
-            background: linear-gradient(var(--primary-color), rgba(99,102,241,0.12));
-        }
-        #experience .experience-item:last-child::before { display: none; }
-        #experience .experience-item::after {
-            content: '';
-            position: absolute; left: 0; top: 7px;
-            width: 14px; height: 14px; border-radius: 50%;
-            background: var(--accent-grad);
-            box-shadow: 0 0 0 4px rgba(99,102,241,0.18);
-        }
-        .experience-date {
-            display: inline-block;
-            font-size: 0.78em; font-weight: 600;
-            color: var(--primary-dark);
-            background: rgba(99,102,241,0.12);
-            padding: 2px 12px; border-radius: 20px;
-            margin: 2px 0 6px;
-        }
-        .dark-theme .experience-date { color: #c7d2fe; background: rgba(129,140,248,0.16); }
-        .experience-details {
-            background: rgba(99,102,241,0.06);
-            border-radius: 10px;
-            border-left: 4px solid var(--primary-color);
-        }
-        .dark-theme .experience-details { background: rgba(129,140,248,0.10); border-left-color: #818cf8; }
-
-        /* ---- Contact ---- */
-        #contact p { margin-bottom: 4px; }
-        #contact p a {
-            color: var(--primary-dark); text-decoration: none; font-weight: 500;
-            border-bottom: 1px solid transparent; transition: border-color 0.2s ease;
-        }
-        #contact p a:hover { border-bottom-color: var(--primary-dark); }
-        .dark-theme #contact p a { color: #a5b4fc; }
-        .contact-icons { gap: 6px; margin-top: 24px; }
-        .contact-icons a {
-            color: #fff;
-            width: 46px; height: 46px;
-            display: inline-flex; align-items: center; justify-content: center;
-            font-size: 19px; border-radius: 50%;
-            background: var(--hero-grad);
-            box-shadow: 0 6px 16px rgba(79,70,229,0.32);
-        }
-        .contact-icons a:hover { color: #fff; transform: translateY(-4px) scale(1.12); box-shadow: 0 12px 26px rgba(79,70,229,0.42); }
-        .dark-theme .contact-icons a { color: #fff; }
-        .dark-theme .contact-icons a:hover { color: #fff; transform: translateY(-4px) scale(1.12); }
-
-        /* ---- Scroll-to-top ---- */
-        #scroll-to-top { background: var(--hero-grad); box-shadow: 0 8px 22px rgba(79,70,229,0.4); }
-        #scroll-to-top:hover { background: var(--hero-grad); filter: brightness(1.08); }
-
-        /* ---- Spacing + responsive ---- */
-        .container { margin: 44px auto 48px; }
-        @media (max-width: 768px) {
-            .container { margin-top: 30px; }
-            h1 { font-size: 2em; }
-            .avatar { width: 82px; height: 82px; font-size: 1.8em; }
-            header { padding: 40px 16px 34px; }
-        }
-        @media (max-width: 480px) {
-            .container { margin-top: 24px; }
-            h1 { font-size: 1.65em; }
-            .avatar { width: 74px; height: 74px; font-size: 1.6em; }
-        }
+/* ==========================================================================
+   VARIANT A — "Pure Apple Light Glass"
+   Camilo Quintero Rodríguez — Interactive CV
+   Near-white airy base · iOS blue accent · crisp frosted white panels
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. DESIGN TOKENS
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* Typography */
+  --font-stack: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text',
+    'Segoe UI', system-ui, sans-serif;
+
+  /* Accent — iOS blue family (single accent) */
+  --accent: #0071e3;
+  --accent-hover: #0077ed;
+  --accent-soft: rgba(0, 113, 227, 0.1);
+  --accent-shadow: rgba(0, 113, 227, 0.28);
+
+  /* Neutrals */
+  --bg-base: #f5f5f7;
+  --text-1: #1d1d1f;
+  --text-2: #515154;
+  --text-3: #86868b;
+  --hairline: rgba(0, 0, 0, 0.08);
+
+  /* Glass panels */
+  --panel-bg: rgba(255, 255, 255, 0.58);
+  --panel-bg-strong: rgba(255, 255, 255, 0.78);
+  --panel-border: rgba(255, 255, 255, 0.72);
+  --panel-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  --panel-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 12px 32px rgba(0, 0, 0, 0.07);
+  --panel-shadow-hover: 0 2px 4px rgba(0, 0, 0, 0.04), 0 20px 44px rgba(0, 0, 0, 0.1);
+  --glass-blur: blur(22px) saturate(180%);
+
+  /* Controls */
+  --track: rgba(120, 120, 128, 0.16);
+  --inset-bg: rgba(120, 120, 128, 0.08);
+
+  /* Geometry & motion */
+  --radius-lg: 26px;
+  --radius-md: 16px;
+  --radius-pill: 999px;
+  --ease: cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* Orb intensity (dimmed in dark mode) */
+  --orb-opacity: 1;
+}
+
+body.dark-theme {
+  --accent: #0a84ff;
+  --accent-hover: #2492ff;
+  --accent-soft: rgba(10, 132, 255, 0.14);
+  --accent-shadow: rgba(10, 132, 255, 0.3);
+
+  --bg-base: #0b0b0d;
+  --text-1: #f5f5f7;
+  --text-2: #b4b4b9;
+  --text-3: #86868b;
+  --hairline: rgba(255, 255, 255, 0.1);
+
+  --panel-bg: rgba(28, 28, 30, 0.55);
+  --panel-bg-strong: rgba(44, 44, 46, 0.66);
+  --panel-border: rgba(255, 255, 255, 0.1);
+  --panel-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  --panel-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 16px 40px rgba(0, 0, 0, 0.45);
+  --panel-shadow-hover: 0 2px 4px rgba(0, 0, 0, 0.35), 0 24px 52px rgba(0, 0, 0, 0.55);
+
+  --track: rgba(120, 120, 128, 0.3);
+  --inset-bg: rgba(120, 120, 128, 0.14);
+
+  --orb-opacity: 0.5;
+}
+
+/* --------------------------------------------------------------------------
+   2. RESET & BASE
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-stack);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-1);
+  background-color: var(--bg-base);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  transition: background-color 0.45s ease, color 0.45s ease;
+}
+
+::selection {
+  background: rgba(0, 113, 227, 0.22);
+  color: inherit;
+}
+
+body.dark-theme ::selection {
+  background: rgba(10, 132, 255, 0.35);
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   3. AMBIENT BACKGROUND — quiet blurred orbs the glass refracts
+   -------------------------------------------------------------------------- */
+
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  inset: -12%;
+  z-index: -1;
+  pointer-events: none;
+  opacity: var(--orb-opacity);
+  filter: blur(70px);
+  transition: opacity 0.6s ease;
+}
+
+body::before {
+  background:
+    radial-gradient(34% 34% at 16% 14%, rgba(10, 132, 255, 0.15), transparent 70%),
+    radial-gradient(26% 26% at 86% 18%, rgba(100, 180, 255, 0.1), transparent 70%);
+  animation: orb-drift 52s ease-in-out infinite alternate;
+}
+
+body::after {
+  background:
+    radial-gradient(32% 32% at 78% 88%, rgba(0, 113, 227, 0.11), transparent 70%);
+  animation: orb-drift 64s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes orb-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(2.5%, -2%, 0) scale(1.05);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. LAYOUT
+   -------------------------------------------------------------------------- */
+
+.container {
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 44px 24px 110px;
+}
+
+/* --------------------------------------------------------------------------
+   5. HEADER (normal document flow — not fixed)
+   -------------------------------------------------------------------------- */
+
+header {
+  text-align: center;
+  padding: 72px 24px 4px;
+}
+
+header .avatar,
+header h1,
+header #job-title,
+header .controls {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: rise-in 0.7s var(--ease) forwards;
+}
+
+header .avatar {
+  animation-delay: 0.05s;
+}
+header h1 {
+  animation-delay: 0.15s;
+}
+header #job-title {
+  animation-delay: 0.25s;
+}
+header .controls {
+  animation-delay: 0.35s;
+}
+
+@keyframes rise-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.avatar {
+  width: 84px;
+  height: 84px;
+  margin: 0 auto 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--accent);
+  background: var(--panel-bg-strong);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--panel-border);
+  box-shadow: var(--panel-highlight), 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition: background-color 0.45s ease, border-color 0.45s ease;
+}
+
+h1 {
+  font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.022em;
+  line-height: 1.15;
+  color: var(--text-1);
+  margin-bottom: 10px;
+}
+
+#job-title {
+  font-size: 1.0625rem;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  color: var(--text-2);
+  min-height: 1.7em; /* prevents layout shift during the typing effect */
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+/* --------------------------------------------------------------------------
+   6. BUTTONS — frosted glass pills
+   -------------------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 9px 22px;
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-pill);
+  background: var(--panel-bg-strong);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  color: var(--text-1);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: var(--panel-highlight), 0 2px 10px rgba(0, 0, 0, 0.06);
+  transition:
+    transform 0.25s var(--ease),
+    box-shadow 0.25s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--panel-highlight), 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: var(--panel-highlight), 0 2px 8px rgba(0, 0, 0, 0.07);
+}
+
+/* Download CV — the one prominent accent button */
+.download-btn {
+  padding: 12px 28px;
+  font-size: 0.9375rem;
+  color: #fff;
+  background: var(--accent);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 8px 22px var(--accent-shadow);
+}
+
+.download-btn:hover {
+  background: var(--accent-hover);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 12px 28px var(--accent-shadow);
+}
+
+.download-btn:active {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 4px 12px var(--accent-shadow);
+}
+
+.download-btn i {
+  font-size: 0.875em;
+}
+
+/* --------------------------------------------------------------------------
+   7. SECTIONS — frosted glass cards (revealed via .visible)
+   -------------------------------------------------------------------------- */
+
+.section {
+  position: relative;
+  margin-bottom: 26px;
+  padding: clamp(28px, 4.5vw, 46px);
+  background: var(--panel-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--panel-highlight), var(--panel-shadow);
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.7s var(--ease),
+    transform 0.7s var(--ease),
+    box-shadow 0.35s ease,
+    background-color 0.45s ease,
+    border-color 0.45s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section.visible:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--panel-highlight), var(--panel-shadow-hover);
+}
+
+/* --------------------------------------------------------------------------
+   8. TYPOGRAPHY HIERARCHY
+   -------------------------------------------------------------------------- */
+
+h2 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  color: var(--text-3);
+  margin-bottom: 26px;
+  transition: color 0.45s ease;
+}
+
+h3 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  color: var(--text-1);
+  margin-bottom: 4px;
+}
+
+p {
+  color: var(--text-2);
+}
+
+#profile-content {
+  font-size: 1.0625rem;
+  line-height: 1.72;
+  color: var(--text-1);
+}
+
+/* --------------------------------------------------------------------------
+   9. SKILLS — thin minimal bars, % label outside the bar
+   -------------------------------------------------------------------------- */
+
+.skill {
+  margin-bottom: 22px;
+}
+
+.skill:last-child {
+  margin-bottom: 0;
+}
+
+.skill > p {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-1);
+  margin-bottom: 8px;
+}
+
+/* JS mirrors data-level onto the skill name <p> — render it right-aligned */
+.skill > p::after {
+  content: attr(data-level);
+  margin-left: auto;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.skill-bar {
+  height: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--track);
+  overflow: hidden;
+  transition: background-color 0.45s ease;
+}
+
+.skill-level {
+  height: 100%;
+  width: 0; /* JS animates to data-level via inline style */
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  transition: width 1.1s var(--ease), background-color 0.45s ease;
+}
+
+/* Gentle stagger as the bars fill (h2 is the only non-div sibling) */
+.skill:nth-of-type(1) .skill-level { transition-delay: 0s; }
+.skill:nth-of-type(2) .skill-level { transition-delay: 0.04s; }
+.skill:nth-of-type(3) .skill-level { transition-delay: 0.08s; }
+.skill:nth-of-type(4) .skill-level { transition-delay: 0.12s; }
+.skill:nth-of-type(5) .skill-level { transition-delay: 0.16s; }
+.skill:nth-of-type(6) .skill-level { transition-delay: 0.2s; }
+.skill:nth-of-type(7) .skill-level { transition-delay: 0.24s; }
+.skill:nth-of-type(8) .skill-level { transition-delay: 0.28s; }
+.skill:nth-of-type(9) .skill-level { transition-delay: 0.32s; }
+.skill:nth-of-type(10) .skill-level { transition-delay: 0.36s; }
+
+/* --------------------------------------------------------------------------
+   10. EXPERIENCE
+   -------------------------------------------------------------------------- */
+
+.experience-item {
+  padding: 26px 0;
+  border-top: 1px solid var(--hairline);
+  transition: border-color 0.45s ease;
+}
+
+.experience-item:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.experience-item:last-child {
+  padding-bottom: 0;
+}
+
+.experience-date {
+  font-size: 0.8125rem;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 8px;
+}
+
+.experience-toggle {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--accent);
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: opacity 0.2s ease, color 0.3s ease;
+}
+
+.experience-toggle:hover {
+  opacity: 0.7;
+}
+
+.experience-details {
+  display: none; /* JS toggles to block */
+  margin-top: 14px;
+  padding: 18px 20px;
+  background: var(--inset-bg);
+  border-radius: var(--radius-md);
+  animation: fadeInDetail 0.45s var(--ease);
+}
+
+.experience-details p {
+  font-size: 0.9375rem;
+  line-height: 1.68;
+  color: var(--text-2);
+}
+
+@keyframes fadeInDetail {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   11. EDUCATION
+   -------------------------------------------------------------------------- */
+
+.education-item {
+  padding: 24px 0;
+  border-top: 1px solid var(--hairline);
+  transition: border-color 0.45s ease;
+}
+
+.education-item:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.education-item:last-child {
+  padding-bottom: 0;
+}
+
+.education-item p {
+  font-size: 0.9375rem;
+  color: var(--text-2);
+}
+
+.education-item p:first-of-type {
+  font-size: 0.8125rem;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   12. CONTACT
+   -------------------------------------------------------------------------- */
+
+#contact p {
+  margin-bottom: 6px;
+  font-size: 0.9375rem;
+}
+
+#contact p a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+#contact p a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.contact-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.contact-icons a {
+  width: 46px;
+  height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.125rem;
+  color: var(--accent);
+  text-decoration: none;
+  border-radius: 50%;
+  background: var(--panel-bg-strong);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--panel-border);
+  box-shadow: var(--panel-highlight), 0 2px 10px rgba(0, 0, 0, 0.06);
+  transition:
+    transform 0.25s var(--ease),
+    box-shadow 0.25s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.contact-icons a:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--panel-highlight), 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.download-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+/* --------------------------------------------------------------------------
+   13. SCROLL-TO-TOP — small floating glass circle
+   -------------------------------------------------------------------------- */
+
+#scroll-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 1000;
+  width: 46px;
+  height: 46px;
+  display: none; /* JS + .visible flip this to flex */
+  align-items: center;
+  justify-content: center;
+  font-size: 1.125rem;
+  line-height: 1;
+  color: var(--accent);
+  border: 1px solid var(--panel-border);
+  border-radius: 50%;
+  background: var(--panel-bg-strong);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  cursor: pointer;
+  box-shadow: var(--panel-highlight), 0 8px 24px rgba(0, 0, 0, 0.12);
+  opacity: 0;
+  transform: translateY(8px) scale(0.92);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s var(--ease),
+    box-shadow 0.3s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+#scroll-to-top.visible {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+#scroll-to-top:hover {
+  transform: translateY(-2px) scale(1);
+  box-shadow: var(--panel-highlight), 0 12px 30px rgba(0, 0, 0, 0.16);
+}
+
+/* --------------------------------------------------------------------------
+   14. LOADING OVERLAY
+   -------------------------------------------------------------------------- */
+
+#loading-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-base);
+  transition: opacity 0.5s ease; /* JS fades via inline opacity */
+}
+
+.loading-spinner {
+  width: 34px;
+  height: 34px;
+  border: 2.5px solid var(--track);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   15. RESPONSIVE
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+  header {
+    padding: 52px 20px 0;
+  }
+
+  .container {
+    padding: 36px 18px 90px;
+  }
+
+  .avatar {
+    width: 74px;
+    height: 74px;
+    font-size: 1.4rem;
+    margin-bottom: 18px;
+  }
+
+  #job-title {
+    font-size: 1rem;
+    min-height: 3.3em; /* typing effect wraps to ~2 lines */
+  }
+
+  .controls {
+    margin-top: 24px;
+  }
+
+  .section {
+    margin-bottom: 20px;
+    border-radius: 22px;
+  }
+
+  .contact-icons {
+    gap: 12px;
+  }
+
+  #scroll-to-top {
+    right: 18px;
+    bottom: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 44px 16px 0;
+  }
+
+  .container {
+    padding: 30px 14px 80px;
+  }
+
+  .avatar {
+    width: 68px;
+    height: 68px;
+    font-size: 1.3rem;
+  }
+
+  #job-title {
+    font-size: 0.9375rem;
+    min-height: 5em; /* typing effect wraps to ~3 lines */
+  }
+
+  .btn {
+    padding: 8px 18px;
+    font-size: 0.8125rem;
+  }
+
+  .download-btn {
+    padding: 11px 24px;
+    font-size: 0.875rem;
+  }
+
+  .section {
+    border-radius: 20px;
+  }
+
+  .skill > p {
+    font-size: 0.875rem;
+  }
+
+  .contact-icons a {
+    width: 42px;
+    height: 42px;
+    font-size: 1rem;
+  }
+
+  #scroll-to-top {
+    width: 42px;
+    height: 42px;
+    font-size: 1rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   16. REDUCED MOTION — decorative animation off, content always visible
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  body::before,
+  body::after {
+    animation: none;
+  }
+
+  header .avatar,
+  header h1,
+  header #job-title,
+  header .controls {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .section {
+    opacity: 1;
+    transform: none;
+    transition: box-shadow 0.35s ease, background-color 0.45s ease, border-color 0.45s ease;
+  }
+
+  .section.visible:hover {
+    transform: none;
+  }
+
+  .skill-level {
+    transition: background-color 0.45s ease;
+  }
+
+  .skill:nth-of-type(n) .skill-level {
+    transition-delay: 0s;
+  }
+
+  .experience-details {
+    animation: none;
+  }
+
+  .btn:hover,
+  .btn:active,
+  .contact-icons a:hover,
+  #scroll-to-top:hover {
+    transform: none;
+  }
+
+  #scroll-to-top {
+    transform: none;
+  }
+}
+
     </style>
 </head>
 <body>
@@ -760,6 +967,9 @@
                 <a href="mailto:camiloquinteror@outlook.com" aria-label="Send Email"><i class="fas fa-envelope"></i></a>
                 <a href="tel:+573116471257" aria-label="Call Phone"><i class="fas fa-phone"></i></a>
             </div>
+            <div class="download-wrap">
+                <a href="CV-Camilo-Quintero.pdf" download class="btn download-btn"><i class="fas fa-download" aria-hidden="true"></i> <span data-translate="downloadCv">Download CV (PDF)</span></a>
+            </div>
         </section>
     </div>
 
@@ -794,6 +1004,7 @@
                     educationTitle: "Education",
                     contactTitle: "Contact",
                     phoneLabel: "Phone:",
+                    downloadCv: "Download CV (PDF)",
                     owlyExperienceDetails: "Lead the technical strategy and architecture of Owly CRM, a multi-tenant real-estate intelligence SaaS. Designed the backend from the ground up with Django 4.2, Django REST Framework, PostgreSQL 16, Redis and Celery across 30+ modular apps. Architected the multi-tenant core (ORM-level tenant isolation) and a real-time layer with Django Channels and Daphne (WebSockets) for live quote collaboration, omnichannel messaging (WhatsApp/Email/SMS) and notifications. Built major integrations: a SINCO ERP connector (150+ endpoints) and a Davivienda mortgage-bank integration. Implemented ML-based adaptive lead scoring (scikit-learn) and an AI agents platform (Anthropic Claude, OpenAI) with ElevenLabs voice agents. Owned the AWS infrastructure (ECS Fargate, S3, SES, CloudFront) provisioned with Terraform and shipped through CI/CD (GitHub Actions / AWS CodePipeline). Designed financial engines: a commission tier system and an opportunity-cost quote-discount engine.",
                     moExperienceDetails: "Specialized in the development and maintenance of backend systems using Python and Django, focusing on microservices architecture. Responsible for integrating AWS services (e.g., S3, EC2, Lambda) for scalable solutions. Managed PostgreSQL databases, ensuring data integrity and performance. Implemented and maintained CI/CD pipelines with GitLab for automated testing and deployment. Utilized Docker for containerization, streamlining development and deployment processes. Actively participated in Agile sprints, project planning, and task management using Jira.",
                     ceracExperienceDetails: "Developed a web application for CERAC using Flask, integrating user authentication, database operations, and form management. The application allows for user, survey, and question management.",
@@ -823,6 +1034,7 @@
                     educationTitle: "Educación",
                     contactTitle: "Contacto",
                     phoneLabel: "Teléfono:",
+                    downloadCv: "Descargar Hoja de Vida (PDF)",
                     owlyExperienceDetails: "Lidero la estrategia técnica y la arquitectura de Owly CRM, un SaaS multi-tenant de inteligencia para real estate. Diseñé el backend desde cero con Django 4.2, Django REST Framework, PostgreSQL 16, Redis y Celery en más de 30 apps modulares. Diseñé el núcleo multi-tenant (aislamiento por tenant a nivel de ORM) y una capa en tiempo real con Django Channels y Daphne (WebSockets) para colaboración en vivo sobre cotizaciones, mensajería omnicanal (WhatsApp/Email/SMS) y notificaciones. Construí integraciones mayores: un conector con el ERP SINCO (150+ endpoints) y una integración con el banco Davivienda (crédito hipotecario). Implementé scoring adaptativo de leads con ML (scikit-learn) y una plataforma de agentes de IA (Anthropic Claude, OpenAI) con agentes de voz ElevenLabs. Lideré la infraestructura en AWS (ECS Fargate, S3, SES, CloudFront) aprovisionada con Terraform y desplegada con CI/CD (GitHub Actions / AWS CodePipeline). Diseñé motores financieros: un sistema de comisiones por tiers y un motor de descuento por costo de oportunidad en cotizaciones.",
                     moExperienceDetails: "Especializado en el desarrollo y mantenimiento de sistemas backend usando Python y Django, con foco en arquitectura de microservicios. Responsable de integrar servicios de AWS (ej. S3, EC2, Lambda) para soluciones escalables. Gestión de bases de datos PostgreSQL, asegurando integridad y rendimiento. Implementación y mantenimiento de pipelines CI/CD con GitLab para pruebas y despliegues automatizados. Uso de Docker para containerización, optimizando procesos de desarrollo y despliegue. Participación activa en sprints Ágiles, planificación de proyectos y gestión de tareas con Jira.",
                     ceracExperienceDetails: "Desarrollé una aplicación web para CERAC usando Flask, integrando autenticación de usuarios, operaciones de base de datos y gestión de formularios. La aplicación permite la administración de usuarios, encuestas y preguntas.",
@@ -983,6 +1195,13 @@
                 }, 200); 
             });
             
+            // Mirror each skill's data-level onto its name <p> so CSS can show the % next to the label
+            document.querySelectorAll('.skill').forEach(s => {
+                const lv = s.querySelector('.skill-level');
+                const name = s.querySelector('p');
+                if (lv && name) name.setAttribute('data-level', lv.getAttribute('data-level'));
+            });
+
             // Initial setup
             updateLanguage(); // Set initial text based on default language and theme, also calls typeEffect
             // animateSkillBars(); // This will be called by IntersectionObserver when skills section is visible
