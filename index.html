@@ -968,7 +968,7 @@ p {
                 <a href="tel:+573116471257" aria-label="Call Phone"><i class="fas fa-phone"></i></a>
             </div>
             <div class="download-wrap">
-                <a href="CV-Camilo-Quintero.pdf" download class="btn download-btn"><i class="fas fa-download" aria-hidden="true"></i> <span data-translate="downloadCv">Download CV (PDF)</span></a>
+                <a id="download-cv" href="CV-Camilo-Quintero-EN.pdf" download class="btn download-btn"><i class="fas fa-download" aria-hidden="true"></i> <span data-translate="downloadCv">Download CV (PDF)</span></a>
             </div>
         </section>
     </div>
@@ -1061,6 +1061,9 @@ p {
                 profileContentEl.textContent = langData.profileContent;
                 langToggle.textContent = langData.langBtn;
                 themeToggle.textContent = isDarkTheme ? langData.themeBtnDark : langData.themeBtnLight;
+
+                const dlBtn = document.getElementById('download-cv');
+                if (dlBtn) dlBtn.setAttribute('href', currentLang === 'es' ? 'CV-Camilo-Quintero.pdf' : 'CV-Camilo-Quintero-EN.pdf');
 
                 document.querySelectorAll('[data-translate]').forEach(el => {
                     const key = el.getAttribute('data-translate');
