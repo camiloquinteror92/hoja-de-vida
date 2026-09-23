@@ -11,7 +11,7 @@ Bogotá, Colombia. Remote, UTC−5. Open to full-time or contract roles.
 
 ## About
 
-Backend engineer and CTO who builds multi-tenant SaaS on AWS. I built Owly CRM, a sales platform used by Colombian real-estate developers, from the first commit to production: Django and PostgreSQL at the core, real-time features over WebSockets, integrations with a construction ERP and a mortgage bank, and applied AI. Before that, I spent two years building lending software as a backend engineer. I'm an economist and a former investment analyst, so I build for the business outcome, not just the ticket.
+Backend engineer and CTO who builds multi-tenant SaaS on AWS. I built a sales platform used by Colombian real-estate developers, from the first commit to production: Django and PostgreSQL at the core, real-time features over WebSockets, integrations with a construction ERP and a mortgage bank, and applied AI. Before that, I spent two years building lending software as a backend engineer. I'm an economist and a former investment analyst, so I build for the business outcome, not just the ticket.
 
 ## Experience
 
@@ -19,7 +19,7 @@ Backend engineer and CTO who builds multi-tenant SaaS on AWS. I built Owly CRM, 
 
 _Multi-tenant CRM SaaS for real-estate developers, Bogotá_
 
-- Architected and built Owly CRM from zero: Django 4.2 and DRF, PostgreSQL 16, Redis and Celery across 40 modular apps, with a React and TypeScript frontend. Shipped the first production deploy on AWS in three days.
+- Architected and built the company's CRM platform from zero: Django 4.2 and DRF, PostgreSQL 16, Redis and Celery across 40 modular apps, with a React and TypeScript frontend. Shipped the first production deploy on AWS in three days.
 - Designed tenant isolation for every customer's data: a tenant-aware base model and a scoped API layer, enforced by a CI check that fails the build if any endpoint ships without tenant scoping.
 - Built zero-downtime deployments on ECS Fargate: migrations run before new tasks take traffic, failed deploys roll back automatically, and a CI gate blocks backward-incompatible schema changes (expand/contract).
 - Integrated SINCO, a construction ERP (154 endpoints, two-way sync of units, sales and payments), and Davivienda's mortgage platform (mutual TLS, AES-GCM payload encryption, OAuth, plus an inbound API for the bank's presale results).
@@ -62,7 +62,7 @@ _Colombia's National Roads Institute_
 
 **Languages:** Spanish (native) and English (professional working proficiency)
 
-## Owly CRM, from the first commit to production
+## A multi-tenant SaaS, from the first commit to production
 
 A multi-tenant sales platform used by real-estate developers in Colombia. I designed and built it as CTO. Below is how it works inside, and four problems I solved along the way.
 

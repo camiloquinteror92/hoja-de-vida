@@ -30,6 +30,8 @@
     set(k, v) { try { window.localStorage.setItem(k, v); } catch (e) { /* sin almacenamiento */ } }
   };
 
+  const MOD_KEY = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent) ? "⌘K" : "Ctrl+K";
+
   /* ---------- Idioma ---------- */
   const qsLang = new URLSearchParams(window.location.search).get("lang");
   let lang = qsLang === "es" || qsLang === "en" ? qsLang : store.get("lang") === "es" ? "es" : "en";
@@ -112,6 +114,8 @@
     $("#pf-player-hint").textContent = p.playerHint;
     $("#pf-cases-title").textContent = p.casesTitle;
     $("#pf-closing-title").textContent = p.closingTitle;
+    $("#pf-labs-title").textContent = S.labs[lang].title;
+    $("#pf-labs-lead").textContent = S.labs[lang].lead;
     $("#pf-closing-lead").textContent = p.closingLead;
 
     const cases = $("#cases");
@@ -141,6 +145,14 @@
     langBtn.setAttribute("aria-label", u.langLabel);
     $$(".js-cv-pdf").forEach((a) => a.setAttribute("href", u.cvPdf));
     $("#scroll-to-top").setAttribute("aria-label", u.backToTop);
+    $("#term-toggle").setAttribute("aria-label", S.console[lang].open);
+    /* Pista de la paleta de comandos, con la tecla de este sistema operativo. */
+    const hint = $("#kbd-hint");
+    const [before, after] = u.kbdHint.split("{k}");
+    hint.textContent = "";
+    hint.appendChild(document.createTextNode(before));
+    el("kbd", { text: MOD_KEY }, hint);
+    hint.appendChild(document.createTextNode(after || ""));
     themeBtn.setAttribute("aria-label", dark ? u.themeToLight : u.themeToDark);
     document.title = current === "portfolio" ? u.titlePortfolio : u.titleCv;
   }
@@ -230,6 +242,7 @@
     updateNav(name);
     document.title = name === "portfolio" ? ui().titlePortfolio : ui().titleCv;
     if (name !== "portfolio" && player) player.pause();
+    if (labs) { if (name === "portfolio") labs.start(); else labs.stop(); }
 
     const swap = () => {
       /* Solo queda visible la vista pedida, también al entrar con un enlace directo. */
@@ -268,6 +281,8 @@
     typeTitle(ui().heroTitle);
     if (player) player.refresh();
     if (matcher) matcher.refresh();
+    if (labs) labs.refresh();
+    if (konsole) konsole.refresh();
   });
 
   /* ---------- Volver arriba ---------- */
@@ -282,6 +297,50 @@
   const player = window.Player ? window.Player.init($("#player"), { lang: () => lang }) : null;
   const matcher = window.Matcher ? window.Matcher.init($("#fit-dialog"), { lang: () => lang }) : null;
   $$("[data-open-fit]").forEach((b) => b.addEventListener("click", () => matcher && matcher.open()));
+  const labs = window.Labs ? window.Labs.init($("#labs"), { lang: () => lang }) : null;
+
+  /* Aviso corto abajo (por ejemplo, al copiar el correo). */
+  const toastEl = $("#toast");
+  let toastTimer = null;
+  function toast(text) {
+    toastEl.textContent = text;
+    toastEl.classList.add("is-on");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toastEl.classList.remove("is-on"), 1800);
+  }
+
+  /* Cambia de vista (si hace falta) y baja hasta una sección. */
+  function go(view, anchor) {
+    const scroll = () => {
+      const target = anchor && $(anchor);
+      if (target) target.scrollIntoView({ behavior: motionOK() ? "smooth" : "auto", block: "start" });
+    };
+    if (current !== view) {
+      window.location.hash = "#" + view;
+      setTimeout(scroll, motionOK() ? 900 : 60);
+    } else {
+      scroll();
+    }
+  }
+
+  const konsole = window.Console ? window.Console.init({
+    lang: () => lang,
+    actions: {
+      go,
+      openFit: (text) => matcher && matcher.open(text),
+      playFlow(id, fail) {
+        const here = current === "portfolio";
+        go("portfolio", "#pf-player-title");
+        setTimeout(() => player && player.showFlow(id, fail), here ? 400 : 1100);
+      },
+      toggleTheme: () => themeBtn.click(),
+      isDark: () => dark,
+      toggleLang: () => $("#lang-toggle").click(),
+      pdfUrl: () => ui().cvPdf,
+      toast
+    }
+  }) : null;
+  $("#term-toggle").addEventListener("click", () => konsole && konsole.openTerminal());
   document.body.classList.add("js-ready");
   show(viewFromHash(), false);
 })();

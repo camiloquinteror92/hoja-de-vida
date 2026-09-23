@@ -11,7 +11,7 @@ Bogotá, Colombia. Remoto, UTC−5. Disponible para tiempo completo o por contra
 
 ## Perfil
 
-Ingeniero backend y CTO que construye SaaS multi-tenant en AWS. Construí Owly CRM, una plataforma de ventas que usan constructoras colombianas, desde el primer commit hasta producción: Django y PostgreSQL en el núcleo, funciones en tiempo real con WebSockets, integraciones con un ERP de construcción y con un banco hipotecario, e IA aplicada. Antes pasé dos años construyendo software de crédito como ingeniero backend. Soy economista y fui analista de inversiones, así que construyo pensando en el resultado de negocio, no solo en el ticket.
+Ingeniero backend y CTO que construye SaaS multi-tenant en AWS. Construí una plataforma de ventas que usan constructoras colombianas, desde el primer commit hasta producción: Django y PostgreSQL en el núcleo, funciones en tiempo real con WebSockets, integraciones con un ERP de construcción y con un banco hipotecario, e IA aplicada. Antes pasé dos años construyendo software de crédito como ingeniero backend. Soy economista y fui analista de inversiones, así que construyo pensando en el resultado de negocio, no solo en el ticket.
 
 ## Experiencia
 
@@ -19,7 +19,7 @@ Ingeniero backend y CTO que construye SaaS multi-tenant en AWS. Construí Owly C
 
 _SaaS multi-tenant de CRM para constructoras, Bogotá_
 
-- Diseñé y construí Owly CRM desde cero: Django 4.2 y DRF, PostgreSQL 16, Redis y Celery en 40 apps modulares, con frontend en React y TypeScript. Primer deploy a producción en AWS en tres días.
+- Diseñé y construí desde cero la plataforma CRM de la empresa: Django 4.2 y DRF, PostgreSQL 16, Redis y Celery en 40 apps modulares, con frontend en React y TypeScript. Primer deploy a producción en AWS en tres días.
 - Diseñé el aislamiento de los datos de cada cliente: un modelo base por empresa y una capa de API filtrada, con un chequeo de CI que rompe el build si algún endpoint sale sin filtro por empresa.
 - Construí despliegues sin caídas en ECS Fargate: las migraciones corren antes de que las tareas nuevas reciban tráfico, un deploy fallido se revierte solo y un gate de CI bloquea cambios de esquema incompatibles (expand/contract).
 - Integré SINCO, un ERP de construcción (154 endpoints, sincronización en ambos sentidos de unidades, ventas y pagos), y la plataforma hipotecaria de Davivienda (TLS mutuo, cifrado AES-GCM, OAuth y una API de entrada para los resultados de preventa del banco).
@@ -62,7 +62,7 @@ _Instituto Nacional de Vías_
 
 **Idiomas:** Español (nativo) e inglés (nivel profesional)
 
-## Owly CRM, del primer commit a producción
+## Un SaaS multi-tenant, del primer commit a producción
 
 Una plataforma de ventas multi-tenant que usan constructoras en Colombia. La diseñé y la construí como CTO. Abajo está cómo funciona por dentro y cuatro problemas que resolví en el camino.
 

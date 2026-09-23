@@ -266,9 +266,14 @@
     close.addEventListener("click", () => closeDialog());
     dialog.addEventListener("click", (e) => { if (e.target === dialog) closeDialog(); });
 
-    function open() {
+    /* prefill: texto opcional (lo manda la terminal con `fit python, aws`). */
+    function open(prefill) {
       if (typeof dialog.showModal === "function") dialog.showModal();
       else dialog.setAttribute("open", "");
+      if (typeof prefill === "string" && prefill.trim()) {
+        area.value = prefill.trim();
+        run(true);
+      }
       if (motionOK()) {
         gsap.fromTo(sheet, { y: 40, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: 0.5, ease: "power3.out" });
       }

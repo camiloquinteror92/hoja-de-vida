@@ -1,4 +1,4 @@
-/* Diagrama interactivo: recorre los flujos de Owly CRM paso a paso.
+/* Diagrama interactivo: recorre los flujos del SaaS paso a paso.
    Funciona sin GSAP (cambios instantáneos); con GSAP anima el paquete y las líneas. */
 (function () {
   "use strict";
@@ -401,7 +401,18 @@
     return {
       refresh: renderText,
       pause,
-      restartObserver() { started = false; }
+      restartObserver() { started = false; },
+      /* Muestra un flujo por id y lo reproduce; lo usan la terminal y la paleta de comandos. */
+      showFlow(id, withFailure) {
+        const i = data.flows.findIndex((f) => f.id === id);
+        if (i < 0) return;
+        started = true;
+        if (i !== flowIndex) selectFlow(i, false);
+        failure = Boolean(withFailure && flow().failureStep);
+        failInput.checked = failure;
+        reset();
+        play();
+      }
     };
   }
 

@@ -68,6 +68,11 @@ function htmlBlocks(lang) {
       `<article class="case"><p class="case-tag">${esc(c.tag)}</p><h3 class="case-title">${esc(c.title)}</h3><dl class="case-body">` +
       `<dt>${esc(p.problem)}</dt><dd>${esc(c.problem)}</dd><dt>${esc(p.did)}</dt><dd>${esc(c.did)}</dd>` +
       `<dt>${esc(p.result)}</dt><dd class="case-result">${esc(c.result)}</dd></dl></article>`).join(""),
+    /* Versión en texto de los simuladores: la leen los agentes; con JavaScript se reemplaza. */
+    labs: `<div class="player-text">` + S.labs[lang].tabs.map((t, i) => {
+      const lab = S.labs[lang][["query", "realtime", "interest"][i]];
+      return `<h3>${esc(t)}</h3><p>${esc(lab.intro)}</p><p>${esc(lab.note)}</p>`;
+    }).join("") + `</div>`,
     /* Versión en texto del diagrama: la leen los agentes; con JavaScript se reemplaza por el diagrama. */
     flows: `<div class="player-text">` + S.player.flows.map((f) =>
       `<h3>${esc(f.tab[lang])}</h3><p>${esc(f.intro[lang])}</p><ol>${f.steps.map((s) => `<li>${esc(s[lang])}</li>`).join("")}</ol>` +
@@ -182,7 +187,7 @@ function resume() {
       { language: "English", fluency: "Professional working proficiency" }
     ],
     projects: [{
-      name: "Owly CRM",
+      name: "Multi-tenant SaaS for real-estate sales (case study)",
       description: p.lead,
       url: URL + "#portfolio",
       highlights: p.cases.map((c) => `${c.title}: ${c.result}`)
@@ -196,13 +201,13 @@ function llms() {
   return [
     "# Camilo Quintero Rodríguez",
     "",
-    "> Senior backend engineer and CTO in Bogotá, Colombia (remote, UTC−5). Builds multi-tenant SaaS on AWS with Python and Django. Built Owly CRM, a sales platform for real-estate developers, from the first commit to production. Economist and former investment analyst. Open to senior backend roles, remote, full-time or contract.",
+    "> Senior backend engineer and CTO in Bogotá, Colombia (remote, UTC−5). Builds multi-tenant SaaS on AWS with Python and Django. Built a multi-tenant sales platform for real-estate developers, from the first commit to production. Economist and former investment analyst. Open to senior backend roles, remote, full-time or contract.",
     "",
     "Contact: camiloquinteror@outlook.com. LinkedIn: https://www.linkedin.com/in/camilo-quinteror/",
     "",
     "## CV",
     "",
-    `- [CV in Markdown](${URL}cv.md): full CV in English, including the Owly CRM case study`,
+    `- [CV in Markdown](${URL}cv.md): full CV in English, including the case study`,
     `- [CV en Markdown (español)](${URL}cv.es.md): la misma hoja de vida en español`,
     `- [JSON Resume](${URL}resume.json): machine-readable CV (jsonresume.org schema)`,
     `- [CV PDF, English](${URL}CV-Camilo-Quintero-EN.pdf)`,
@@ -210,7 +215,7 @@ function llms() {
     "",
     "## Portfolio",
     "",
-    `- [Owly CRM case study](${URL}#portfolio): interactive walkthrough of the architecture (a request, real time, integrations, a deploy) and four problems solved`,
+    `- [Case study: a multi-tenant SaaS](${URL}#portfolio): interactive walkthrough of the architecture (a request, real time, integrations, a deploy), four problems solved and three hands-on simulators`,
     "",
     "## Optional",
     "",

@@ -10,12 +10,12 @@ window.SITE = {
       themeToDark: "Switch to dark theme",
       themeToLight: "Switch to light theme",
       titleCv: "Camilo Quintero, Senior Backend Engineer",
-      titlePortfolio: "Owly CRM case study, Camilo Quintero",
+      titlePortfolio: "Case study: a multi-tenant SaaS, Camilo Quintero",
       heroTitle: "Senior Backend Engineer",
       heroStack: "Python, Django and AWS",
       heroLine: "I build multi-tenant SaaS on AWS, from the data model to the deploy.",
       availability: "Bogotá, Colombia. Remote, UTC−5. Open to full-time or contract roles.",
-      ctaPortfolio: "See how I built Owly CRM",
+      ctaPortfolio: "See how I built a multi-tenant SaaS",
       ctaDownload: "Download CV (PDF)",
       cvPdf: "CV-Camilo-Quintero-EN.pdf",
       aboutTitle: "About",
@@ -32,7 +32,8 @@ window.SITE = {
       fitCta: "Check the fit with your role",
       backToTop: "Back to top",
       updated: "Updated September 2026",
-      machineLabel: "For AI agents and applicant tracking systems:"
+      machineLabel: "For AI agents and applicant tracking systems:",
+      kbdHint: "Tip: press {k} for the command palette, or open the terminal from the top bar."
     },
     es: {
       htmlLang: "es",
@@ -43,12 +44,12 @@ window.SITE = {
       themeToDark: "Cambiar a tema oscuro",
       themeToLight: "Cambiar a tema claro",
       titleCv: "Camilo Quintero, Ingeniero Backend Senior",
-      titlePortfolio: "Caso de estudio de Owly CRM, Camilo Quintero",
+      titlePortfolio: "Caso de estudio: un SaaS multi-tenant, Camilo Quintero",
       heroTitle: "Ingeniero Backend Senior",
       heroStack: "Python, Django y AWS",
       heroLine: "Construyo SaaS multi-tenant en AWS, del modelo de datos al deploy.",
       availability: "Bogotá, Colombia. Remoto, UTC−5. Disponible para tiempo completo o por contrato.",
-      ctaPortfolio: "Mira cómo construí Owly CRM",
+      ctaPortfolio: "Mira cómo construí un SaaS multi-tenant",
       ctaDownload: "Descargar hoja de vida (PDF)",
       cvPdf: "CV-Camilo-Quintero.pdf",
       aboutTitle: "Perfil",
@@ -65,13 +66,14 @@ window.SITE = {
       fitCta: "Revisa si encajo con tu vacante",
       backToTop: "Volver arriba",
       updated: "Actualizado en septiembre de 2026",
-      machineLabel: "Para agentes de IA y sistemas de reclutamiento:"
+      machineLabel: "Para agentes de IA y sistemas de reclutamiento:",
+      kbdHint: "Truco: presiona {k} para abrir la paleta de comandos, o abre la terminal desde la barra de arriba."
     }
   },
 
   cv: {
     en: {
-      about: "Backend engineer and CTO who builds multi-tenant SaaS on AWS. I built Owly CRM, a sales platform used by Colombian real-estate developers, from the first commit to production: Django and PostgreSQL at the core, real-time features over WebSockets, integrations with a construction ERP and a mortgage bank, and applied AI. Before that, I spent two years building lending software as a backend engineer. I'm an economist and a former investment analyst, so I build for the business outcome, not just the ticket.",
+      about: "Backend engineer and CTO who builds multi-tenant SaaS on AWS. I built a sales platform used by Colombian real-estate developers, from the first commit to production: Django and PostgreSQL at the core, real-time features over WebSockets, integrations with a construction ERP and a mortgage bank, and applied AI. Before that, I spent two years building lending software as a backend engineer. I'm an economist and a former investment analyst, so I build for the business outcome, not just the ticket.",
       experience: [
         {
           org: "OWLY SAS",
@@ -79,7 +81,7 @@ window.SITE = {
           dates: "Oct 2025 – Present",
           context: "Multi-tenant CRM SaaS for real-estate developers, Bogotá",
           bullets: [
-            "Architected and built Owly CRM from zero: Django 4.2 and DRF, PostgreSQL 16, Redis and Celery across 40 modular apps, with a React and TypeScript frontend. Shipped the first production deploy on AWS in three days.",
+            "Architected and built the company's CRM platform from zero: Django 4.2 and DRF, PostgreSQL 16, Redis and Celery across 40 modular apps, with a React and TypeScript frontend. Shipped the first production deploy on AWS in three days.",
             "Designed tenant isolation for every customer's data: a tenant-aware base model and a scoped API layer, enforced by a CI check that fails the build if any endpoint ships without tenant scoping.",
             "Built zero-downtime deployments on ECS Fargate: migrations run before new tasks take traffic, failed deploys roll back automatically, and a CI gate blocks backward-incompatible schema changes (expand/contract).",
             "Integrated SINCO, a construction ERP (154 endpoints, two-way sync of units, sales and payments), and Davivienda's mortgage platform (mutual TLS, AES-GCM payload encryption, OAuth, plus an inbound API for the bank's presale results).",
@@ -128,7 +130,7 @@ window.SITE = {
       languages: "Spanish (native) and English (professional working proficiency)"
     },
     es: {
-      about: "Ingeniero backend y CTO que construye SaaS multi-tenant en AWS. Construí Owly CRM, una plataforma de ventas que usan constructoras colombianas, desde el primer commit hasta producción: Django y PostgreSQL en el núcleo, funciones en tiempo real con WebSockets, integraciones con un ERP de construcción y con un banco hipotecario, e IA aplicada. Antes pasé dos años construyendo software de crédito como ingeniero backend. Soy economista y fui analista de inversiones, así que construyo pensando en el resultado de negocio, no solo en el ticket.",
+      about: "Ingeniero backend y CTO que construye SaaS multi-tenant en AWS. Construí una plataforma de ventas que usan constructoras colombianas, desde el primer commit hasta producción: Django y PostgreSQL en el núcleo, funciones en tiempo real con WebSockets, integraciones con un ERP de construcción y con un banco hipotecario, e IA aplicada. Antes pasé dos años construyendo software de crédito como ingeniero backend. Soy economista y fui analista de inversiones, así que construyo pensando en el resultado de negocio, no solo en el ticket.",
       experience: [
         {
           org: "OWLY SAS",
@@ -136,7 +138,7 @@ window.SITE = {
           dates: "oct 2025 – actualidad",
           context: "SaaS multi-tenant de CRM para constructoras, Bogotá",
           bullets: [
-            "Diseñé y construí Owly CRM desde cero: Django 4.2 y DRF, PostgreSQL 16, Redis y Celery en 40 apps modulares, con frontend en React y TypeScript. Primer deploy a producción en AWS en tres días.",
+            "Diseñé y construí desde cero la plataforma CRM de la empresa: Django 4.2 y DRF, PostgreSQL 16, Redis y Celery en 40 apps modulares, con frontend en React y TypeScript. Primer deploy a producción en AWS en tres días.",
             "Diseñé el aislamiento de los datos de cada cliente: un modelo base por empresa y una capa de API filtrada, con un chequeo de CI que rompe el build si algún endpoint sale sin filtro por empresa.",
             "Construí despliegues sin caídas en ECS Fargate: las migraciones corren antes de que las tareas nuevas reciban tráfico, un deploy fallido se revierte solo y un gate de CI bloquea cambios de esquema incompatibles (expand/contract).",
             "Integré SINCO, un ERP de construcción (154 endpoints, sincronización en ambos sentidos de unidades, ventas y pagos), y la plataforma hipotecaria de Davivienda (TLS mutuo, cifrado AES-GCM, OAuth y una API de entrada para los resultados de preventa del banco).",
@@ -188,7 +190,7 @@ window.SITE = {
 
   portfolio: {
     en: {
-      title: "Owly CRM, from the first commit to production",
+      title: "A multi-tenant SaaS, from the first commit to production",
       lead: "A multi-tenant sales platform used by real-estate developers in Colombia. I designed and built it as CTO. Below is how it works inside, and four problems I solved along the way.",
       note: "The code is private, so this page stays at the level of a conference talk: how the pieces fit, not the source.",
       playerTitle: "How it works inside",
@@ -239,7 +241,7 @@ window.SITE = {
       ]
     },
     es: {
-      title: "Owly CRM, del primer commit a producción",
+      title: "Un SaaS multi-tenant, del primer commit a producción",
       lead: "Una plataforma de ventas multi-tenant que usan constructoras en Colombia. La diseñé y la construí como CTO. Abajo está cómo funciona por dentro y cuatro problemas que resolví en el camino.",
       note: "El código es privado, así que esta página se queda al nivel de una charla técnica: cómo encajan las piezas, no el código fuente.",
       playerTitle: "Cómo funciona por dentro",
@@ -391,6 +393,267 @@ window.SITE = {
     ]
   },
 
+  /* Simuladores del portafolio. Las cifras de la carrera son aproximadas y lo dice la nota;
+     los totales (unos 17 s y menos de 1 s) son los del caso real. */
+  labs: {
+    en: {
+      title: "Try it yourself",
+      lead: "Three of those problems as simulators you can play with. They run in your browser.",
+      tabs: ["17 s to under 1 s", "Polling vs WebSockets", "Interest on interest"],
+      query: {
+        intro: "The same list screen, before and after tuning. Run both queries and watch them race.",
+        run: "Run both queries",
+        again: "Run again",
+        before: "Before",
+        after: "After",
+        queries: "queries",
+        query: "query",
+        before_steps: [
+          ["Wide rows plus annotated EXISTS, so Postgres starts its JIT compiler", 9.4, 1],
+          ["One extra query per row to fetch its project (N+1)", 5.1, 50],
+          ["DISTINCT sorts the whole result", 2.2, 0],
+          ["Count and serialize", 0.3, 1]
+        ],
+        after_steps: [
+          ["A page of IDs only, straight from an index", 0.12, 1],
+          ["Full rows for just those 50 IDs", 0.18, 1],
+          ["Related rows prefetched in bulk", 0.2, 2],
+          ["Count and serialize", 0.3, 1]
+        ],
+        result: "{x}× faster, with {q} fewer queries.",
+        note: "A simulation of the real fix. Step times are approximate; the totals match what users saw: about 17 s before, under 1 s after."
+      },
+      realtime: {
+        intro: "Each dot is a group of open tabs, colored by company. Switch between the old polling and WebSockets, then send a message.",
+        polling: "Polling (before)",
+        sockets: "WebSockets (after)",
+        tabsLabel: "Open tabs",
+        perMin: "requests to the API per minute",
+        perDay: "requests in a 10-hour workday",
+        wait: "average wait to see a new message",
+        waitPolling: "≈ 2.5 s",
+        waitSockets: "instant",
+        send: "Send a message",
+        company: "Company",
+        server: ["API + Redis", "Django Channels"],
+        sentPolling: "{c}'s screens see it on their next poll, up to 5 s later. Meanwhile, every other tab keeps asking.",
+        sentSockets: "Pushed at once, and only to {c}'s screens: Redis delivers it to that company's group.",
+        note: "Polling asked every 5 seconds from every open tab: 12 requests per minute per tab, whether or not anything had changed."
+      },
+      interest: {
+        intro: "The bug from the fourth case. Unpaid interest must not earn interest of its own, but the credit core was adding it to the balance every month.",
+        amount: "Loan amount (COP)",
+        rate: "Monthly interest rate (%)",
+        months: "Months without paying",
+        legal: "Interest that could legally be charged",
+        illegal: "Charged with interest on interest",
+        extra: "Overcharge",
+        chartLegal: "Legal",
+        chartIllegal: "Interest on interest",
+        monthsAxis: "{m} months",
+        note: "An illustrative calculator. In the real case the defect was fixed before launch, and no customer was charged."
+      }
+    },
+    es: {
+      title: "Pruébalo tú",
+      lead: "Tres de esos problemas convertidos en simuladores para jugar. Corren en tu navegador.",
+      tabs: ["De 17 s a menos de 1 s", "Polling vs WebSockets", "Interés sobre interés"],
+      query: {
+        intro: "La misma pantalla de listado, antes y después de optimizarla. Corre las dos consultas y míralas competir.",
+        run: "Correr las dos consultas",
+        again: "Correr de nuevo",
+        before: "Antes",
+        after: "Después",
+        queries: "consultas",
+        query: "consulta",
+        before_steps: [
+          ["Filas anchas con EXISTS anotados, así que Postgres arranca su compilador JIT", 9.4, 1],
+          ["Una consulta extra por fila para traer su proyecto (N+1)", 5.1, 50],
+          ["El DISTINCT ordena todo el resultado", 2.2, 0],
+          ["Contar y serializar", 0.3, 1]
+        ],
+        after_steps: [
+          ["Una página de IDs, directo desde un índice", 0.12, 1],
+          ["Las filas completas solo de esos 50 IDs", 0.18, 1],
+          ["Las filas relacionadas, precargadas en bloque", 0.2, 2],
+          ["Contar y serializar", 0.3, 1]
+        ],
+        result: "{x}× más rápido y {q} consultas menos.",
+        note: "Una simulación de la corrección real. Los tiempos de cada paso son aproximados; los totales son los que vieron los usuarios: unos 17 s antes y menos de 1 s después."
+      },
+      realtime: {
+        intro: "Cada punto es un grupo de pestañas abiertas, con el color de su empresa. Cambia entre el polling de antes y WebSockets, y envía un mensaje.",
+        polling: "Polling (antes)",
+        sockets: "WebSockets (después)",
+        tabsLabel: "Pestañas abiertas",
+        perMin: "peticiones a la API por minuto",
+        perDay: "peticiones en una jornada de 10 horas",
+        wait: "espera promedio para ver un mensaje nuevo",
+        waitPolling: "≈ 2,5 s",
+        waitSockets: "al instante",
+        send: "Enviar un mensaje",
+        company: "Empresa",
+        server: ["API + Redis", "Django Channels"],
+        sentPolling: "Las pantallas de {c} lo ven en su próxima consulta, hasta 5 s después. Mientras tanto, todas las demás pestañas siguen preguntando.",
+        sentSockets: "Llega de una vez y solo a las pantallas de {c}: Redis lo entrega al grupo de esa empresa.",
+        note: "El polling preguntaba cada 5 segundos desde cada pestaña abierta: 12 peticiones por minuto por pestaña, hubiera o no algo nuevo."
+      },
+      interest: {
+        intro: "El error del cuarto caso. Los intereses que no se pagan no pueden generar intereses propios, pero el core de crédito los sumaba al saldo cada mes.",
+        amount: "Monto del crédito (COP)",
+        rate: "Tasa de interés mensual (%)",
+        months: "Meses sin pagar",
+        legal: "Intereses que se podían cobrar legalmente",
+        illegal: "Cobrado con interés sobre interés",
+        extra: "Cobro de más",
+        chartLegal: "Legal",
+        chartIllegal: "Interés sobre interés",
+        monthsAxis: "{m} meses",
+        note: "Una calculadora ilustrativa. En el caso real el error se corrigió antes del lanzamiento y a ningún cliente se le cobró."
+      }
+    }
+  },
+
+  /* Terminal y paleta de comandos (Ctrl/⌘ + K). */
+  console: {
+    en: {
+      open: "Open the terminal",
+      title: "camilo@portfolio: ~",
+      close: "Close",
+      input: "Command",
+      welcome: "Welcome. Type help to see the commands. Tip: {k} opens the command palette.",
+      notFound: "Command not found: {cmd}. Type help.",
+      helpTitle: "Commands:",
+      help: [
+        ["help", "list the commands"],
+        ["whoami", "who I am"],
+        ["about", "a short bio"],
+        ["experience", "roles and dates"],
+        ["skills", "my stack"],
+        ["stack", "the architecture, piece by piece"],
+        ["cases", "four problems I solved"],
+        ["deploy", "run a zero-downtime deploy (try deploy --fail)"],
+        ["fit <skills>", "check the fit, for example: fit python, aws, kubernetes"],
+        ["portfolio", "open the case study"],
+        ["labs", "open the simulators"],
+        ["cv", "get the PDF"],
+        ["contact", "how to reach me"],
+        ["theme", "switch light and dark"],
+        ["lang", "cambiar a español"],
+        ["clear", "clear the screen"],
+        ["exit", "close the terminal"]
+      ],
+      whoami: "Camilo Quintero Rodríguez. Senior Backend Engineer and CTO. Bogotá, Colombia (UTC−5), open to remote roles.",
+      deployStart: "Deploying the new version…",
+      deployOk: "Done. Traffic moved to the new version with zero downtime.",
+      deployFail: "Health check failed. Rolled back automatically; nobody noticed.",
+      watch: "Watch it in the diagram",
+      fitUsage: "Usage: fit python, aws, kubernetes",
+      fitOpening: "Checking the fit for: {q}",
+      opening: "Opening {x}…",
+      pdf: "Download the CV (PDF)",
+      contactEmail: "Email",
+      contactPhone: "Phone",
+      themeNow: "Theme: {t}.",
+      themeDark: "dark",
+      themeLight: "light",
+      langNow: "Language: English.",
+      hire: "Permission granted. Next step: an email to camiloquinteror@outlook.com",
+      files: "about.txt  experience/  skills.json  cases/  contact.vcf",
+      noFile: "cat: {f}: no such file",
+      palette: {
+        label: "Command palette",
+        placeholder: "Type a command or search…",
+        empty: "No results.",
+        foot: "↑ ↓ to move · Enter to run · Esc to close",
+        copied: "Email copied",
+        actions: {
+          cv: "Go to the CV",
+          portfolio: "Go to the case study",
+          labs: "Try the simulators",
+          fit: "Check the fit with your role",
+          terminal: "Open the terminal",
+          deploy: "Watch a deploy",
+          deployFail: "Watch a failed deploy roll back",
+          pdf: "Download the CV (PDF)",
+          email: "Email Camilo",
+          copyEmail: "Copy the email address",
+          linkedin: "Open LinkedIn",
+          theme: "Switch light and dark theme",
+          lang: "Ver en español"
+        }
+      }
+    },
+    es: {
+      open: "Abrir la terminal",
+      title: "camilo@portafolio: ~",
+      close: "Cerrar",
+      input: "Comando",
+      welcome: "Bienvenido. Escribe help para ver los comandos. Truco: {k} abre la paleta de comandos.",
+      notFound: "Comando no encontrado: {cmd}. Escribe help.",
+      helpTitle: "Comandos:",
+      help: [
+        ["help", "lista los comandos"],
+        ["whoami", "quién soy"],
+        ["about", "una bio corta"],
+        ["experience", "cargos y fechas"],
+        ["skills", "mi stack"],
+        ["stack", "la arquitectura, pieza por pieza"],
+        ["cases", "cuatro problemas que resolví"],
+        ["deploy", "corre un deploy sin caídas (prueba deploy --fail)"],
+        ["fit <habilidades>", "revisa el encaje, por ejemplo: fit python, aws, kubernetes"],
+        ["portfolio", "abre el caso de estudio"],
+        ["labs", "abre los simuladores"],
+        ["cv", "descarga el PDF"],
+        ["contact", "cómo contactarme"],
+        ["theme", "cambia entre claro y oscuro"],
+        ["lang", "switch to English"],
+        ["clear", "limpia la pantalla"],
+        ["exit", "cierra la terminal"]
+      ],
+      whoami: "Camilo Quintero Rodríguez. Ingeniero Backend Senior y CTO. Bogotá, Colombia (UTC−5), disponible para roles remotos.",
+      deployStart: "Desplegando la versión nueva…",
+      deployOk: "Listo. El tráfico pasó a la versión nueva sin caídas.",
+      deployFail: "Falló el chequeo de salud. Rollback automático; nadie lo notó.",
+      watch: "Verlo en el diagrama",
+      fitUsage: "Uso: fit python, aws, kubernetes",
+      fitOpening: "Revisando el encaje para: {q}",
+      opening: "Abriendo {x}…",
+      pdf: "Descargar la hoja de vida (PDF)",
+      contactEmail: "Correo",
+      contactPhone: "Teléfono",
+      themeNow: "Tema: {t}.",
+      themeDark: "oscuro",
+      themeLight: "claro",
+      langNow: "Idioma: español.",
+      hire: "Permiso concedido. Siguiente paso: un correo a camiloquinteror@outlook.com",
+      files: "about.txt  experience/  skills.json  cases/  contact.vcf",
+      noFile: "cat: {f}: no existe el archivo",
+      palette: {
+        label: "Paleta de comandos",
+        placeholder: "Escribe un comando o busca…",
+        empty: "Sin resultados.",
+        foot: "↑ ↓ para moverte · Enter para ejecutar · Esc para cerrar",
+        copied: "Correo copiado",
+        actions: {
+          cv: "Ir a la hoja de vida",
+          portfolio: "Ir al caso de estudio",
+          labs: "Probar los simuladores",
+          fit: "Revisar el encaje con tu vacante",
+          terminal: "Abrir la terminal",
+          deploy: "Ver un deploy",
+          deployFail: "Ver un deploy fallido revertirse",
+          pdf: "Descargar la hoja de vida (PDF)",
+          email: "Escribirle a Camilo",
+          copyEmail: "Copiar el correo",
+          linkedin: "Abrir LinkedIn",
+          theme: "Cambiar entre tema claro y oscuro",
+          lang: "View in English"
+        }
+      }
+    }
+  },
+
   matcher: {
     ui: {
       en: {
@@ -451,13 +714,13 @@ window.SITE = {
     /* status: match | partial | gap. Cada regla se evalúa sobre lo que escribe el reclutador,
        en inglés o en español. Solo aparecen cosas que Camilo puede respaldar con trabajo real. */
     rules: [
-      { id: "python", status: "match", re: [/\bpython\b/i], en: ["Python", "Python every day since 2023: Django backends at OWLY and MO, Flask at INVIAS."], es: ["Python", "Python a diario desde 2023: backends en Django en OWLY y MO, Flask en INVIAS."] },
-      { id: "django", status: "match", re: [/\bdjango\b/i], en: ["Django", "Built Owly CRM on Django 4.2: 40 modular apps in production."], es: ["Django", "Construí Owly CRM en Django 4.2: 40 apps modulares en producción."] },
-      { id: "drf", status: "match", re: [/django rest framework|\bdrf\b/i], en: ["Django REST Framework", "Owly's whole API runs on DRF, plus a public partner API."], es: ["Django REST Framework", "Toda la API de Owly corre en DRF, más una API pública para aliados."] },
-      { id: "apis", status: "match", re: [/\brestful\b|\brest\s*apis?\b|\bapis?\b|\bapi\s*design|dise[ñn]o de apis|\bendpoints?\b/i, /\bREST\b/], en: ["APIs", "Designed Owly's REST API, a public partner API and an inbound API that a bank calls."], es: ["APIs", "Diseñé la API REST de Owly, una API pública para aliados y una API de entrada que llama un banco."] },
+      { id: "python", status: "match", re: [/\bpython\b/i], en: ["Python", "Python every day since 2023: Django backends as CTO and at MO Technologies, Flask at INVIAS."], es: ["Python", "Python a diario desde 2023: backends en Django como CTO y en MO Technologies, Flask en INVIAS."] },
+      { id: "django", status: "match", re: [/\bdjango\b/i], en: ["Django", "Built a CRM on Django 4.2 as CTO: 40 modular apps in production."], es: ["Django", "Como CTO construí un CRM en Django 4.2: 40 apps modulares en producción."] },
+      { id: "drf", status: "match", re: [/django rest framework|\bdrf\b/i], en: ["Django REST Framework", "The whole API of the SaaS I built runs on DRF, plus a public partner API."], es: ["Django REST Framework", "Toda la API del SaaS que construí corre en DRF, más una API pública para aliados."] },
+      { id: "apis", status: "match", re: [/\brestful\b|\brest\s*apis?\b|\bapis?\b|\bapi\s*design|dise[ñn]o de apis|\bendpoints?\b/i, /\bREST\b/], en: ["APIs", "Designed the REST API of the SaaS I built, a public partner API and an inbound API that a bank calls."], es: ["APIs", "Diseñé la API REST del SaaS que construí, una API pública para aliados y una API de entrada que llama un banco."] },
       { id: "backend", status: "match", re: [/back[- ]?end|server[- ]side|lado del servidor/i], en: ["Backend development", "Backend is my core: APIs, data models, async jobs and infrastructure, in Python and Django."], es: ["Desarrollo backend", "El backend es mi fuerte: APIs, modelos de datos, trabajos asíncronos e infraestructura, en Python y Django."] },
-      { id: "fullstack", status: "match", re: [/full[- ]?stack/i], en: ["Full stack", "Django backend and a React and TypeScript frontend on Owly, with a backend focus."], es: ["Full stack", "Backend en Django y frontend en React y TypeScript en Owly, con foco en backend."] },
-      { id: "frontend", status: "match", re: [/front[- ]?end|\bui\b|interfaz/i], en: ["Frontend", "React and TypeScript across Owly's frontend. My focus is backend."], es: ["Frontend", "React y TypeScript en todo el frontend de Owly. Mi foco es el backend."] },
+      { id: "fullstack", status: "match", re: [/full[- ]?stack/i], en: ["Full stack", "Django backend and a React and TypeScript frontend on the SaaS I built, with a backend focus."], es: ["Full stack", "Backend en Django y frontend en React y TypeScript en el SaaS que construí, con foco en backend."] },
+      { id: "frontend", status: "match", re: [/front[- ]?end|\bui\b|interfaz/i], en: ["Frontend", "React and TypeScript across the frontend of the SaaS I built. My focus is backend."], es: ["Frontend", "React y TypeScript en todo el frontend del SaaS que construí. Mi foco es el backend."] },
       { id: "flask", status: "match", re: [/\bflask\b/i], en: ["Flask", "Built a Flask reporting tool at INVIAS."], es: ["Flask", "Construí una herramienta de reportes en Flask en INVIAS."] },
       { id: "fastapi", status: "partial", re: [/fastapi/i], en: ["FastAPI", "Not in production. I build APIs with Django REST Framework, and the Python side carries over."], es: ["FastAPI", "No en producción. Construyo APIs con Django REST Framework y lo de Python se traslada."] },
       { id: "databases", status: "match", re: [/postgres|\bsql\b|relational databases?|databases?|bases? de datos/i], en: ["Databases and SQL", "PostgreSQL 16 in production. Tuned the slowest views from about 17 s to under 1 s."], es: ["Bases de datos y SQL", "PostgreSQL 16 en producción. Bajé las vistas más lentas de unos 17 s a menos de 1 s."] },
@@ -466,35 +729,35 @@ window.SITE = {
       { id: "redis", status: "match", re: [/\bredis\b|\bcach(e|é|ing)/i], en: ["Redis and caching", "Redis as Celery broker, cache and the WebSocket channel layer."], es: ["Redis y caché", "Redis como broker de Celery, caché y capa de canales de WebSockets."] },
       { id: "queues", status: "match", re: [/\bcelery\b|task queues?|job queues?|background (jobs|tasks|workers)|\bcolas?\b|as[ií]ncron|asynchronous/i], en: ["Celery and background jobs", "Celery workers and scheduled jobs for integrations, notifications and syncs."], es: ["Celery y trabajos en segundo plano", "Workers de Celery y tareas programadas para integraciones, notificaciones y sincronizaciones."] },
       { id: "streaming", status: "partial", re: [/kafka|kinesis|rabbitmq|\bsqs\b|pub\s*\/?\s*sub|event[- ]driven|orientad[ao] a eventos|message (brokers?|queues?)/i], en: ["Messaging and event streams", "Queues and pub/sub on Redis (Celery, Channels). No Kafka or RabbitMQ in production yet."], es: ["Mensajería y eventos", "Colas y pub/sub sobre Redis (Celery, Channels). Todavía no uso Kafka ni RabbitMQ en producción."] },
-      { id: "aws", status: "match", re: [/\baws\b|amazon web services/i], en: ["AWS", "Run Owly on AWS end to end: ECS Fargate, RDS, ElastiCache, S3, CloudFront, SES."], es: ["AWS", "Opero Owly en AWS de punta a punta: ECS Fargate, RDS, ElastiCache, S3, CloudFront, SES."] },
+      { id: "aws", status: "match", re: [/\baws\b|amazon web services/i], en: ["AWS", "Run the SaaS I built on AWS end to end: ECS Fargate, RDS, ElastiCache, S3, CloudFront, SES."], es: ["AWS", "Opero en AWS de punta a punta el SaaS que construí: ECS Fargate, RDS, ElastiCache, S3, CloudFront, SES."] },
       { id: "cloud", status: "match", re: [/\bcloud\b|\bnube\b/i], en: ["Cloud", "My cloud is AWS: containers, managed databases, CDN, email and infrastructure as code."], es: ["Nube", "Mi nube es AWS: contenedores, bases de datos administradas, CDN, correo e infraestructura como código."] },
       { id: "containers", status: "match", re: [/\becs\b|fargate|containers?|contenedores/i], en: ["Containers on ECS", "Containers on ECS Fargate with rolling deploys and automatic rollback."], es: ["Contenedores en ECS", "Contenedores en ECS Fargate con deploys graduales y rollback automático."] },
       { id: "serverless", status: "match", re: [/\blambda\b|serverless/i], en: ["Serverless and Lambda", "AWS Lambda at MO Technologies."], es: ["Serverless y Lambda", "AWS Lambda en MO Technologies."] },
       { id: "kubernetes", status: "gap", re: [/kubernetes|\bk8s\b|\beks\b|\bhelm\b/i], en: ["Kubernetes", "Not in production. I run containers on ECS Fargate, and the concepts carry over."], es: ["Kubernetes", "No en producción. Corro contenedores en ECS Fargate y los conceptos se trasladan."] },
       { id: "docker", status: "match", re: [/\bdocker\b/i], en: ["Docker", "Docker for every service, locally and in production."], es: ["Docker", "Docker en todos los servicios, en local y en producción."] },
-      { id: "iac", status: "match", re: [/terraform|infrastructure as code|infraestructura como c[oó]digo|\biac\b|cloudformation|\bcdk\b|pulumi/i], en: ["Infrastructure as code", "Owly's infrastructure is written in Terraform."], es: ["Infraestructura como código", "La infraestructura de Owly está escrita en Terraform."] },
+      { id: "iac", status: "match", re: [/terraform|infrastructure as code|infraestructura como c[oó]digo|\biac\b|cloudformation|\bcdk\b|pulumi/i], en: ["Infrastructure as code", "The infrastructure of the SaaS I built is written in Terraform."], es: ["Infraestructura como código", "La infraestructura del SaaS que construí está escrita en Terraform."] },
       { id: "devops", status: "match", re: [/devops|dev ops|\bsre\b|site reliability|infrastructure|infraestructura/i], en: ["DevOps and infrastructure", "CI/CD, Terraform, zero-downtime deploys with automatic rollback, and I handle production incidents."], es: ["DevOps e infraestructura", "CI/CD, Terraform, deploys sin caídas con rollback automático, y atiendo los incidentes de producción."] },
       { id: "cicd", status: "match", re: [/ci\s*\/\s*cd|\bci\b|continuous (integration|delivery|deployment)|integraci[oó]n continua|despliegue continuo|github actions|codepipeline|jenkins|circleci/i], en: ["CI/CD", "CI/CD with AWS CodePipeline (and GitLab CI at MO), with gates that block unsafe migrations."], es: ["CI/CD", "CI/CD con AWS CodePipeline (y GitLab CI en MO), con gates que bloquean migraciones inseguras."] },
       { id: "git", status: "match", re: [/\bgit\b|github|gitlab|version control|control de versiones/i], en: ["Git", "Git and a pull-request flow with required CI checks."], es: ["Git", "Git y flujo de pull requests con chequeos de CI obligatorios."] },
       { id: "testing", status: "match", re: [/\btest(s|ing)?\b|pytest|\btdd\b|pruebas|testing/i], en: ["Automated testing", "pytest suites and contract tests that fail the build in CI."], es: ["Pruebas automatizadas", "Suites de pytest y pruebas de contrato que rompen el build en CI."] },
       { id: "realtime", status: "match", re: [/websockets?|real[- ]time|tiempo real|socket\.io|server[- ]sent events|\bsse\b/i], en: ["Real-time features", "Replaced polling with WebSockets (Django Channels and Redis) for notifications and chat."], es: ["Tiempo real", "Reemplacé el polling por WebSockets (Django Channels y Redis) para notificaciones y chat."] },
-      { id: "saas", status: "match", re: [/multi[- ]?tenan|\bsaas\b|multi[- ]?empresa/i], en: ["Multi-tenant SaaS", "Designed Owly's tenant isolation, enforced by a CI check."], es: ["SaaS multi-tenant", "Diseñé el aislamiento por empresa de Owly, con un chequeo de CI que lo hace cumplir."] },
+      { id: "saas", status: "match", re: [/multi[- ]?tenan|\bsaas\b|multi[- ]?empresa/i], en: ["Multi-tenant SaaS", "Designed the tenant isolation of the SaaS I built, enforced by a CI check."], es: ["SaaS multi-tenant", "Diseñé el aislamiento por empresa del SaaS que construí, con un chequeo de CI que lo hace cumplir."] },
       { id: "microservices", status: "match", re: [/micro[- ]?servic/i], en: ["Microservices", "Python and Django microservices at MO Technologies."], es: ["Microservicios", "Microservicios en Python y Django en MO Technologies."] },
-      { id: "architecture", status: "match", re: [/system design|architect|arquitect|scalab|escalab|distributed systems|sistemas distribuidos|high[- ]availability|alta disponibilidad/i], en: ["System design", "Designed Owly from zero: API, real-time layer, async workers, integrations and infrastructure."], es: ["Diseño de sistemas", "Diseñé Owly desde cero: API, capa de tiempo real, workers, integraciones e infraestructura."] },
+      { id: "architecture", status: "match", re: [/system design|architect|arquitect|scalab|escalab|distributed systems|sistemas distribuidos|high[- ]availability|alta disponibilidad/i], en: ["System design", "Designed a SaaS from zero: API, real-time layer, async workers, integrations and infrastructure."], es: ["Diseño de sistemas", "Diseñé un SaaS desde cero: API, capa de tiempo real, workers, integraciones e infraestructura."] },
       { id: "performance", status: "match", re: [/performance|rendimiento|optimi[sz]|latency|latencia|query tuning|profiling|slow queries|consultas lentas/i], en: ["Performance", "Cut the heaviest views from about 17 s to under 1 s by reading query plans."], es: ["Rendimiento", "Bajé las vistas más pesadas de unos 17 s a menos de 1 s leyendo planes de ejecución."] },
       { id: "integrations", status: "match", re: [/integrat|integraci[oó]n|third[- ]party|terceros|external apis?|\berp\b|webhooks?|payment gateways?|pasarelas? de pago/i], en: ["Third-party integrations", "Two-way ERP integration (154 endpoints) and a mortgage-bank integration over mutual TLS."], es: ["Integraciones con terceros", "Integración en ambos sentidos con un ERP (154 endpoints) y con un banco hipotecario por TLS mutuo."] },
       { id: "security", status: "match", re: [/security|seguridad|oauth|\bjwt\b|authentication|autenticaci[oó]n|encryption|cifrado|\bm?tls\b|owasp|\bsso\b/i], en: ["Security and auth", "OAuth, JWT and Firebase auth, mutual TLS and AES-GCM payload encryption with a bank."], es: ["Seguridad y autenticación", "OAuth, autenticación con JWT y Firebase, TLS mutuo y cifrado AES-GCM con un banco."] },
-      { id: "firebase", status: "match", re: [/firebase/i], en: ["Firebase", "Firebase Authentication in production at Owly."], es: ["Firebase", "Firebase Authentication en producción en Owly."] },
-      { id: "finance", status: "match", re: [/fin(tech|anc|anz)|lending|\bloans?\b|pr[eé]stamos?|credit|cr[eé]dito|payments?|\bpagos?\b|banking|\bbancos?\b|\bbanca\b|\bbank|investment|inversi[oó]n|inversiones|financial services|servicios financieros/i], en: ["Finance and fintech", "Economist and former investment analyst. Two years on a lending platform at MO, and I built OWLY's financial engines: commissions, discounts and housing subsidies."], es: ["Finanzas y fintech", "Economista y ex analista de inversiones. Dos años en una plataforma de crédito en MO, y construí los motores financieros de OWLY: comisiones, descuentos y subsidios de vivienda."] },
+      { id: "firebase", status: "match", re: [/firebase/i], en: ["Firebase", "Firebase Authentication in production on the SaaS I built."], es: ["Firebase", "Firebase Authentication en producción en el SaaS que construí."] },
+      { id: "finance", status: "match", re: [/fin(tech|anc|anz)|lending|\bloans?\b|pr[eé]stamos?|credit|cr[eé]dito|payments?|\bpagos?\b|banking|\bbancos?\b|\bbanca\b|\bbank|investment|inversi[oó]n|inversiones|financial services|servicios financieros/i], en: ["Finance and fintech", "Economist and former investment analyst. Two years on a lending platform at MO, and as CTO I built the financial engines behind quotes: commissions, discounts and housing subsidies."], es: ["Finanzas y fintech", "Economista y ex analista de inversiones. Dos años en una plataforma de crédito en MO, y como CTO construí los motores financieros de las cotizaciones: comisiones, descuentos y subsidios de vivienda."] },
       { id: "business", status: "match", re: [/econom|business|negocio|product (mindset|sense|thinking|minded)|stakeholders?/i], en: ["Business sense", "Economist from Javeriana, former investment analyst and startup founder for 7 years. I build for the business outcome."], es: ["Visión de negocio", "Economista de la Javeriana, ex analista de inversiones y fundador de startups durante 7 años. Construyo pensando en el resultado de negocio."] },
-      { id: "crm", status: "match", re: [/\bcrm\b|salesforce|hubspot/i], en: ["CRM", "Built Owly CRM from zero: leads, pipelines, quotes, deals and commissions."], es: ["CRM", "Construí Owly CRM desde cero: leads, pipelines, cotizaciones, negocios y comisiones."] },
-      { id: "realestate", status: "match", re: [/real[- ]estate|proptech|inmobiliari|constructoras?|construction|construcci[oó]n|vivienda|housing|mortgage|hipotec/i], en: ["Real estate and construction", "Owly serves real-estate developers: sales, quotes, a construction ERP and a mortgage bank."], es: ["Inmobiliario y construcción", "Owly atiende constructoras: ventas, cotizaciones, un ERP de construcción y un banco hipotecario."] },
-      { id: "messaging", status: "match", re: [/whatsapp|omni-?channel|omnicanal|\bsms\b|twilio|sendgrid/i], en: ["Messaging (WhatsApp, email, SMS)", "Omnichannel messaging in Owly: WhatsApp, email and SMS, with real-time updates."], es: ["Mensajería (WhatsApp, correo, SMS)", "Mensajería omnicanal en Owly: WhatsApp, correo y SMS, con actualizaciones en tiempo real."] },
+      { id: "crm", status: "match", re: [/\bcrm\b|salesforce|hubspot/i], en: ["CRM", "Built a CRM from zero as CTO: leads, pipelines, quotes, deals and commissions."], es: ["CRM", "Como CTO construí un CRM desde cero: leads, pipelines, cotizaciones, negocios y comisiones."] },
+      { id: "realestate", status: "match", re: [/real[- ]estate|proptech|inmobiliari|constructoras?|construction|construcci[oó]n|vivienda|housing|mortgage|hipotec/i], en: ["Real estate and construction", "The SaaS I built serves real-estate developers: sales, quotes, a construction ERP and a mortgage bank."], es: ["Inmobiliario y construcción", "El SaaS que construí atiende constructoras: ventas, cotizaciones, un ERP de construcción y un banco hipotecario."] },
+      { id: "messaging", status: "match", re: [/whatsapp|omni-?channel|omnicanal|\bsms\b|twilio|sendgrid/i], en: ["Messaging (WhatsApp, email, SMS)", "Omnichannel messaging in the SaaS I built: WhatsApp, email and SMS, with real-time updates."], es: ["Mensajería (WhatsApp, correo, SMS)", "Mensajería omnicanal en el SaaS que construí: WhatsApp, correo y SMS, con actualizaciones en tiempo real."] },
       { id: "llm", status: "match", re: [/\bllms?\b|large language models?|generative ai|gen\s?ai|ia generativa|openai|anthropic|\bclaude\b|\bgpt|\bai\b|\bia\b|artificial intelligence|inteligencia artificial|\brag\b|embeddings?|vector (db|database|search)|agentic|ai agents?|agentes de ia/i], en: ["AI and LLMs", "LLM and voice agents in production (Claude, OpenAI, ElevenLabs) exposed over MCP, plus pgvector embeddings."], es: ["IA y LLMs", "Agentes de IA y de voz en producción (Claude, OpenAI, ElevenLabs) expuestos por MCP, y embeddings con pgvector."] },
       { id: "ml", status: "match", re: [/machine learning|aprendizaje autom[aá]tico|\bml\b|scikit|predictive model/i], en: ["Machine learning", "ML lead scoring with scikit-learn."], es: ["Machine learning", "Scoring de leads con ML en scikit-learn."] },
       { id: "dataeng", status: "partial", re: [/airflow|\bspark\b|\betl\b|snowflake|bigquery|\bdbt\b|data pipelines?/i], en: ["Data pipelines", "ETL-style syncs with a construction ERP. No Spark or Airflow in production."], es: ["Pipelines de datos", "Sincronizaciones tipo ETL con un ERP de construcción. Sin Spark ni Airflow en producción."] },
-      { id: "react", status: "match", re: [/\breact\b/i], en: ["React", "Owly's frontend is React and TypeScript."], es: ["React", "El frontend de Owly es React y TypeScript."] },
-      { id: "typescript", status: "match", re: [/typescript|javascript/i], en: ["TypeScript and JavaScript", "TypeScript across Owly's frontend."], es: ["TypeScript y JavaScript", "TypeScript en todo el frontend de Owly."] },
+      { id: "react", status: "match", re: [/\breact\b/i], en: ["React", "The frontend of the SaaS I built is React and TypeScript."], es: ["React", "El frontend del SaaS que construí es React y TypeScript."] },
+      { id: "typescript", status: "match", re: [/typescript|javascript/i], en: ["TypeScript and JavaScript", "TypeScript across the frontend of the SaaS I built."], es: ["TypeScript y JavaScript", "TypeScript en todo el frontend del SaaS que construí."] },
       { id: "graphql", status: "gap", re: [/graphql/i], en: ["GraphQL", "Not in production. My APIs are REST."], es: ["GraphQL", "No en producción. Mis APIs son REST."] },
       { id: "mobile", status: "gap", re: [/\bios\b|android|react native|flutter|\bswift\b|m[oó]vil|mobile/i], en: ["Mobile apps", "No native mobile work. My work is backend and web."], es: ["Apps móviles", "No he hecho apps nativas. Mi trabajo es backend y web."] },
       { id: "otherlang", status: "gap", re: [/\bgolang\b|\bgo\s*(developer|engineer|services?)\b|\bjava\b|node\.?js|\bnode\b|\bruby\b|\bphp\b|laravel|\bc#|asp\.net|\bdotnet\b|\brust\b|\bscala\b|\belixir\b|\bkotlin\b/i], en: ["Other backend languages", "Not professionally. Python is my backend language."], es: ["Otros lenguajes backend", "No de forma profesional. Mi lenguaje backend es Python."] },
@@ -502,7 +765,7 @@ window.SITE = {
       { id: "observability", status: "partial", re: [/observability|observabilidad|monitoring|monitoreo|logging|cloudwatch|datadog|sentry|prometheus|grafana|new relic|opentelemetry/i], en: ["Observability", "CloudWatch logs, health checks and an in-app performance monitor. No dedicated APM stack yet."], es: ["Observabilidad", "Logs en CloudWatch, chequeos de salud y un monitor de rendimiento propio. Todavía sin una herramienta APM dedicada."] },
       { id: "agile", status: "match", re: [/\bagile\b|scrum|kanban|[aá]gil/i], en: ["Agile", "Agile sprints with Jira at MO. As CTO I run planning and delivery."], es: ["Metodologías ágiles", "Sprints ágiles con Jira en MO. Como CTO manejo la planeación y la entrega."] },
       { id: "leadership", status: "match", re: [/tech(nical)? lead|team lead|\bleader\b|leadership|liderazgo|l[ií]der|mentor|\bcto\b|head of engineering|engineering manager|ownership|manage (a )?team|gesti[oó]n de equipos?|end to end|punta a punta/i], en: ["Ownership and leadership", "As CTO I own architecture, delivery and technical direction."], es: ["Liderazgo y ownership", "Como CTO soy dueño de la arquitectura, la entrega y la dirección técnica."] },
-      { id: "startup", status: "match", re: [/startup|start-up|early[- ]stage|founding engineer|zero to one|0\s*(to|->|→)\s*1|greenfield|fast[- ]paced|emprend/i], en: ["Startup experience", "Built Owly from the first commit, after 7 years founding and running startups."], es: ["Experiencia en startups", "Construí Owly desde el primer commit, después de 7 años fundando y dirigiendo startups."] },
+      { id: "startup", status: "match", re: [/startup|start-up|early[- ]stage|founding engineer|zero to one|0\s*(to|->|→)\s*1|greenfield|fast[- ]paced|emprend/i], en: ["Startup experience", "Built a SaaS from the first commit, after 7 years founding and running startups."], es: ["Experiencia en startups", "Construí un SaaS desde el primer commit, después de 7 años fundando y dirigiendo startups."] },
       { id: "english", status: "match", re: [/english|ingl[eé]s/i], en: ["English", "Professional working proficiency. I explain architecture in English."], es: ["Inglés", "Nivel profesional. Explico arquitectura en inglés."] },
       { id: "remote", status: "match", re: [/remote|remoto|time\s?zones?|zona horaria|\best\b|\bpst\b|\bcst\b|latam|latin america|latinoam[eé]rica|nearshore|us hours|us eastern|ee\.?\s?uu/i], en: ["Remote and time zone", "Remote from Bogotá (UTC−5): full overlap with US Eastern and Central hours."], es: ["Remoto y zona horaria", "Remoto desde Bogotá (UTC−5): coincido por completo con el horario del este y centro de EE. UU."] },
       { id: "degree", status: "partial", re: [/computer science|ciencias de la computaci[oó]n|ingenier[ií]a de sistemas|bachelor|degree in|t[ií]tulo (profesional )?en/i], en: ["Degree", "B.A. in Economics. Self-taught engineer, shipping production systems since 2023."], es: ["Título", "Economista. Ingeniero autodidacta, con sistemas en producción desde 2023."] }
