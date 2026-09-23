@@ -29,12 +29,12 @@ _Multi-tenant CRM SaaS for real-estate developers, Bogotá_
 
 ### Backend Developer II, MO Technologies (Nov 2023 – Sep 2025)
 
-_Credit-management platform: loans, payments and user administration_
+_Credit-management platform: loans, payments and user administration · Promoted from Backend Developer in Sep 2024_
 
 - Built and maintained Python and Django microservices on AWS (S3, EC2, Lambda) with PostgreSQL, Docker and GitLab CI/CD.
 - On the credit core for a Colombian digital bank, caught an interest-capitalization defect (interest charged on unpaid interest, which is illegal in Colombia) that an external compliance review had missed. I escalated it with the numbers, and it was fixed before launch with zero customers affected.
 
-### Developer, ICT and GIS, INVIAS (Jan 2023 – Oct 2023)
+### Python Developer, INVIAS (Jan 2023 – Oct 2023)
 
 _Colombia's National Roads Institute_
 

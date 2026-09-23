@@ -29,12 +29,12 @@ _SaaS multi-tenant de CRM para constructoras, Bogotá_
 
 ### Backend Developer II, MO Technologies (nov 2023 – sep 2025)
 
-_Plataforma de gestión de crédito: préstamos, pagos y administración de usuarios_
+_Plataforma de gestión de crédito: préstamos, pagos y administración de usuarios · Ascendido desde Backend Developer en sep 2024_
 
 - Construí y mantuve microservicios en Python y Django sobre AWS (S3, EC2, Lambda) con PostgreSQL, Docker y CI/CD en GitLab.
 - En el core de crédito de un banco digital colombiano detecté un error de capitalización de intereses (cobrar intereses sobre intereses no pagados, algo ilegal en Colombia) que una revisión externa de cumplimiento no había visto. Lo escalé con los números y se corrigió antes del lanzamiento, sin ningún cliente afectado.
 
-### Desarrollador, TIC y SIG, INVIAS (ene 2023 – oct 2023)
+### Desarrollador Python, INVIAS (ene 2023 – oct 2023)
 
 _Instituto Nacional de Vías_
 

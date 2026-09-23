@@ -92,7 +92,7 @@ window.SITE = {
           org: "MO Technologies",
           role: "Backend Developer II",
           dates: "Nov 2023 – Sep 2025",
-          context: "Credit-management platform: loans, payments and user administration",
+          context: "Credit-management platform: loans, payments and user administration · Promoted from Backend Developer in Sep 2024",
           bullets: [
             "Built and maintained Python and Django microservices on AWS (S3, EC2, Lambda) with PostgreSQL, Docker and GitLab CI/CD.",
             "On the credit core for a Colombian digital bank, caught an interest-capitalization defect (interest charged on unpaid interest, which is illegal in Colombia) that an external compliance review had missed. I escalated it with the numbers, and it was fixed before launch with zero customers affected."
@@ -100,7 +100,7 @@ window.SITE = {
         },
         {
           org: "INVIAS",
-          role: "Developer, ICT and GIS",
+          role: "Python Developer",
           dates: "Jan 2023 – Oct 2023",
           context: "Colombia's National Roads Institute",
           bullets: [
@@ -149,7 +149,7 @@ window.SITE = {
           org: "MO Technologies",
           role: "Backend Developer II",
           dates: "nov 2023 – sep 2025",
-          context: "Plataforma de gestión de crédito: préstamos, pagos y administración de usuarios",
+          context: "Plataforma de gestión de crédito: préstamos, pagos y administración de usuarios · Ascendido desde Backend Developer en sep 2024",
           bullets: [
             "Construí y mantuve microservicios en Python y Django sobre AWS (S3, EC2, Lambda) con PostgreSQL, Docker y CI/CD en GitLab.",
             "En el core de crédito de un banco digital colombiano detecté un error de capitalización de intereses (cobrar intereses sobre intereses no pagados, algo ilegal en Colombia) que una revisión externa de cumplimiento no había visto. Lo escalé con los números y se corrigió antes del lanzamiento, sin ningún cliente afectado."
@@ -157,7 +157,7 @@ window.SITE = {
         },
         {
           org: "INVIAS",
-          role: "Desarrollador, TIC y SIG",
+          role: "Desarrollador Python",
           dates: "ene 2023 – oct 2023",
           context: "Instituto Nacional de Vías",
           bullets: [

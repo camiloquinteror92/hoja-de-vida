@@ -45,7 +45,7 @@
       "position": "Backend Developer II",
       "startDate": "2023-11",
       "endDate": "2025-09",
-      "summary": "Credit-management platform: loans, payments and user administration",
+      "summary": "Credit-management platform: loans, payments and user administration · Promoted from Backend Developer in Sep 2024",
       "highlights": [
         "Built and maintained Python and Django microservices on AWS (S3, EC2, Lambda) with PostgreSQL, Docker and GitLab CI/CD.",
         "On the credit core for a Colombian digital bank, caught an interest-capitalization defect (interest charged on unpaid interest, which is illegal in Colombia) that an external compliance review had missed. I escalated it with the numbers, and it was fixed before launch with zero customers affected."
@@ -53,7 +53,7 @@
     },
     {
       "name": "INVIAS",
-      "position": "Developer, ICT and GIS",
+      "position": "Python Developer",
       "startDate": "2023-01",
       "endDate": "2023-10",
       "summary": "Colombia's National Roads Institute",
