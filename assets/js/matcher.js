@@ -1,4 +1,4 @@
-/* "Revisa si encajo": compara una vacante pegada con la experiencia de Camilo.
+/* "Revisa si encajo": compara una vacante (o unas habilidades sueltas) con la experiencia de Camilo.
    Todo corre en el navegador; nada se envía a ningún servidor. */
 (function () {
   "use strict";
@@ -24,6 +24,8 @@
     const U = () => M.ui[opts.lang()];
     let lastText = "";
     let lastFound = null;
+    let lastUnmatched = [];
+    let typing = null;
 
     /* ---------- Estructura ---------- */
     const sheet = el("div", { class: "fit-sheet" }, dialog);
@@ -32,15 +34,37 @@
     const close = el("button", { type: "button", class: "icon-btn fit-close" }, head);
     close.innerHTML = '<i class="fas fa-xmark" aria-hidden="true"></i>';
     const lead = el("p", { class: "fit-lead" }, sheet);
-    const area = el("textarea", { class: "fit-input", rows: "7", id: "fit-input" }, sheet);
+    const area = el("textarea", { class: "fit-input", rows: "4", id: "fit-input" }, sheet);
+    const chips = el("div", { class: "fit-chips" }, sheet);
     const row = el("div", { class: "fit-actions" }, sheet);
-    const btnSample = el("button", { type: "button", class: "btn" }, row);
     const btnGo = el("button", { type: "button", class: "btn btn-accent" }, row);
+    const btnSample = el("button", { type: "button", class: "btn" }, row);
     const privacy = el("p", { class: "fit-privacy" }, sheet);
     const msg = el("p", { class: "fit-msg", role: "status" }, sheet);
     const results = el("div", { class: "fit-results", hidden: "" }, sheet);
 
     dialog.setAttribute("aria-labelledby", "fit-title");
+
+    function renderChips() {
+      const u = U();
+      chips.textContent = "";
+      el("span", { class: "fit-chips-label", text: u.chipsLabel }, chips);
+      u.chips.forEach((c) => {
+        const b = el("button", { type: "button", class: "chip-btn", text: c }, chips);
+        b.addEventListener("click", () => {
+          const current = area.value.trim();
+          /* Si ya hay una vacante pegada, el ejemplo la reemplaza; si hay palabras, se suma. */
+          if (!current || current.includes("\n")) {
+            area.value = c;
+          } else {
+            const parts = current.split(",").map((p) => p.trim()).filter(Boolean);
+            if (!parts.some((p) => p.toLowerCase() === c.toLowerCase())) parts.push(c);
+            area.value = parts.join(", ");
+          }
+          run(true);
+        });
+      });
+    }
 
     function renderText() {
       const u = U();
@@ -52,7 +76,8 @@
       btnSample.textContent = u.sample;
       btnGo.textContent = u.analyze;
       privacy.innerHTML = '<i class="fas fa-lock" aria-hidden="true"></i> ' + u.privacy;
-      if (lastFound) render(analyze(lastText), false);
+      renderChips();
+      if (lastFound) render(analyze(lastText), false, lastUnmatched);
     }
 
     /* ---------- Análisis ---------- */
@@ -86,6 +111,20 @@
       return found;
     }
 
+    /* Si el reclutador escribió palabras sueltas (no una vacante), devuelve cada término. */
+    function keywordTerms(text) {
+      const clean = text.trim();
+      const words = clean.split(/\s+/).length;
+      const keywordMode = !clean.includes("\n") && (words <= 12 || (/[,;]/.test(clean) && words <= 40));
+      if (!keywordMode) return null;
+      return clean.split(/[,;/]|\s+y\s+|\s+and\s+/i).map((s) => s.trim()).filter((s) => s.length >= 2);
+    }
+
+    function isKnown(term) {
+      if (M.rules.some((r) => r.re.some((re) => re.test(term)))) return true;
+      return new RegExp(M.years.re.source, "i").test(term);
+    }
+
     function counts(found) {
       const c = { match: 0, partial: 0, gap: 0 };
       found.forEach((f) => { c[f.status] += 1; });
@@ -107,7 +146,7 @@
     }
 
     /* ---------- Resultados ---------- */
-    function render(found, animate) {
+    function render(found, animate, unmatched) {
       const u = U();
       const c = counts(found);
       results.textContent = "";
@@ -138,6 +177,12 @@
         el("p", { class: "fit-label", text: f.label }, body);
         el("p", { class: "fit-ev", text: f.ev }, body);
       });
+
+      if (unmatched && unmatched.length) {
+        const note = el("p", { class: "fit-unmatched" }, results);
+        note.innerHTML = '<i class="fas fa-circle-info" aria-hidden="true"></i> ';
+        note.appendChild(document.createTextNode(u.unmatched.replace("{terms}", unmatched.join(", "))));
+      }
 
       const act = el("div", { class: "fit-actions fit-after" }, results);
       const mail = el("a", { class: "btn btn-accent", href: "mailto:camiloquinteror@outlook.com?subject=" +
@@ -173,32 +218,50 @@
       }
     }
 
-    function run() {
+    /* explicit: el reclutador pidió revisar (botón, Enter o un ejemplo). Si no, es la búsqueda en vivo. */
+    function run(explicit) {
       const u = U();
       const text = area.value.trim();
       msg.textContent = "";
       if (!text) {
-        msg.textContent = u.empty;
-        area.focus();
+        results.hidden = true;
+        lastFound = null;
+        if (explicit) { msg.textContent = u.empty; area.focus(); }
         return;
       }
       const found = analyze(text);
+      const terms = keywordTerms(text);
+      const unmatched = terms ? terms.filter((t) => !isKnown(t)) : [];
       if (!found.length) {
         results.hidden = true;
-        msg.textContent = u.none;
         lastFound = null;
+        if (explicit) msg.textContent = u.none;
         return;
       }
       lastText = text;
       lastFound = found;
-      render(found, true);
-      results.scrollIntoView({ behavior: motionOK() ? "smooth" : "auto", block: "start" });
+      lastUnmatched = unmatched;
+      render(found, explicit, unmatched);
+      if (explicit) results.scrollIntoView({ behavior: motionOK() ? "smooth" : "auto", block: "start" });
     }
 
-    btnGo.addEventListener("click", run);
+    btnGo.addEventListener("click", () => run(true));
     btnSample.addEventListener("click", () => {
       area.value = M.samples[opts.lang()];
-      run();
+      run(true);
+    });
+    /* Búsqueda en vivo mientras escribe. */
+    area.addEventListener("input", () => {
+      clearTimeout(typing);
+      typing = setTimeout(() => run(false), 350);
+    });
+    /* Enter revisa cuando son palabras sueltas; Shift+Enter hace un salto de línea. */
+    area.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && !e.shiftKey && !area.value.includes("\n")) {
+        e.preventDefault();
+        clearTimeout(typing);
+        run(true);
+      }
     });
     close.addEventListener("click", () => closeDialog());
     dialog.addEventListener("click", (e) => { if (e.target === dialog) closeDialog(); });

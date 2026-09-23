@@ -9,8 +9,18 @@
     <meta property="og:title" content="Camilo Quintero, Senior Backend Engineer">
     <meta property="og:description" content="Python, Django and AWS. CV and an interactive case study of a multi-tenant SaaS I built from zero.">
     <meta property="og:url" content="https://camiloquinteror92.github.io/hoja-de-vida/">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:image" content="https://camiloquinteror92.github.io/hoja-de-vida/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Camilo Quintero, Senior Backend Engineer. Interactive case study of Owly CRM.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://camiloquinteror92.github.io/hoja-de-vida/og-image.png">
     <meta name="theme-color" content="#f5f5f7">
+    <link rel="canonical" href="https://camiloquinteror92.github.io/hoja-de-vida/">
+    <!-- Versiones para agentes de IA y ATS -->
+    <link rel="alternate" type="text/markdown" href="cv.md" title="CV in Markdown">
+    <link rel="alternate" type="application/json" href="resume.json" title="JSON Resume">
+    <!--pre:jsonld--><script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfilePage","url":"https://camiloquinteror92.github.io/hoja-de-vida/","dateModified":"2026-09-23","mainEntity":{"@type":"Person","name":"Camilo Quintero Rodríguez","alternateName":"Camilo Quintero","jobTitle":"Senior Backend Engineer","description":"Backend engineer and CTO who builds multi-tenant SaaS on AWS. I built Owly CRM, a sales platform used by Colombian real-estate developers, from the first commit to production: Django and PostgreSQL at the core, real-time features over WebSockets, integrations with a construction ERP and a mortgage bank, and applied AI. Before that, I spent two years building lending software as a backend engineer. I'm an economist and a former investment analyst, so I build for the business outcome, not just the ticket.","url":"https://camiloquinteror92.github.io/hoja-de-vida/","email":"mailto:camiloquinteror@outlook.com","address":{"@type":"PostalAddress","addressLocality":"Bogotá","addressCountry":"CO"},"worksFor":{"@type":"Organization","name":"OWLY SAS"},"alumniOf":{"@type":"CollegeOrUniversity","name":"Pontificia Universidad Javeriana"},"knowsAbout":["Python","Django","Django REST Framework","Celery","Django Channels","REST API design","pytest","PostgreSQL","Query tuning","pgvector","Redis","PgBouncer","AWS ECS Fargate","RDS","ElastiCache","S3","CloudFront","SES","Secrets Manager","CodePipeline","Terraform","Docker","CI/CD","React","TypeScript","LLM agents (Claude, OpenAI)","MCP","Voice agents (ElevenLabs)","scikit-learn","Lending and fintech","ERP and banking integrations","Financial modeling"],"knowsLanguage":["es","en"],"sameAs":["https://www.linkedin.com/in/camilo-quinteror/","https://github.com/camiloquinteror92"]}}</script><!--/pre:jsonld-->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +28,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
           integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
           crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link rel="stylesheet" href="assets/css/site.css?v=20260923c">
+    <link rel="stylesheet" href="assets/css/site.css?v=20260923f">
 
     <!-- GSAP 3.15.0 (gratis, incluido uso comercial) con hash de integridad -->
     <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"
@@ -27,10 +37,10 @@
             integrity="sha256-sLFNZ7VbDEPHVqwLEGz8sJ0IeZRfbq1kRRBlsGcpFqI=" crossorigin="anonymous"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"
             integrity="sha256-QZ9wJ6XwhqEst5iHNtj906btIgAilmHeJbZijKfO00Q=" crossorigin="anonymous"></script>
-    <script defer src="assets/js/content.js?v=20260923c"></script>
-    <script defer src="assets/js/player.js?v=20260923c"></script>
-    <script defer src="assets/js/matcher.js?v=20260923c"></script>
-    <script defer src="assets/js/app.js?v=20260923c"></script>
+    <script defer src="assets/js/content.js?v=20260923f"></script>
+    <script defer src="assets/js/player.js?v=20260923f"></script>
+    <script defer src="assets/js/matcher.js?v=20260923f"></script>
+    <script defer src="assets/js/app.js?v=20260923f"></script>
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -70,33 +80,33 @@
             <div class="container">
                 <section class="section" id="about">
                     <h2 data-t="aboutTitle">About</h2>
-                    <p id="about-text" class="lead-text"></p>
+                    <p id="about-text" class="lead-text"><!--pre:about-->Backend engineer and CTO who builds multi-tenant SaaS on AWS. I built Owly CRM, a sales platform used by Colombian real-estate developers, from the first commit to production: Django and PostgreSQL at the core, real-time features over WebSockets, integrations with a construction ERP and a mortgage bank, and applied AI. Before that, I spent two years building lending software as a backend engineer. I'm an economist and a former investment analyst, so I build for the business outcome, not just the ticket.<!--/pre:about--></p>
                 </section>
 
                 <section class="section" id="experience">
                     <h2 data-t="experienceTitle">Experience</h2>
-                    <div id="experience-list"></div>
+                    <div id="experience-list"><!--pre:experience--><article class="job"><div class="job-head"><h3 class="job-role">Chief Technology Officer</h3><p class="job-dates">Oct 2025 – Present</p></div><p class="job-org">OWLY SAS</p><p class="job-context">Multi-tenant CRM SaaS for real-estate developers, Bogotá</p><ul class="job-bullets"><li>Architected and built Owly CRM from zero: Django 4.2 and DRF, PostgreSQL 16, Redis and Celery across 40 modular apps, with a React and TypeScript frontend. Shipped the first production deploy on AWS in three days.</li><li>Designed tenant isolation for every customer's data: a tenant-aware base model and a scoped API layer, enforced by a CI check that fails the build if any endpoint ships without tenant scoping.</li><li>Built zero-downtime deployments on ECS Fargate: migrations run before new tasks take traffic, failed deploys roll back automatically, and a CI gate blocks backward-incompatible schema changes (expand/contract).</li><li>Integrated SINCO, a construction ERP (154 endpoints, two-way sync of units, sales and payments), and Davivienda's mortgage platform (mutual TLS, AES-GCM payload encryption, OAuth, plus an inbound API for the bank's presale results).</li><li>Replaced 5-second polling (12 requests per minute per open tab) with WebSockets, using Django Channels and Redis, for notifications and internal chat.</li><li>Cut the heaviest list views from about 17 s to under 1 s: removed N+1 queries, paginated by ID and fixed Postgres planner traps (JIT on annotated EXISTS, an unnecessary DISTINCT).</li><li>Shipped ML lead scoring (scikit-learn), LLM and voice agents (Claude, OpenAI, ElevenLabs) exposed over MCP, and the financial engines behind quotes: tiered commissions, discounts and housing-subsidy eligibility.</li></ul></article><article class="job"><div class="job-head"><h3 class="job-role">Backend Developer II</h3><p class="job-dates">Nov 2023 – Sep 2025</p></div><p class="job-org">MO Technologies</p><p class="job-context">Credit-management platform: loans, payments and user administration</p><ul class="job-bullets"><li>Built and maintained Python and Django microservices on AWS (S3, EC2, Lambda) with PostgreSQL, Docker and GitLab CI/CD.</li><li>On the credit core for a Colombian digital bank, caught an interest-capitalization defect (interest charged on unpaid interest, which is illegal in Colombia) that an external compliance review had missed. I escalated it with the numbers, and it was fixed before launch with zero customers affected.</li></ul></article><article class="job"><div class="job-head"><h3 class="job-role">Developer, ICT and GIS</h3><p class="job-dates">Jan 2023 – Oct 2023</p></div><p class="job-org">INVIAS</p><p class="job-context">Colombia's National Roads Institute</p><ul class="job-bullets"><li>Built a Flask reporting tool that ingests an external JSON API and exports filtered reports to PDF and CSV.</li></ul></article><!--/pre:experience--></div>
                 </section>
 
                 <section class="section" id="earlier">
                     <h2 data-t="earlierTitle">Before engineering: founder and finance</h2>
-                    <div id="earlier-list"></div>
+                    <div id="earlier-list"><!--pre:earlier--><article class="early"><div class="job-head"><h3 class="job-role">Veci, Co-founder and CEO</h3><p class="job-dates">2018 – 2022</p></div><p class="early-text">App-based neighborhood commerce. COP 100M in sales in the first 8 months, backed by iNNpulsa, Colombia's innovation agency. I also co-founded Fit your Food and A la Casa.</p></article><article class="early"><div class="job-head"><h3 class="job-role">Authentic Trust, Co-founder and CEO</h3><p class="job-dates">2015 – 2016</p></div><p class="early-text">Real-estate project structuring: valuation and debt.</p></article><article class="early"><div class="job-head"><h3 class="job-role">Corpbanca Investment Banking, Investment Analyst</h3><p class="job-dates">2014 – 2015</p></div><p class="early-text">Financial models, due diligence and investment-committee presentations.</p></article><!--/pre:earlier--></div>
                 </section>
 
                 <section class="section" id="skills">
                     <h2 data-t="skillsTitle">Skills</h2>
-                    <div id="skills-list" class="skills"></div>
+                    <div id="skills-list" class="skills"><!--pre:skills--><div class="skill-group"><h3 class="skill-name">Backend</h3><ul class="chips"><li class="chip">Python</li><li class="chip">Django</li><li class="chip">Django REST Framework</li><li class="chip">Celery</li><li class="chip">Django Channels</li><li class="chip">REST API design</li><li class="chip">pytest</li></ul></div><div class="skill-group"><h3 class="skill-name">Data</h3><ul class="chips"><li class="chip">PostgreSQL</li><li class="chip">Query tuning</li><li class="chip">pgvector</li><li class="chip">Redis</li><li class="chip">PgBouncer</li></ul></div><div class="skill-group"><h3 class="skill-name">Cloud and DevOps</h3><ul class="chips"><li class="chip">AWS ECS Fargate</li><li class="chip">RDS</li><li class="chip">ElastiCache</li><li class="chip">S3</li><li class="chip">CloudFront</li><li class="chip">SES</li><li class="chip">Secrets Manager</li><li class="chip">CodePipeline</li><li class="chip">Terraform</li><li class="chip">Docker</li><li class="chip">CI/CD</li></ul></div><div class="skill-group"><h3 class="skill-name">Frontend</h3><ul class="chips"><li class="chip">React</li><li class="chip">TypeScript</li></ul></div><div class="skill-group"><h3 class="skill-name">AI and ML</h3><ul class="chips"><li class="chip">LLM agents (Claude, OpenAI)</li><li class="chip">MCP</li><li class="chip">Voice agents (ElevenLabs)</li><li class="chip">scikit-learn</li></ul></div><div class="skill-group"><h3 class="skill-name">Domain</h3><ul class="chips"><li class="chip">Lending and fintech</li><li class="chip">ERP and banking integrations</li><li class="chip">Financial modeling</li></ul></div><!--/pre:skills--></div>
                 </section>
 
                 <section class="section" id="education">
                     <h2 data-t="educationTitle">Education and languages</h2>
-                    <div id="education-list"></div>
-                    <p class="languages"><strong data-t="languagesLabel">Languages</strong>: <span id="languages-text"></span></p>
+                    <div id="education-list"><!--pre:education--><article class="edu"><div class="job-head"><h3 class="job-role">B.A. in Economics</h3><p class="job-dates">2010 – 2015</p></div><p class="job-org">Pontificia Universidad Javeriana, Bogotá</p></article><article class="edu"><div class="job-head"><h3 class="job-role">Continuing education in Python, Django, AWS and frontend</h3><p class="job-dates">2022 – Present</p></div><p class="job-org">Platzi</p></article><!--/pre:education--></div>
+                    <p class="languages"><strong data-t="languagesLabel">Languages</strong>: <span id="languages-text"><!--pre:languages-->Spanish (native) and English (professional working proficiency)<!--/pre:languages--></span></p>
                 </section>
 
                 <section class="section fit-callout">
                     <h2 data-t="fitTitle">Hiring for a role?</h2>
-                    <p data-t="fitLead">Paste the job description and see, requirement by requirement, what I have done that matches.</p>
+                    <p data-t="fitLead">Paste the job description, or type the skills you need, and see what I have done for each one.</p>
                     <button class="btn btn-accent" type="button" data-open-fit><i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i> <span data-t="fitCta">Check the fit with your role</span></button>
                 </section>
 
@@ -122,29 +132,29 @@
         <div id="view-portfolio" class="view" hidden>
             <header class="pf-hero wide">
                 <h1 id="pf-title">Owly CRM, from the first commit to production</h1>
-                <p id="pf-lead" class="pf-lead"></p>
-                <p id="pf-note" class="pf-note"></p>
+                <p id="pf-lead" class="pf-lead"><!--pre:pfLead-->A multi-tenant sales platform used by real-estate developers in Colombia. I designed and built it as CTO. Below is how it works inside, and four problems I solved along the way.<!--/pre:pfLead--></p>
+                <p id="pf-note" class="pf-note"><!--pre:pfNote-->The code is private, so this page stays at the level of a conference talk: how the pieces fit, not the source.<!--/pre:pfNote--></p>
             </header>
 
             <section class="pf-player-wrap wide" aria-labelledby="pf-player-title">
                 <div class="pf-section-head">
                     <h2 id="pf-player-title">How it works inside</h2>
-                    <p id="pf-player-hint"></p>
+                    <p id="pf-player-hint"><!--pre:pfHint-->Pick a flow and press play, or go step by step.<!--/pre:pfHint--></p>
                 </div>
-                <div id="player" class="player"></div>
-                <noscript><p>This interactive diagram needs JavaScript.</p></noscript>
+                <!-- Sin JavaScript (o para agentes) se lee la versión en texto; con JavaScript se reemplaza por el diagrama. -->
+                <div id="player" class="player"><!--pre:flows--><div class="player-text"><h3>A request</h3><p>What happens when a salesperson opens their list of leads.</p><ol><li>The web app loads from CloudFront and S3, cached close to the user.</li><li>It calls the API with the user's login token.</li><li>The load balancer hands the request to a healthy Django container on ECS Fargate.</li><li>Middleware resolves the user's company, and every query is filtered by it. A CI check fails the build if any endpoint isn't.</li><li>Queries go through PgBouncer, so hundreds of requests share a few database connections.</li><li>PostgreSQL answers. This list used to take about 17 s. After tuning, it takes under 1 s.</li><li>The JSON goes back and the list renders.</li></ol><h3>Real time</h3><p>Before, every open tab asked the server “anything new?” every 5 seconds: 12 requests a minute, per tab.</p><ol><li>When the app opens, it keeps one WebSocket connection open.</li><li>Something happens: a customer replies on WhatsApp, or a colleague updates a quote.</li><li>Django publishes the event to that company's group in Redis.</li><li>Every WebSocket server subscribed to the group receives it.</li><li>Every open screen of that company updates at once. No more polling.</li></ol><h3>Integrations</h3><p>Talking to outside systems without making anyone wait.</p><ol><li>A salesperson sends a buyer's application to the mortgage bank.</li><li>Django puts the job on a queue, so the screen never waits on an outside system.</li><li>A Celery worker picks it up.</li><li>It calls the bank over mutual TLS with AES-GCM encrypted payloads, or the construction ERP: 154 endpoints, synced both ways.</li><li>The answer is saved, filtered by the right company.</li><li>The worker publishes the update, and the salesperson sees it live.</li></ol><h3>A deploy</h3><p>Why this exists: a deploy once logged everyone out in a loop, because new code ran before its database migration.</p><ol><li>A merge to main starts the pipeline. A CI gate blocks any migration that would break the version still running.</li><li>CodePipeline builds and tests.</li><li>The Docker image goes to ECR.</li><li>ECS starts new tasks next to the old ones. Nobody is logged out.</li><li>Each new task migrates the database before it serves a single request.</li><li>The load balancer waits for the health check to pass.</li><li>Traffic shifts. The old tasks finish their open requests and shut down.</li></ol><p>If the new version fails: The health check fails, so the circuit breaker rolls back on its own. Users keep working on the previous version.</p></div><!--/pre:flows--></div>
             </section>
 
             <section class="pf-cases wide" aria-labelledby="pf-cases-title">
                 <div class="pf-section-head">
                     <h2 id="pf-cases-title">Four problems I solved</h2>
                 </div>
-                <div id="cases" class="cases"></div>
+                <div id="cases" class="cases"><!--pre:cases--><article class="case"><p class="case-tag">Performance</p><h3 class="case-title">From about 17 s to under 1 s</h3><dl class="case-body"><dt>The problem</dt><dd>The busiest list screens, with filters, took up to 17 seconds to load.</dd><dt>What I did</dt><dd>Read the query plans instead of guessing. Removed N+1 queries, paginated by ID before loading wide rows, and fixed two Postgres planner traps: JIT triggered by annotated EXISTS, and an unnecessary DISTINCT.</dd><dt>Result</dt><dd class="case-result">Under 1 second on the same data.</dd></dl></article><article class="case"><p class="case-tag">Reliability</p><h3 class="case-title">Deploys without downtime</h3><dl class="case-body"><dt>The problem</dt><dd>A deploy logged every user out in a loop: the new code started before its database migration.</dd><dt>What I did</dt><dd>Made each new task migrate before serving traffic, required backward-compatible migrations (expand/contract) with a CI gate, turned on automatic rollback, and gave old tasks time to drain.</dd><dt>Result</dt><dd class="case-result">New versions go out without interrupting anyone, and a failed release rolls back on its own.</dd></dl></article><article class="case"><p class="case-tag">Real time</p><h3 class="case-title">From polling to WebSockets</h3><dl class="case-body"><dt>The problem</dt><dd>Notifications and chat asked the server every 5 seconds: 12 requests a minute for every open tab, growing with every new user.</dd><dt>What I did</dt><dd>Moved both to WebSockets with Django Channels. Redis fans each event out to the company's group, so only the right screens hear about it.</dd><dt>Result</dt><dd class="case-result">That load disappeared, and messages arrive instantly.</dd></dl></article><article class="case"><p class="case-tag">Fintech, at MO Technologies</p><h3 class="case-title">The bug nobody was looking for</h3><dl class="case-body"><dt>The problem</dt><dd>A digital bank's credit core charged interest on unpaid interest, which is illegal in Colombia. An external compliance review had missed it.</dd><dt>What I did</dt><dd>Spotted it while testing the database, did the math to be sure, took it to the tech lead first, and escalated to the COO with the numbers.</dd><dt>Result</dt><dd class="case-result">Fixed before launch. Zero customers affected.</dd></dl></article><!--/pre:cases--></div>
             </section>
 
             <section class="pf-closing wide">
                 <h2 id="pf-closing-title">Want to know if I fit your role?</h2>
-                <p id="pf-closing-lead"></p>
+                <p id="pf-closing-lead"><!--pre:pfClosing-->Paste your job description, or type the skills you need, and get an honest answer in two seconds.<!--/pre:pfClosing--></p>
                 <div class="hero-ctas">
                     <button class="btn btn-accent" type="button" data-open-fit><i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i> <span data-t="fitCta">Check the fit with your role</span></button>
                     <a class="btn js-cv-pdf" href="CV-Camilo-Quintero-EN.pdf" download><i class="fas fa-download" aria-hidden="true"></i> <span data-t="ctaDownload">Download CV (PDF)</span></a>
@@ -155,6 +165,8 @@
 
     <footer class="site-footer">
         <p>Camilo Quintero Rodríguez, 2026. <span data-t="updated">Updated September 2026</span>.</p>
+        <p class="machine-links"><span data-t="machineLabel">For AI agents and applicant tracking systems:</span>
+            <a href="cv.md">cv.md</a>, <a href="resume.json">resume.json</a>, <a href="llms.txt">llms.txt</a></p>
     </footer>
 
     <button id="scroll-to-top" type="button" aria-label="Back to top"><i class="fas fa-arrow-up" aria-hidden="true"></i></button>

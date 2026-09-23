@@ -1,0 +1,21 @@
+# Camilo Quintero Rodríguez
+
+> Senior backend engineer and CTO in Bogotá, Colombia (remote, UTC−5). Builds multi-tenant SaaS on AWS with Python and Django. Built Owly CRM, a sales platform for real-estate developers, from the first commit to production. Economist and former investment analyst. Open to senior backend roles, remote, full-time or contract.
+
+Contact: camiloquinteror@outlook.com. LinkedIn: https://www.linkedin.com/in/camilo-quinteror/
+
+## CV
+
+- [CV in Markdown](https://camiloquinteror92.github.io/hoja-de-vida/cv.md): full CV in English, including the Owly CRM case study
+- [CV en Markdown (español)](https://camiloquinteror92.github.io/hoja-de-vida/cv.es.md): la misma hoja de vida en español
+- [JSON Resume](https://camiloquinteror92.github.io/hoja-de-vida/resume.json): machine-readable CV (jsonresume.org schema)
+- [CV PDF, English](https://camiloquinteror92.github.io/hoja-de-vida/CV-Camilo-Quintero-EN.pdf)
+- [CV PDF, español](https://camiloquinteror92.github.io/hoja-de-vida/CV-Camilo-Quintero.pdf)
+
+## Portfolio
+
+- [Owly CRM case study](https://camiloquinteror92.github.io/hoja-de-vida/#portfolio): interactive walkthrough of the architecture (a request, real time, integrations, a deploy) and four problems solved
+
+## Optional
+
+- [GitHub profile](https://github.com/camiloquinteror92)

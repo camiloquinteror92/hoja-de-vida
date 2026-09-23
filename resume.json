@@ -1,0 +1,193 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Camilo Quintero Rodríguez",
+    "label": "Senior Backend Engineer",
+    "email": "camiloquinteror@outlook.com",
+    "phone": "+57 311 647 1257",
+    "url": "https://camiloquinteror92.github.io/hoja-de-vida/",
+    "summary": "Backend engineer and CTO who builds multi-tenant SaaS on AWS. I built Owly CRM, a sales platform used by Colombian real-estate developers, from the first commit to production: Django and PostgreSQL at the core, real-time features over WebSockets, integrations with a construction ERP and a mortgage bank, and applied AI. Before that, I spent two years building lending software as a backend engineer. I'm an economist and a former investment analyst, so I build for the business outcome, not just the ticket.",
+    "location": {
+      "city": "Bogotá",
+      "countryCode": "CO"
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "camilo-quinteror",
+        "url": "https://www.linkedin.com/in/camilo-quinteror/"
+      },
+      {
+        "network": "GitHub",
+        "username": "camiloquinteror92",
+        "url": "https://github.com/camiloquinteror92"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "OWLY SAS",
+      "position": "Chief Technology Officer",
+      "startDate": "2025-10",
+      "summary": "Multi-tenant CRM SaaS for real-estate developers, Bogotá",
+      "highlights": [
+        "Architected and built Owly CRM from zero: Django 4.2 and DRF, PostgreSQL 16, Redis and Celery across 40 modular apps, with a React and TypeScript frontend. Shipped the first production deploy on AWS in three days.",
+        "Designed tenant isolation for every customer's data: a tenant-aware base model and a scoped API layer, enforced by a CI check that fails the build if any endpoint ships without tenant scoping.",
+        "Built zero-downtime deployments on ECS Fargate: migrations run before new tasks take traffic, failed deploys roll back automatically, and a CI gate blocks backward-incompatible schema changes (expand/contract).",
+        "Integrated SINCO, a construction ERP (154 endpoints, two-way sync of units, sales and payments), and Davivienda's mortgage platform (mutual TLS, AES-GCM payload encryption, OAuth, plus an inbound API for the bank's presale results).",
+        "Replaced 5-second polling (12 requests per minute per open tab) with WebSockets, using Django Channels and Redis, for notifications and internal chat.",
+        "Cut the heaviest list views from about 17 s to under 1 s: removed N+1 queries, paginated by ID and fixed Postgres planner traps (JIT on annotated EXISTS, an unnecessary DISTINCT).",
+        "Shipped ML lead scoring (scikit-learn), LLM and voice agents (Claude, OpenAI, ElevenLabs) exposed over MCP, and the financial engines behind quotes: tiered commissions, discounts and housing-subsidy eligibility."
+      ]
+    },
+    {
+      "name": "MO Technologies",
+      "position": "Backend Developer II",
+      "startDate": "2023-11",
+      "endDate": "2025-09",
+      "summary": "Credit-management platform: loans, payments and user administration",
+      "highlights": [
+        "Built and maintained Python and Django microservices on AWS (S3, EC2, Lambda) with PostgreSQL, Docker and GitLab CI/CD.",
+        "On the credit core for a Colombian digital bank, caught an interest-capitalization defect (interest charged on unpaid interest, which is illegal in Colombia) that an external compliance review had missed. I escalated it with the numbers, and it was fixed before launch with zero customers affected."
+      ]
+    },
+    {
+      "name": "INVIAS",
+      "position": "Developer, ICT and GIS",
+      "startDate": "2023-01",
+      "endDate": "2023-10",
+      "summary": "Colombia's National Roads Institute",
+      "highlights": [
+        "Built a Flask reporting tool that ingests an external JSON API and exports filtered reports to PDF and CSV."
+      ]
+    },
+    {
+      "name": "Veci",
+      "position": "Co-founder and CEO",
+      "startDate": "2018-03",
+      "endDate": "2022-10",
+      "summary": "App-based neighborhood commerce. COP 100M in sales in the first 8 months, backed by iNNpulsa, Colombia's innovation agency. I also co-founded Fit your Food and A la Casa."
+    },
+    {
+      "name": "Authentic Trust",
+      "position": "Co-founder and CEO",
+      "startDate": "2015-07",
+      "endDate": "2016-06",
+      "summary": "Real-estate project structuring: valuation and debt."
+    },
+    {
+      "name": "Corpbanca Investment Banking",
+      "position": "Investment Analyst",
+      "startDate": "2014-06",
+      "endDate": "2015-01",
+      "summary": "Financial models, due diligence and investment-committee presentations."
+    }
+  ],
+  "education": [
+    {
+      "institution": "Pontificia Universidad Javeriana",
+      "area": "Economics",
+      "studyType": "Bachelor",
+      "startDate": "2010",
+      "endDate": "2015"
+    },
+    {
+      "institution": "Platzi",
+      "area": "Python, Django, AWS and frontend development",
+      "studyType": "Continuing education",
+      "startDate": "2022"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Backend",
+      "keywords": [
+        "Python",
+        "Django",
+        "Django REST Framework",
+        "Celery",
+        "Django Channels",
+        "REST API design",
+        "pytest"
+      ]
+    },
+    {
+      "name": "Data",
+      "keywords": [
+        "PostgreSQL",
+        "Query tuning",
+        "pgvector",
+        "Redis",
+        "PgBouncer"
+      ]
+    },
+    {
+      "name": "Cloud and DevOps",
+      "keywords": [
+        "AWS ECS Fargate",
+        "RDS",
+        "ElastiCache",
+        "S3",
+        "CloudFront",
+        "SES",
+        "Secrets Manager",
+        "CodePipeline",
+        "Terraform",
+        "Docker",
+        "CI/CD"
+      ]
+    },
+    {
+      "name": "Frontend",
+      "keywords": [
+        "React",
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "AI and ML",
+      "keywords": [
+        "LLM agents (Claude, OpenAI)",
+        "MCP",
+        "Voice agents (ElevenLabs)",
+        "scikit-learn"
+      ]
+    },
+    {
+      "name": "Domain",
+      "keywords": [
+        "Lending and fintech",
+        "ERP and banking integrations",
+        "Financial modeling"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "Spanish",
+      "fluency": "Native speaker"
+    },
+    {
+      "language": "English",
+      "fluency": "Professional working proficiency"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Owly CRM",
+      "description": "A multi-tenant sales platform used by real-estate developers in Colombia. I designed and built it as CTO. Below is how it works inside, and four problems I solved along the way.",
+      "url": "https://camiloquinteror92.github.io/hoja-de-vida/#portfolio",
+      "highlights": [
+        "From about 17 s to under 1 s: Under 1 second on the same data.",
+        "Deploys without downtime: New versions go out without interrupting anyone, and a failed release rolls back on its own.",
+        "From polling to WebSockets: That load disappeared, and messages arrive instantly.",
+        "The bug nobody was looking for: Fixed before launch. Zero customers affected."
+      ]
+    }
+  ],
+  "meta": {
+    "canonical": "https://camiloquinteror92.github.io/hoja-de-vida/resume.json",
+    "version": "v1.0.0",
+    "lastModified": "2026-09-23"
+  }
+}

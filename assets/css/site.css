@@ -617,6 +617,28 @@ body.dark-theme .tab[aria-selected="true"] { background: #3a3a3c; }
   line-height: 1.55;
   resize: vertical;
 }
+.fit-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; }
+.fit-chips-label { font-size: 0.8125rem; color: var(--text-3); margin-right: 2px; }
+.chip-btn {
+  padding: 5px 12px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-pill);
+  background: var(--panel-bg-strong);
+  color: var(--text-1);
+  font-size: 0.8125rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.chip-btn:hover { border-color: var(--accent); color: var(--accent); }
+.fit-unmatched {
+  margin-top: 14px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  background: var(--inset-bg);
+  font-size: 0.875rem;
+  color: var(--text-2);
+}
+.fit-unmatched i { color: var(--text-3); margin-right: 4px; }
 .fit-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
 .fit-privacy { margin-top: 12px; font-size: 0.8125rem; color: var(--text-3); }
 .fit-msg { margin-top: 8px; font-size: 0.9375rem; color: var(--warning); }
@@ -650,9 +672,18 @@ body.dark-theme .tab[aria-selected="true"] { background: #3a3a3c; }
 .fit-ev { font-size: 0.9375rem; }
 .fit-after { margin-top: 20px; }
 
+/* Versión en texto del diagrama: solo se ve sin JavaScript (y la leen los agentes) */
+.player-text h3 { font-size: 1.0625rem; margin-top: 20px; }
+.player-text h3:first-child { margin-top: 0; }
+.player-text p { margin-top: 4px; }
+.player-text ol { margin-top: 8px; padding-left: 22px; color: var(--text-2); }
+.player-text li { margin-bottom: 4px; }
+
 /* 8. Pie, volver arriba ------------------------------------------------------ */
 .site-footer { text-align: center; padding: 0 24px 48px; }
 .site-footer p { font-size: 0.8125rem; color: var(--text-3); }
+.site-footer .machine-links { margin-top: 6px; font-size: 0.75rem; }
+.machine-links a { color: var(--text-3); }
 
 #scroll-to-top {
   position: fixed;
