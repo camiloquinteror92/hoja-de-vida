@@ -3,1212 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Camilo Quintero Rodríguez - Interactive CV</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <style>
-/* ==========================================================================
-   VARIANT A — "Pure Apple Light Glass"
-   Camilo Quintero Rodríguez — Interactive CV
-   Near-white airy base · iOS blue accent · crisp frosted white panels
-   ========================================================================== */
-
-/* --------------------------------------------------------------------------
-   1. DESIGN TOKENS
-   -------------------------------------------------------------------------- */
-
-:root {
-  /* Typography */
-  --font-stack: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Text',
-    'Segoe UI', system-ui, sans-serif;
-
-  /* Accent — iOS blue family (single accent) */
-  --accent: #0071e3;
-  --accent-hover: #0077ed;
-  --accent-soft: rgba(0, 113, 227, 0.1);
-  --accent-shadow: rgba(0, 113, 227, 0.28);
-
-  /* Neutrals */
-  --bg-base: #f5f5f7;
-  --text-1: #1d1d1f;
-  --text-2: #515154;
-  --text-3: #86868b;
-  --hairline: rgba(0, 0, 0, 0.08);
-
-  /* Glass panels */
-  --panel-bg: rgba(255, 255, 255, 0.58);
-  --panel-bg-strong: rgba(255, 255, 255, 0.78);
-  --panel-border: rgba(255, 255, 255, 0.72);
-  --panel-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.85);
-  --panel-shadow: 0 1px 2px rgba(0, 0, 0, 0.03), 0 12px 32px rgba(0, 0, 0, 0.07);
-  --panel-shadow-hover: 0 2px 4px rgba(0, 0, 0, 0.04), 0 20px 44px rgba(0, 0, 0, 0.1);
-  --glass-blur: blur(22px) saturate(180%);
-
-  /* Controls */
-  --track: rgba(120, 120, 128, 0.16);
-  --inset-bg: rgba(120, 120, 128, 0.08);
-
-  /* Geometry & motion */
-  --radius-lg: 26px;
-  --radius-md: 16px;
-  --radius-pill: 999px;
-  --ease: cubic-bezier(0.32, 0.72, 0, 1);
-
-  /* Orb intensity (dimmed in dark mode) */
-  --orb-opacity: 1;
-}
-
-body.dark-theme {
-  --accent: #0a84ff;
-  --accent-hover: #2492ff;
-  --accent-soft: rgba(10, 132, 255, 0.14);
-  --accent-shadow: rgba(10, 132, 255, 0.3);
-
-  --bg-base: #0b0b0d;
-  --text-1: #f5f5f7;
-  --text-2: #b4b4b9;
-  --text-3: #86868b;
-  --hairline: rgba(255, 255, 255, 0.1);
-
-  --panel-bg: rgba(28, 28, 30, 0.55);
-  --panel-bg-strong: rgba(44, 44, 46, 0.66);
-  --panel-border: rgba(255, 255, 255, 0.1);
-  --panel-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.07);
-  --panel-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 16px 40px rgba(0, 0, 0, 0.45);
-  --panel-shadow-hover: 0 2px 4px rgba(0, 0, 0, 0.35), 0 24px 52px rgba(0, 0, 0, 0.55);
-
-  --track: rgba(120, 120, 128, 0.3);
-  --inset-bg: rgba(120, 120, 128, 0.14);
-
-  --orb-opacity: 0.5;
-}
-
-/* --------------------------------------------------------------------------
-   2. RESET & BASE
-   -------------------------------------------------------------------------- */
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: var(--font-stack);
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--text-1);
-  background-color: var(--bg-base);
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  transition: background-color 0.45s ease, color 0.45s ease;
-}
-
-::selection {
-  background: rgba(0, 113, 227, 0.22);
-  color: inherit;
-}
-
-body.dark-theme ::selection {
-  background: rgba(10, 132, 255, 0.35);
-}
-
-button {
-  font: inherit;
-  color: inherit;
-}
-
-a:focus-visible,
-button:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-}
-
-/* --------------------------------------------------------------------------
-   3. AMBIENT BACKGROUND — quiet blurred orbs the glass refracts
-   -------------------------------------------------------------------------- */
-
-body::before,
-body::after {
-  content: '';
-  position: fixed;
-  inset: -12%;
-  z-index: -1;
-  pointer-events: none;
-  opacity: var(--orb-opacity);
-  filter: blur(70px);
-  transition: opacity 0.6s ease;
-}
-
-body::before {
-  background:
-    radial-gradient(34% 34% at 16% 14%, rgba(10, 132, 255, 0.15), transparent 70%),
-    radial-gradient(26% 26% at 86% 18%, rgba(100, 180, 255, 0.1), transparent 70%);
-  animation: orb-drift 52s ease-in-out infinite alternate;
-}
-
-body::after {
-  background:
-    radial-gradient(32% 32% at 78% 88%, rgba(0, 113, 227, 0.11), transparent 70%);
-  animation: orb-drift 64s ease-in-out infinite alternate-reverse;
-}
-
-@keyframes orb-drift {
-  from {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  to {
-    transform: translate3d(2.5%, -2%, 0) scale(1.05);
-  }
-}
-
-/* --------------------------------------------------------------------------
-   4. LAYOUT
-   -------------------------------------------------------------------------- */
-
-.container {
-  width: 100%;
-  max-width: 920px;
-  margin: 0 auto;
-  padding: 44px 24px 110px;
-}
-
-/* --------------------------------------------------------------------------
-   5. HEADER (normal document flow — not fixed)
-   -------------------------------------------------------------------------- */
-
-header {
-  text-align: center;
-  padding: 72px 24px 4px;
-}
-
-header .avatar,
-header h1,
-header #job-title,
-header .controls {
-  opacity: 0;
-  transform: translateY(14px);
-  animation: rise-in 0.7s var(--ease) forwards;
-}
-
-header .avatar {
-  animation-delay: 0.05s;
-}
-header h1 {
-  animation-delay: 0.15s;
-}
-header #job-title {
-  animation-delay: 0.25s;
-}
-header .controls {
-  animation-delay: 0.35s;
-}
-
-@keyframes rise-in {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.avatar {
-  width: 84px;
-  height: 84px;
-  margin: 0 auto 22px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.6rem;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  color: var(--accent);
-  background: var(--panel-bg-strong);
-  -webkit-backdrop-filter: var(--glass-blur);
-  backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--panel-border);
-  box-shadow: var(--panel-highlight), 0 8px 24px rgba(0, 0, 0, 0.08);
-  transition: background-color 0.45s ease, border-color 0.45s ease;
-}
-
-h1 {
-  font-size: clamp(1.75rem, 4.5vw, 2.5rem);
-  font-weight: 700;
-  letter-spacing: -0.022em;
-  line-height: 1.15;
-  color: var(--text-1);
-  margin-bottom: 10px;
-}
-
-#job-title {
-  font-size: 1.0625rem;
-  font-weight: 400;
-  letter-spacing: -0.005em;
-  color: var(--text-2);
-  min-height: 1.7em; /* prevents layout shift during the typing effect */
-  max-width: 720px;
-  margin: 0 auto;
-}
-
-.controls {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 28px;
-}
-
-/* --------------------------------------------------------------------------
-   6. BUTTONS — frosted glass pills
-   -------------------------------------------------------------------------- */
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  padding: 9px 22px;
-  border: 1px solid var(--panel-border);
-  border-radius: var(--radius-pill);
-  background: var(--panel-bg-strong);
-  -webkit-backdrop-filter: var(--glass-blur);
-  backdrop-filter: var(--glass-blur);
-  color: var(--text-1);
-  font-size: 0.875rem;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  text-decoration: none;
-  cursor: pointer;
-  box-shadow: var(--panel-highlight), 0 2px 10px rgba(0, 0, 0, 0.06);
-  transition:
-    transform 0.25s var(--ease),
-    box-shadow 0.25s ease,
-    background-color 0.3s ease,
-    border-color 0.3s ease,
-    color 0.3s ease;
-}
-
-.btn:hover {
-  transform: translateY(-1px);
-  box-shadow: var(--panel-highlight), 0 6px 18px rgba(0, 0, 0, 0.1);
-}
-
-.btn:active {
-  transform: translateY(0) scale(0.98);
-  box-shadow: var(--panel-highlight), 0 2px 8px rgba(0, 0, 0, 0.07);
-}
-
-/* Download CV — the one prominent accent button */
-.download-btn {
-  padding: 12px 28px;
-  font-size: 0.9375rem;
-  color: #fff;
-  background: var(--accent);
-  border-color: rgba(255, 255, 255, 0.25);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 8px 22px var(--accent-shadow);
-}
-
-.download-btn:hover {
-  background: var(--accent-hover);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 12px 28px var(--accent-shadow);
-}
-
-.download-btn:active {
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), 0 4px 12px var(--accent-shadow);
-}
-
-.download-btn i {
-  font-size: 0.875em;
-}
-
-/* --------------------------------------------------------------------------
-   7. SECTIONS — frosted glass cards (revealed via .visible)
-   -------------------------------------------------------------------------- */
-
-.section {
-  position: relative;
-  margin-bottom: 26px;
-  padding: clamp(28px, 4.5vw, 46px);
-  background: var(--panel-bg);
-  -webkit-backdrop-filter: var(--glass-blur);
-  backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--panel-border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--panel-highlight), var(--panel-shadow);
-  opacity: 0;
-  transform: translateY(26px);
-  transition:
-    opacity 0.7s var(--ease),
-    transform 0.7s var(--ease),
-    box-shadow 0.35s ease,
-    background-color 0.45s ease,
-    border-color 0.45s ease;
-}
-
-.section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.section.visible:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--panel-highlight), var(--panel-shadow-hover);
-}
-
-/* --------------------------------------------------------------------------
-   8. TYPOGRAPHY HIERARCHY
-   -------------------------------------------------------------------------- */
-
-h2 {
-  font-size: 0.875rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.11em;
-  color: var(--text-3);
-  margin-bottom: 26px;
-  transition: color 0.45s ease;
-}
-
-h3 {
-  font-size: 1.0625rem;
-  font-weight: 600;
-  letter-spacing: -0.012em;
-  color: var(--text-1);
-  margin-bottom: 4px;
-}
-
-p {
-  color: var(--text-2);
-}
-
-#profile-content {
-  font-size: 1.0625rem;
-  line-height: 1.72;
-  color: var(--text-1);
-}
-
-/* --------------------------------------------------------------------------
-   9. SKILLS — thin minimal bars, % label outside the bar
-   -------------------------------------------------------------------------- */
-
-.skill {
-  margin-bottom: 22px;
-}
-
-.skill:last-child {
-  margin-bottom: 0;
-}
-
-.skill > p {
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  color: var(--text-1);
-  margin-bottom: 8px;
-}
-
-/* JS mirrors data-level onto the skill name <p> — render it right-aligned */
-.skill > p::after {
-  content: attr(data-level);
-  margin-left: auto;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  color: var(--text-3);
-  font-variant-numeric: tabular-nums;
-}
-
-.skill-bar {
-  height: 6px;
-  border-radius: var(--radius-pill);
-  background: var(--track);
-  overflow: hidden;
-  transition: background-color 0.45s ease;
-}
-
-.skill-level {
-  height: 100%;
-  width: 0; /* JS animates to data-level via inline style */
-  border-radius: var(--radius-pill);
-  background: var(--accent);
-  transition: width 1.1s var(--ease), background-color 0.45s ease;
-}
-
-/* Gentle stagger as the bars fill (h2 is the only non-div sibling) */
-.skill:nth-of-type(1) .skill-level { transition-delay: 0s; }
-.skill:nth-of-type(2) .skill-level { transition-delay: 0.04s; }
-.skill:nth-of-type(3) .skill-level { transition-delay: 0.08s; }
-.skill:nth-of-type(4) .skill-level { transition-delay: 0.12s; }
-.skill:nth-of-type(5) .skill-level { transition-delay: 0.16s; }
-.skill:nth-of-type(6) .skill-level { transition-delay: 0.2s; }
-.skill:nth-of-type(7) .skill-level { transition-delay: 0.24s; }
-.skill:nth-of-type(8) .skill-level { transition-delay: 0.28s; }
-.skill:nth-of-type(9) .skill-level { transition-delay: 0.32s; }
-.skill:nth-of-type(10) .skill-level { transition-delay: 0.36s; }
-
-/* --------------------------------------------------------------------------
-   10. EXPERIENCE
-   -------------------------------------------------------------------------- */
-
-.experience-item {
-  padding: 26px 0;
-  border-top: 1px solid var(--hairline);
-  transition: border-color 0.45s ease;
-}
-
-.experience-item:first-of-type {
-  border-top: 0;
-  padding-top: 0;
-}
-
-.experience-item:last-child {
-  padding-bottom: 0;
-}
-
-.experience-date {
-  font-size: 0.8125rem;
-  color: var(--text-3);
-  font-variant-numeric: tabular-nums;
-  margin-bottom: 8px;
-}
-
-.experience-toggle {
-  display: inline-block;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--accent);
-  cursor: pointer;
-  -webkit-user-select: none;
-  user-select: none;
-  transition: opacity 0.2s ease, color 0.3s ease;
-}
-
-.experience-toggle:hover {
-  opacity: 0.7;
-}
-
-.experience-details {
-  display: none; /* JS toggles to block */
-  margin-top: 14px;
-  padding: 18px 20px;
-  background: var(--inset-bg);
-  border-radius: var(--radius-md);
-  animation: fadeInDetail 0.45s var(--ease);
-}
-
-.experience-details p {
-  font-size: 0.9375rem;
-  line-height: 1.68;
-  color: var(--text-2);
-}
-
-@keyframes fadeInDetail {
-  from {
-    opacity: 0;
-    transform: translateY(-6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* --------------------------------------------------------------------------
-   11. EDUCATION
-   -------------------------------------------------------------------------- */
-
-.education-item {
-  padding: 24px 0;
-  border-top: 1px solid var(--hairline);
-  transition: border-color 0.45s ease;
-}
-
-.education-item:first-of-type {
-  border-top: 0;
-  padding-top: 0;
-}
-
-.education-item:last-child {
-  padding-bottom: 0;
-}
-
-.education-item p {
-  font-size: 0.9375rem;
-  color: var(--text-2);
-}
-
-.education-item p:first-of-type {
-  font-size: 0.8125rem;
-  color: var(--text-3);
-  font-variant-numeric: tabular-nums;
-  margin-bottom: 6px;
-}
-
-/* --------------------------------------------------------------------------
-   12. CONTACT
-   -------------------------------------------------------------------------- */
-
-#contact p {
-  margin-bottom: 6px;
-  font-size: 0.9375rem;
-}
-
-#contact p a {
-  color: var(--accent);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-#contact p a:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.contact-icons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 30px;
-}
-
-.contact-icons a {
-  width: 46px;
-  height: 46px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.125rem;
-  color: var(--accent);
-  text-decoration: none;
-  border-radius: 50%;
-  background: var(--panel-bg-strong);
-  -webkit-backdrop-filter: var(--glass-blur);
-  backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--panel-border);
-  box-shadow: var(--panel-highlight), 0 2px 10px rgba(0, 0, 0, 0.06);
-  transition:
-    transform 0.25s var(--ease),
-    box-shadow 0.25s ease,
-    background-color 0.3s ease,
-    border-color 0.3s ease,
-    color 0.3s ease;
-}
-
-.contact-icons a:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--panel-highlight), 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-.download-wrap {
-  display: flex;
-  justify-content: center;
-  margin-top: 32px;
-}
-
-/* --------------------------------------------------------------------------
-   13. SCROLL-TO-TOP — small floating glass circle
-   -------------------------------------------------------------------------- */
-
-#scroll-to-top {
-  position: fixed;
-  right: 24px;
-  bottom: 24px;
-  z-index: 1000;
-  width: 46px;
-  height: 46px;
-  display: none; /* JS + .visible flip this to flex */
-  align-items: center;
-  justify-content: center;
-  font-size: 1.125rem;
-  line-height: 1;
-  color: var(--accent);
-  border: 1px solid var(--panel-border);
-  border-radius: 50%;
-  background: var(--panel-bg-strong);
-  -webkit-backdrop-filter: var(--glass-blur);
-  backdrop-filter: var(--glass-blur);
-  cursor: pointer;
-  box-shadow: var(--panel-highlight), 0 8px 24px rgba(0, 0, 0, 0.12);
-  opacity: 0;
-  transform: translateY(8px) scale(0.92);
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s var(--ease),
-    box-shadow 0.3s ease,
-    background-color 0.3s ease,
-    border-color 0.3s ease;
-}
-
-#scroll-to-top.visible {
-  display: flex;
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-#scroll-to-top:hover {
-  transform: translateY(-2px) scale(1);
-  box-shadow: var(--panel-highlight), 0 12px 30px rgba(0, 0, 0, 0.16);
-}
-
-/* --------------------------------------------------------------------------
-   14. LOADING OVERLAY
-   -------------------------------------------------------------------------- */
-
-#loading-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--bg-base);
-  transition: opacity 0.5s ease; /* JS fades via inline opacity */
-}
-
-.loading-spinner {
-  width: 34px;
-  height: 34px;
-  border: 2.5px solid var(--track);
-  border-top-color: var(--accent);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* --------------------------------------------------------------------------
-   15. RESPONSIVE
-   -------------------------------------------------------------------------- */
-
-@media (max-width: 768px) {
-  header {
-    padding: 52px 20px 0;
-  }
-
-  .container {
-    padding: 36px 18px 90px;
-  }
-
-  .avatar {
-    width: 74px;
-    height: 74px;
-    font-size: 1.4rem;
-    margin-bottom: 18px;
-  }
-
-  #job-title {
-    font-size: 1rem;
-    min-height: 3.3em; /* typing effect wraps to ~2 lines */
-  }
-
-  .controls {
-    margin-top: 24px;
-  }
-
-  .section {
-    margin-bottom: 20px;
-    border-radius: 22px;
-  }
-
-  .contact-icons {
-    gap: 12px;
-  }
-
-  #scroll-to-top {
-    right: 18px;
-    bottom: 18px;
-  }
-}
-
-@media (max-width: 480px) {
-  header {
-    padding: 44px 16px 0;
-  }
-
-  .container {
-    padding: 30px 14px 80px;
-  }
-
-  .avatar {
-    width: 68px;
-    height: 68px;
-    font-size: 1.3rem;
-  }
-
-  #job-title {
-    font-size: 0.9375rem;
-    min-height: 5em; /* typing effect wraps to ~3 lines */
-  }
-
-  .btn {
-    padding: 8px 18px;
-    font-size: 0.8125rem;
-  }
-
-  .download-btn {
-    padding: 11px 24px;
-    font-size: 0.875rem;
-  }
-
-  .section {
-    border-radius: 20px;
-  }
-
-  .skill > p {
-    font-size: 0.875rem;
-  }
-
-  .contact-icons a {
-    width: 42px;
-    height: 42px;
-    font-size: 1rem;
-  }
-
-  #scroll-to-top {
-    width: 42px;
-    height: 42px;
-    font-size: 1rem;
-  }
-}
-
-/* --------------------------------------------------------------------------
-   16. REDUCED MOTION — decorative animation off, content always visible
-   -------------------------------------------------------------------------- */
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  body::before,
-  body::after {
-    animation: none;
-  }
-
-  header .avatar,
-  header h1,
-  header #job-title,
-  header .controls {
-    animation: none;
-    opacity: 1;
-    transform: none;
-  }
-
-  .section {
-    opacity: 1;
-    transform: none;
-    transition: box-shadow 0.35s ease, background-color 0.45s ease, border-color 0.45s ease;
-  }
-
-  .section.visible:hover {
-    transform: none;
-  }
-
-  .skill-level {
-    transition: background-color 0.45s ease;
-  }
-
-  .skill:nth-of-type(n) .skill-level {
-    transition-delay: 0s;
-  }
-
-  .experience-details {
-    animation: none;
-  }
-
-  .btn:hover,
-  .btn:active,
-  .contact-icons a:hover,
-  #scroll-to-top:hover {
-    transform: none;
-  }
-
-  #scroll-to-top {
-    transform: none;
-  }
-}
-
-    </style>
+    <title>Camilo Quintero, Senior Backend Engineer</title>
+    <meta name="description" content="Senior backend engineer and CTO. I build multi-tenant SaaS on AWS with Python and Django. CV and an interactive case study of Owly CRM.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Camilo Quintero, Senior Backend Engineer">
+    <meta property="og:description" content="Python, Django and AWS. CV and an interactive case study of a multi-tenant SaaS I built from zero.">
+    <meta property="og:url" content="https://camiloquinteror92.github.io/hoja-de-vida/">
+    <meta name="twitter:card" content="summary">
+    <meta name="theme-color" content="#f5f5f7">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+          integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+          crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="assets/css/site.css?v=20260923c">
+
+    <!-- GSAP 3.15.0 (gratis, incluido uso comercial) con hash de integridad -->
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"
+            integrity="sha256-krualkdvmD0hKivE9UyIkDnBaW3URh1ApzaGCThXD7s=" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"
+            integrity="sha256-sLFNZ7VbDEPHVqwLEGz8sJ0IeZRfbq1kRRBlsGcpFqI=" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"
+            integrity="sha256-QZ9wJ6XwhqEst5iHNtj906btIgAilmHeJbZijKfO00Q=" crossorigin="anonymous"></script>
+    <script defer src="assets/js/content.js?v=20260923c"></script>
+    <script defer src="assets/js/player.js?v=20260923c"></script>
+    <script defer src="assets/js/matcher.js?v=20260923c"></script>
+    <script defer src="assets/js/app.js?v=20260923c"></script>
 </head>
 <body>
-    <header>
-        <div class="avatar" aria-hidden="true">CQ</div>
-        <h1>Camilo Quintero Rodríguez</h1>
-        <p id="job-title">Chief Technology Officer (CTO) | Python · Django · AWS · System Architecture</p>
-        <div class="controls">
-            <button id="lang-toggle" class="btn lang-btn">Español</button>
-            <button id="theme-toggle" class="btn theme-btn">Dark Theme</button>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <nav class="topbar" aria-label="Main">
+        <a class="brand" href="#cv">
+            <span class="brand-mark" aria-hidden="true">CQ</span>
+            <span class="brand-name">Camilo Quintero</span>
+        </a>
+        <div class="seg" data-active="cv">
+            <span class="seg-pill" aria-hidden="true"></span>
+            <a class="seg-btn" href="#cv" data-view="cv" data-t="navCv">CV</a>
+            <a class="seg-btn" href="#portfolio" data-view="portfolio" data-t="navPortfolio">Portfolio</a>
         </div>
-    </header>
+        <div class="top-actions">
+            <button id="lang-toggle" class="btn btn-small" type="button">Español</button>
+            <button id="theme-toggle" class="icon-btn" type="button" aria-label="Switch to dark theme"><i class="fas fa-moon" aria-hidden="true"></i></button>
+        </div>
+    </nav>
 
-    <div class="container">
-        <section id="profile" class="section">
-            <h2 data-translate="profileTitle">Professional Profile</h2>
-            <p id="profile-content">As Chief Technology Officer at OWLY SAS, I lead the architecture and backend engineering of Owly CRM, a multi-tenant real-estate intelligence SaaS. I design scalable, secure server-side systems with Python, Django REST Framework, PostgreSQL, Redis and Celery, paired with a React and TypeScript frontend. My work spans multi-tenant architecture, real-time systems (WebSockets), ERP and banking integrations (SINCO, Davivienda), ML-based lead scoring, and cloud infrastructure on AWS (ECS Fargate, Terraform, CI/CD). With a foundation as a Backend Developer II and a background in Economics, I bridge deep technical execution with business strategy.</p>
-        </section>
-
-        <section id="skills" class="section">
-            <h2 data-translate="skillsTitle">Technical Skills</h2>
-            <div class="skill">
-                <p>Python & Django / DRF</p>
-                <div class="skill-bar"><div class="skill-level" data-level="95%"></div></div>
-            </div>
-            <div class="skill">
-                <p>Software Architecture & Multi-Tenancy</p>
-                <div class="skill-bar"><div class="skill-level" data-level="90%"></div></div>
-            </div>
-            <div class="skill">
-                <p>RESTful APIs & Microservices</p>
-                <div class="skill-bar"><div class="skill-level" data-level="90%"></div></div>
-            </div>
-            <div class="skill">
-                <p>PostgreSQL & Redis</p>
-                <div class="skill-bar"><div class="skill-level" data-level="85%"></div></div>
-            </div>
-            <div class="skill">
-                <p>AWS (ECS, S3, SES) & Terraform</p>
-                <div class="skill-bar"><div class="skill-level" data-level="85%"></div></div>
-            </div>
-            <div class="skill">
-                <p>Docker & CI/CD (GitHub Actions, GitLab)</p>
-                <div class="skill-bar"><div class="skill-level" data-level="85%"></div></div>
-            </div>
-            <div class="skill">
-                <p>Celery & WebSockets (Django Channels)</p>
-                <div class="skill-bar"><div class="skill-level" data-level="80%"></div></div>
-            </div>
-            <div class="skill">
-                <p>React & TypeScript</p>
-                <div class="skill-bar"><div class="skill-level" data-level="80%"></div></div>
-            </div>
-            <div class="skill">
-                <p>AI/ML Integration (scikit-learn, LLMs)</p>
-                <div class="skill-bar"><div class="skill-level" data-level="75%"></div></div>
-            </div>
-            <div class="skill">
-                <p>Tech Leadership & Agile</p>
-                <div class="skill-bar"><div class="skill-level" data-level="85%"></div></div>
-            </div>
-        </section>
-
-        <section id="experience" class="section">
-            <h2 data-translate="experienceTitle">Professional Experience</h2>
-            <div class="experience-item">
-                <h3>Chief Technology Officer (CTO) - OWLY SAS (Owly CRM)</h3>
-                <p class="experience-date" data-translate="owlyDate">2024 - Present</p>
-                <p class="experience-toggle" data-translate="viewDetails">Click to view details</p>
-                <div class="experience-details">
-                    <p data-translate="owlyExperienceDetails">Lead the technical strategy and architecture of Owly CRM, a multi-tenant real-estate intelligence SaaS. Designed the backend from the ground up with Django 4.2, Django REST Framework, PostgreSQL 16, Redis and Celery across 30+ modular apps. Architected the multi-tenant core (ORM-level tenant isolation) and a real-time layer with Django Channels and Daphne (WebSockets) for live quote collaboration, omnichannel messaging (WhatsApp/Email/SMS) and notifications. Built major integrations: a SINCO ERP connector (150+ endpoints) and a Davivienda mortgage-bank integration. Implemented ML-based adaptive lead scoring (scikit-learn) and an AI agents platform (Anthropic Claude, OpenAI) with ElevenLabs voice agents. Owned the AWS infrastructure (ECS Fargate, S3, SES, CloudFront) provisioned with Terraform and shipped through CI/CD (GitHub Actions / AWS CodePipeline). Designed financial engines: a commission tier system and an opportunity-cost quote-discount engine.</p>
+    <main id="main">
+        <!-- ================= Hoja de vida ================= -->
+        <div id="view-cv" class="view">
+            <header class="hero">
+                <div class="avatar" aria-hidden="true">CQ</div>
+                <h1 class="hero-name">Camilo Quintero Rodríguez</h1>
+                <p class="hero-title"><span id="job-title">Senior Backend Engineer</span></p>
+                <p class="hero-stack" data-t="heroStack">Python, Django and AWS</p>
+                <p class="hero-line" data-t="heroLine">I build multi-tenant SaaS on AWS, from the data model to the deploy.</p>
+                <p class="hero-meta" data-t="availability">Bogotá, Colombia. Remote, UTC−5. Open to full-time or contract roles.</p>
+                <div class="hero-ctas">
+                    <a class="btn btn-accent" href="#portfolio" data-t="ctaPortfolio">See how I built Owly CRM</a>
+                    <a class="btn js-cv-pdf" href="CV-Camilo-Quintero-EN.pdf" download><i class="fas fa-download" aria-hidden="true"></i> <span data-t="ctaDownload">Download CV (PDF)</span></a>
                 </div>
+            </header>
+
+            <div class="container">
+                <section class="section" id="about">
+                    <h2 data-t="aboutTitle">About</h2>
+                    <p id="about-text" class="lead-text"></p>
+                </section>
+
+                <section class="section" id="experience">
+                    <h2 data-t="experienceTitle">Experience</h2>
+                    <div id="experience-list"></div>
+                </section>
+
+                <section class="section" id="earlier">
+                    <h2 data-t="earlierTitle">Before engineering: founder and finance</h2>
+                    <div id="earlier-list"></div>
+                </section>
+
+                <section class="section" id="skills">
+                    <h2 data-t="skillsTitle">Skills</h2>
+                    <div id="skills-list" class="skills"></div>
+                </section>
+
+                <section class="section" id="education">
+                    <h2 data-t="educationTitle">Education and languages</h2>
+                    <div id="education-list"></div>
+                    <p class="languages"><strong data-t="languagesLabel">Languages</strong>: <span id="languages-text"></span></p>
+                </section>
+
+                <section class="section fit-callout">
+                    <h2 data-t="fitTitle">Hiring for a role?</h2>
+                    <p data-t="fitLead">Paste the job description and see, requirement by requirement, what I have done that matches.</p>
+                    <button class="btn btn-accent" type="button" data-open-fit><i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i> <span data-t="fitCta">Check the fit with your role</span></button>
+                </section>
+
+                <section class="section" id="contact">
+                    <h2 data-t="contactTitle">Contact</h2>
+                    <p data-t="contactLead">Email is the fastest way to reach me.</p>
+                    <p class="contact-line"><a href="mailto:camiloquinteror@outlook.com">camiloquinteror@outlook.com</a></p>
+                    <p class="contact-line"><span data-t="phone">Phone</span>: <a href="tel:+573116471257">+57 311 647 1257</a></p>
+                    <div class="contact-icons">
+                        <a href="https://www.linkedin.com/in/camilo-quinteror/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                        <a href="https://github.com/camiloquinteror92" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a>
+                        <a href="mailto:camiloquinteror@outlook.com" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+                        <a href="tel:+573116471257" aria-label="Phone"><i class="fas fa-phone" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="download-wrap">
+                        <a class="btn btn-accent js-cv-pdf" href="CV-Camilo-Quintero-EN.pdf" download><i class="fas fa-download" aria-hidden="true"></i> <span data-t="ctaDownload">Download CV (PDF)</span></a>
+                    </div>
+                </section>
             </div>
-            <div class="experience-item">
-                <h3>Backend Developer II - MO Credit Management Platform</h3>
-                <p class="experience-date" data-translate="moDate">Previous Role</p>
-                <p class="experience-toggle" data-translate="viewDetails">Click to view details</p>
-                <div class="experience-details">
-                    <p data-translate="moExperienceDetails">Specialized in the development and maintenance of backend systems using Python and Django, focusing on microservices architecture. Responsible for integrating AWS services (e.g., S3, EC2, Lambda) for scalable solutions. Managed PostgreSQL databases, ensuring data integrity and performance. Implemented and maintained CI/CD pipelines with GitLab for automated testing and deployment. Utilized Docker for containerization, streamlining development and deployment processes. Actively participated in Agile sprints, project planning, and task management using Jira.</p>
+        </div>
+
+        <!-- ================= Portafolio ================= -->
+        <div id="view-portfolio" class="view" hidden>
+            <header class="pf-hero wide">
+                <h1 id="pf-title">Owly CRM, from the first commit to production</h1>
+                <p id="pf-lead" class="pf-lead"></p>
+                <p id="pf-note" class="pf-note"></p>
+            </header>
+
+            <section class="pf-player-wrap wide" aria-labelledby="pf-player-title">
+                <div class="pf-section-head">
+                    <h2 id="pf-player-title">How it works inside</h2>
+                    <p id="pf-player-hint"></p>
                 </div>
-            </div>
-            <div class="experience-item">
-                <h3>Web Application Developer - CERAC</h3>
-                 <p class="experience-date" data-translate="ceracDate">Previous Role</p>
-                <p class="experience-toggle" data-translate="viewDetails">Click to view details</p>
-                <div class="experience-details">
-                    <p data-translate="ceracExperienceDetails">Developed a web application for CERAC using Flask, integrating user authentication, database operations, and form management. The application allows for user, survey, and question management.</p>
+                <div id="player" class="player"></div>
+                <noscript><p>This interactive diagram needs JavaScript.</p></noscript>
+            </section>
+
+            <section class="pf-cases wide" aria-labelledby="pf-cases-title">
+                <div class="pf-section-head">
+                    <h2 id="pf-cases-title">Four problems I solved</h2>
                 </div>
-            </div>
-            <div class="experience-item">
-                <h3>ICT Developer - INVIAS</h3>
-                <p class="experience-date" data-translate="inviasDate">Previous Role</p>
-                <p class="experience-toggle" data-translate="viewDetails">Click to view details</p>
-                <div class="experience-details">
-                    <p data-translate="inviasExperienceDetails">Led the management of ICTs and geographic information systems at INVIAS, applying advanced data analysis and visualization techniques. Developed a report generator using Flask, HTML, CSS, and JavaScript, allowing users to customize reports and export them in various formats.</p>
+                <div id="cases" class="cases"></div>
+            </section>
+
+            <section class="pf-closing wide">
+                <h2 id="pf-closing-title">Want to know if I fit your role?</h2>
+                <p id="pf-closing-lead"></p>
+                <div class="hero-ctas">
+                    <button class="btn btn-accent" type="button" data-open-fit><i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i> <span data-t="fitCta">Check the fit with your role</span></button>
+                    <a class="btn js-cv-pdf" href="CV-Camilo-Quintero-EN.pdf" download><i class="fas fa-download" aria-hidden="true"></i> <span data-t="ctaDownload">Download CV (PDF)</span></a>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
+    </main>
 
-        <section id="education" class="section">
-            <h2 data-translate="educationTitle">Education</h2>
-            <div class="education-item">
-                <h3 data-translate="platziTitle">Online Tech Education - Platzi</h3>
-                <p data-translate="platziPeriodo">2022 - Present</p> <!-- Corrected attribute -->
-                <p data-translate="platziCourses">Courses in Python, Django, AWS, Frontend Development (HTML, CSS, JS), and other backend technologies.</p>
-            </div>
-            <div class="education-item">
-                 <h3 data-translate="javerianaTitle">Economist - Pontificia Universidad Javeriana</h3>
-                 <p data-translate="javerianaPeriodo">2010 - 2015</p>
-                 <p data-translate="javerianaDegree">Bachelor's Degree in Economic and Administrative Sciences.</p>
-            </div>
-        </section>
+    <footer class="site-footer">
+        <p>Camilo Quintero Rodríguez, 2026. <span data-t="updated">Updated September 2026</span>.</p>
+    </footer>
 
-        <section id="contact" class="section">
-            <h2 data-translate="contactTitle">Contact</h2>
-            <p>Email: <a href="mailto:camiloquinteror@outlook.com">camiloquinteror@outlook.com</a></p>
-            <p><span data-translate="phoneLabel">Phone:</span> <a href="tel:+573116471257">+57 311 647 1257</a></p>
-            <div class="contact-icons">
-                <a href="https://www.linkedin.com/in/camilo-quinteror/" target="_blank" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/camiloquinteror92" target="_blank" aria-label="GitHub Profile"><i class="fab fa-github"></i></a>
-                <a href="mailto:camiloquinteror@outlook.com" aria-label="Send Email"><i class="fas fa-envelope"></i></a>
-                <a href="tel:+573116471257" aria-label="Call Phone"><i class="fas fa-phone"></i></a>
-            </div>
-            <div class="download-wrap">
-                <a id="download-cv" href="CV-Camilo-Quintero-EN.pdf" download class="btn download-btn"><i class="fas fa-download" aria-hidden="true"></i> <span data-translate="downloadCv">Download CV (PDF)</span></a>
-            </div>
-        </section>
-    </div>
+    <button id="scroll-to-top" type="button" aria-label="Back to top"><i class="fas fa-arrow-up" aria-hidden="true"></i></button>
 
-    <button id="scroll-to-top" aria-label="Scroll to top">&uarr;</button>
-
-    <div id="loading-overlay">
-        <div class="loading-spinner"></div>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const langToggle = document.getElementById('lang-toggle');
-            const themeToggle = document.getElementById('theme-toggle');
-            const jobTitleEl = document.getElementById('job-title');
-            const profileContentEl = document.getElementById('profile-content');
-            const scrollTopBtn = document.getElementById('scroll-to-top');
-            const loadingOverlay = document.getElementById('loading-overlay');
-            const sections = document.querySelectorAll('.section');
-
-            const translations = {
-                en: {
-                    jobTitle: "Chief Technology Officer (CTO) | Python · Django · AWS · System Architecture",
-                    profileContent: "As Chief Technology Officer at OWLY SAS, I lead the architecture and backend engineering of Owly CRM, a multi-tenant real-estate intelligence SaaS. I design scalable, secure server-side systems with Python, Django REST Framework, PostgreSQL, Redis and Celery, paired with a React and TypeScript frontend. My work spans multi-tenant architecture, real-time systems (WebSockets), ERP and banking integrations (SINCO, Davivienda), ML-based lead scoring, and cloud infrastructure on AWS (ECS Fargate, Terraform, CI/CD). With a foundation as a Backend Developer II and a background in Economics, I bridge deep technical execution with business strategy.",
-                    langBtn: "Español",
-                    themeBtnLight: "Dark Theme",
-                    themeBtnDark: "Light Theme",
-                    viewDetails: "Click to view details",
-                    hideDetails: "Click to hide details",
-                    profileTitle: "Professional Profile",
-                    skillsTitle: "Technical Skills",
-                    experienceTitle: "Professional Experience",
-                    educationTitle: "Education",
-                    contactTitle: "Contact",
-                    phoneLabel: "Phone:",
-                    downloadCv: "Download CV (PDF)",
-                    owlyExperienceDetails: "Lead the technical strategy and architecture of Owly CRM, a multi-tenant real-estate intelligence SaaS. Designed the backend from the ground up with Django 4.2, Django REST Framework, PostgreSQL 16, Redis and Celery across 30+ modular apps. Architected the multi-tenant core (ORM-level tenant isolation) and a real-time layer with Django Channels and Daphne (WebSockets) for live quote collaboration, omnichannel messaging (WhatsApp/Email/SMS) and notifications. Built major integrations: a SINCO ERP connector (150+ endpoints) and a Davivienda mortgage-bank integration. Implemented ML-based adaptive lead scoring (scikit-learn) and an AI agents platform (Anthropic Claude, OpenAI) with ElevenLabs voice agents. Owned the AWS infrastructure (ECS Fargate, S3, SES, CloudFront) provisioned with Terraform and shipped through CI/CD (GitHub Actions / AWS CodePipeline). Designed financial engines: a commission tier system and an opportunity-cost quote-discount engine.",
-                    moExperienceDetails: "Specialized in the development and maintenance of backend systems using Python and Django, focusing on microservices architecture. Responsible for integrating AWS services (e.g., S3, EC2, Lambda) for scalable solutions. Managed PostgreSQL databases, ensuring data integrity and performance. Implemented and maintained CI/CD pipelines with GitLab for automated testing and deployment. Utilized Docker for containerization, streamlining development and deployment processes. Actively participated in Agile sprints, project planning, and task management using Jira.",
-                    ceracExperienceDetails: "Developed a web application for CERAC using Flask, integrating user authentication, database operations, and form management. The application allows for user, survey, and question management.",
-                    inviasExperienceDetails: "Led the management of ICTs and geographic information systems at INVIAS, applying advanced data analysis and visualization techniques. Developed a report generator using Flask, HTML, CSS, and JavaScript, allowing users to customize reports and export them in various formats.",
-                    platziTitle: "Online Tech Education - Platzi",
-                    platziPeriodo: "2022 - Present",
-                    platziCourses: "Courses in Python, Django, AWS, Frontend Development (HTML, CSS, JS), and other backend technologies.",
-                    javerianaTitle: "Economist - Pontificia Universidad Javeriana",
-                    javerianaPeriodo: "2010 - 2015",
-                    javerianaDegree: "Bachelor's Degree in Economic and Administrative Sciences.",
-                    owlyDate: "2024 - Present",
-                    moDate: "Previous Role",
-                    ceracDate: "Previous Role",
-                    inviasDate: "Previous Role",
-                },
-                es: {
-                    jobTitle: "Gerente de Tecnología (CTO) | Python · Django · AWS · Arquitectura de Software",
-                    profileContent: "Como Gerente de Tecnología (CTO) en OWLY SAS, lidero la arquitectura y la ingeniería backend de Owly CRM, un SaaS multi-tenant de inteligencia para real estate. Diseño sistemas del lado del servidor escalables y seguros con Python, Django REST Framework, PostgreSQL, Redis y Celery, junto a un frontend en React y TypeScript. Mi trabajo abarca arquitectura multi-tenant, sistemas en tiempo real (WebSockets), integraciones con ERP y banca (SINCO, Davivienda), scoring de leads con ML e infraestructura cloud en AWS (ECS Fargate, Terraform, CI/CD). Con una base como Backend Developer II y formación en Economía, conecto la ejecución técnica profunda con la estrategia de negocio.",
-                    langBtn: "English",
-                    themeBtnLight: "Tema Oscuro",
-                    themeBtnDark: "Tema Claro",
-                    viewDetails: "Clic para ver detalles",
-                    hideDetails: "Clic para ocultar detalles",
-                    profileTitle: "Perfil Profesional",
-                    skillsTitle: "Habilidades Técnicas",
-                    experienceTitle: "Experiencia Profesional",
-                    educationTitle: "Educación",
-                    contactTitle: "Contacto",
-                    phoneLabel: "Teléfono:",
-                    downloadCv: "Descargar Hoja de Vida (PDF)",
-                    owlyExperienceDetails: "Lidero la estrategia técnica y la arquitectura de Owly CRM, un SaaS multi-tenant de inteligencia para real estate. Diseñé el backend desde cero con Django 4.2, Django REST Framework, PostgreSQL 16, Redis y Celery en más de 30 apps modulares. Diseñé el núcleo multi-tenant (aislamiento por tenant a nivel de ORM) y una capa en tiempo real con Django Channels y Daphne (WebSockets) para colaboración en vivo sobre cotizaciones, mensajería omnicanal (WhatsApp/Email/SMS) y notificaciones. Construí integraciones mayores: un conector con el ERP SINCO (150+ endpoints) y una integración con el banco Davivienda (crédito hipotecario). Implementé scoring adaptativo de leads con ML (scikit-learn) y una plataforma de agentes de IA (Anthropic Claude, OpenAI) con agentes de voz ElevenLabs. Lideré la infraestructura en AWS (ECS Fargate, S3, SES, CloudFront) aprovisionada con Terraform y desplegada con CI/CD (GitHub Actions / AWS CodePipeline). Diseñé motores financieros: un sistema de comisiones por tiers y un motor de descuento por costo de oportunidad en cotizaciones.",
-                    moExperienceDetails: "Especializado en el desarrollo y mantenimiento de sistemas backend usando Python y Django, con foco en arquitectura de microservicios. Responsable de integrar servicios de AWS (ej. S3, EC2, Lambda) para soluciones escalables. Gestión de bases de datos PostgreSQL, asegurando integridad y rendimiento. Implementación y mantenimiento de pipelines CI/CD con GitLab para pruebas y despliegues automatizados. Uso de Docker para containerización, optimizando procesos de desarrollo y despliegue. Participación activa en sprints Ágiles, planificación de proyectos y gestión de tareas con Jira.",
-                    ceracExperienceDetails: "Desarrollé una aplicación web para CERAC usando Flask, integrando autenticación de usuarios, operaciones de base de datos y gestión de formularios. La aplicación permite la administración de usuarios, encuestas y preguntas.",
-                    inviasExperienceDetails: "Lideré la gestión de TICs y sistemas de información geográfica en INVIAS, aplicando análisis avanzado de datos y técnicas de visualización. Desarrollé un generador de reportes usando Flask, HTML, CSS y JavaScript, permitiendo a los usuarios personalizar reportes y exportarlos en varios formatos.",
-                    platziTitle: "Educación Tecnológica Online - Platzi",
-                    platziPeriodo: "2022 - Actualidad", // Corrected from 'perioada' to 'Periodo' for ES consistency
-                    platziCourses: "Cursos en Python, Django, AWS, Desarrollo Frontend (HTML, CSS, JS), y otras tecnologías backend.",
-                    javerianaTitle: "Economista - Pontificia Universidad Javeriana",
-                    javerianaPeriodo: "2010 - 2015",
-                    javerianaDegree: "Título de Pregrado en Ciencias Económicas y Administrativas.",
-                    owlyDate: "2024 - Actualidad",
-                    moDate: "Rol Anterior",
-                    ceracDate: "Rol Anterior",
-                    inviasDate: "Rol Anterior",
-                }
-            };
-
-            let currentLang = 'en'; // Default language
-            let isDarkTheme = false;
-
-            function updateLanguage() {
-                const langData = translations[currentLang];
-                // jobTitleEl.textContent = langData.jobTitle; // Typing effect will handle this
-                profileContentEl.textContent = langData.profileContent;
-                langToggle.textContent = langData.langBtn;
-                themeToggle.textContent = isDarkTheme ? langData.themeBtnDark : langData.themeBtnLight;
-
-                const dlBtn = document.getElementById('download-cv');
-                if (dlBtn) dlBtn.setAttribute('href', currentLang === 'es' ? 'CV-Camilo-Quintero.pdf' : 'CV-Camilo-Quintero-EN.pdf');
-
-                document.querySelectorAll('[data-translate]').forEach(el => {
-                    const key = el.getAttribute('data-translate');
-                    if (langData[key]) {
-                        el.textContent = langData[key];
-                    }
-                });
-                 document.querySelectorAll('.experience-toggle').forEach(toggle => {
-                    const details = toggle.nextElementSibling;
-                    if (details.style.display === 'block') {
-                        toggle.textContent = langData.hideDetails;
-                    } else {
-                        toggle.textContent = langData.viewDetails;
-                    }
-                });
-                typeEffect(jobTitleEl, langData.jobTitle, 80); // Re-trigger typing effect on language change
-            }
-
-
-            langToggle.addEventListener('click', () => {
-                currentLang = currentLang === 'en' ? 'es' : 'en';
-                updateLanguage();
-            });
-
-            themeToggle.addEventListener('click', () => {
-                document.body.classList.toggle('dark-theme');
-                isDarkTheme = document.body.classList.contains('dark-theme');
-                localStorage.setItem('theme', isDarkTheme ? 'dark' : 'light');
-                updateLanguage(); 
-            });
-            
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                document.body.classList.add('dark-theme');
-                isDarkTheme = true;
-            }
-            // updateLanguage(); // Called at the end after typeEffect is defined
-
-            document.querySelectorAll('.experience-toggle').forEach(toggle => {
-                toggle.addEventListener('click', (e) => {
-                    const details = e.target.nextElementSibling;
-                    const langData = translations[currentLang];
-                    if (details.style.display === 'none' || details.style.display === '') {
-                        details.style.display = 'block';
-                        e.target.textContent = langData.hideDetails;
-                    } else {
-                        details.style.display = 'none';
-                        e.target.textContent = langData.viewDetails;
-                    }
-                });
-            });
-
-            // Fill ALL skill bars (and reveal their % labels) when #skills enters the viewport
-            function animateSkillBars() {
-                document.querySelectorAll('.skill-level').forEach(level => {
-                    level.style.width = level.getAttribute('data-level');
-                });
-            }
-            
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.1 
-            };
-
-            const sectionObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        if (entry.target.id === 'skills') {
-                            animateSkillBars(); // Animate skill bars when skills section is visible
-                        }
-                        // observer.unobserve(entry.target); // Keep observing for re-animation if needed, or unobserve
-                    }
-                });
-            }, observerOptions);
-
-            sections.forEach(section => {
-                sectionObserver.observe(section);
-            });
-
-            let typingInterval;
-            function typeEffect(element, text, speed) {
-                clearInterval(typingInterval); 
-                let i = 0;
-                element.innerHTML = ''; 
-                typingInterval = setInterval(() => {
-                    if (i < text.length) {
-                        element.innerHTML += text.charAt(i);
-                        i++;
-                    } else {
-                        clearInterval(typingInterval);
-                    }
-                }, speed);
-            }
-            
-            // Initial call for typing effect done after updateLanguage
-            // typeEffect(jobTitleEl, translations[currentLang].jobTitle, 80);
-
-
-            window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 300) {
-                    if (!scrollTopBtn.classList.contains('visible')) {
-                        scrollTopBtn.classList.add('visible');
-                    }
-                } else {
-                    if (scrollTopBtn.classList.contains('visible')) {
-                        scrollTopBtn.classList.remove('visible');
-                         // Optional: hide it completely after transition if CSS doesn't handle display:none
-                        setTimeout(() => {
-                           if (!scrollTopBtn.classList.contains('visible')) scrollTopBtn.style.display = 'none';
-                        }, 300); // Match transition duration
-                    }
-                }
-                 // Ensure it's 'flex' when starting to become visible
-                if (scrollTopBtn.classList.contains('visible') && scrollTopBtn.style.display === 'none') {
-                    scrollTopBtn.style.display = 'flex';
-                }
-            });
-
-
-            scrollTopBtn.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-
-            window.addEventListener('load', () => {
-                setTimeout(() => {
-                    loadingOverlay.style.opacity = '0';
-                    setTimeout(() => {
-                        loadingOverlay.style.display = 'none';
-                    }, 500); 
-                }, 200); 
-            });
-            
-            // Mirror each skill's data-level onto its name <p> so CSS can show the % next to the label
-            document.querySelectorAll('.skill').forEach(s => {
-                const lv = s.querySelector('.skill-level');
-                const name = s.querySelector('p');
-                if (lv && name) name.setAttribute('data-level', lv.getAttribute('data-level'));
-            });
-
-            // Initial setup
-            updateLanguage(); // Set initial text based on default language and theme, also calls typeEffect
-            // animateSkillBars(); // This will be called by IntersectionObserver when skills section is visible
-        });
-    </script>
+    <dialog id="fit-dialog" class="fit-dialog"></dialog>
 </body>
 </html>
